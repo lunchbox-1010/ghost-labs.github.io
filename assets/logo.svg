@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Ghost Labs logo">
+  <!-- Outer orange ring -->
+  <circle cx="100" cy="100" r="92" fill="#E97B2A"/>
+  <!-- Inner white ring stroke -->
+  <circle cx="100" cy="100" r="84" fill="none" stroke="#ffffff" stroke-width="3"/>
+  <!-- Blue hills clipped inside the circle -->
+  <clipPath id="circleClip">
+    <circle cx="100" cy="100" r="84"/>
+  </clipPath>
+  <g clip-path="url(#circleClip)">
+    <ellipse cx="55" cy="150" rx="55" ry="32" fill="#3B7FB0"/>
+    <ellipse cx="140" cy="155" rx="60" ry="34" fill="#3B7FB0"/>
+    <ellipse cx="100" cy="180" rx="100" ry="22" fill="#3B7FB0"/>
+  </g>
+  <!-- Ghost body -->
+  <path d="M100 50
+           c-18 0 -30 14 -30 32
+           v40
+           c0 4 4 6 7 3
+           l6 -5
+           c2 -2 5 -2 7 0
+           l6 5
+           c2 2 5 2 7 0
+           l6 -5
+           c2 -2 5 -2 7 0
+           l6 5
+           c3 3 7 1 7 -3
+           v-40
+           c0 -18 -12 -32 -29 -32 z"
+        fill="#ffffff"/>
+  <!-- Ghost eyes -->
+  <circle cx="91" cy="80" r="3.4" fill="#3B7FB0"/>
+  <circle cx="109" cy="80" r="3.4" fill="#3B7FB0"/>
+  <!-- Soft shadow under circle -->
+  <ellipse cx="100" cy="194" rx="38" ry="3" fill="#3B7FB0" opacity="0.45"/>
+</svg>
