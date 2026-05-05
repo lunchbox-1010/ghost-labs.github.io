@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tidy Task &amp; Loot — Ghost Labs</title>
-  <meta name="description" content="Tidy Task & Loot is a calm, all-in-one app from Ghost Labs for tracking what you need to do and where your money goes.">
-  <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+  <meta name="description" content="Tidy Task & Loot is a chore game for families where kids run the cleanup, a dust pixie keeps score, and chores get done with photo-verified proof.">
+  <link rel="icon" type="image/png" href="../assets/logo.png">
   <link rel="stylesheet" href="../assets/styles.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
   <header class="nav">
     <div class="container nav-inner">
       <a class="brand" href="../index.html">
-        <img src="../assets/logo.svg" alt="">
+        <img src="../assets/logo.png" alt="">
         <span class="brand-text"><span class="o">GHOST</span><span class="b">LABS</span></span>
       </a>
       <button class="menu-toggle" aria-label="Open menu">&#9776;</button>
@@ -32,17 +32,23 @@
       <div>
         <span class="eyebrow">Tidy Task &amp; Loot</span>
         <h1 style="font-size:clamp(34px,4.5vw,52px); line-height:1.05; margin:0 0 16px; font-weight:800;">
-          Your day and your dollars,
-          <span style="background:linear-gradient(90deg,var(--orange),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent;">in one calm app</span>.
+          Your dust pixie
+          <span style="background:linear-gradient(90deg,var(--orange),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent;">is watching</span>.
         </h1>
-        <p style="color:rgba(255,255,255,.8); max-width:540px; font-size:18px; margin:0 0 24px;">
-          Tidy Task &amp; Loot is a focused mobile app for the two things that
-          quietly run your life — your to-dos and your spending. Capture them
-          fast, look back at them clearly, and feel a little more on top of
-          everything.
+        <p style="color:rgba(255,255,255,.85); max-width:560px; font-size:18px; margin:0 0 14px;">
+          And honestly? Things have been getting out of hand under the couch.
+        </p>
+        <p style="color:rgba(255,255,255,.75); max-width:560px; font-size:17px; margin:0 0 28px;">
+          Tidy Task &amp; Loot is a chore game where the kids run the cleanup and a
+          friendly dust pixie keeps score. Parents assign chores. Kids snap
+          timestamped photos as proof they actually did the thing. Loot points
+          land in their bank. The pixie pulls on a halo and floats off to the
+          next mess. <strong style="color:#fff;">Until something goes past due.</strong>
+          Then the pixie comes back wearing devil horns and carrying a pitchfork.
+          We've all been there.
         </p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="#features">See what it does</a>
+          <a class="btn btn-primary" href="#how">How it works</a>
           <a class="btn btn-ghost" href="support.html">Get support</a>
         </div>
         <div class="badge-row">
@@ -50,18 +56,14 @@
             <span>&#63743;</span>
             <span><span class="small">Coming soon</span>App Store</span>
           </a>
-          <a class="badge" href="#" aria-label="Coming soon to Google Play">
-            <span>&#9654;</span>
-            <span><span class="small">Coming soon</span>Google Play</span>
-          </a>
         </div>
       </div>
       <div>
         <div class="phone-mockup">
           <div class="screen">
-            <div class="emoji">&#10003;&nbsp;&#36;</div>
+            <div class="emoji">&#128123;</div>
             <div class="name">Tidy Task &amp; Loot</div>
-            <div class="tag">Today &middot; 3 to-dos &middot; $42 spent</div>
+            <div class="tag">3 chores done &middot; +45 loot</div>
           </div>
         </div>
       </div>
@@ -77,78 +79,141 @@
     </div>
   </nav>
 
-  <!-- FEATURES -->
-  <section class="section" id="features">
+  <!-- HOW IT WORKS -->
+  <section class="section" id="how">
     <div class="container">
       <div class="section-head">
-        <h2>Two simple sides. One simple app.</h2>
-        <p>Tasks on the orange side, money on the blue side. Switch between them with a swipe.</p>
+        <h2>How it works</h2>
+        <p>Three simple loops: assign, prove, redeem. The theatrics are free.</p>
       </div>
 
-      <div class="cards">
+      <div class="cards" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
         <div class="card">
-          <div class="card-icon orange">&#10003;</div>
-          <h3>The Task side</h3>
-          <p>Quick capture for whatever pops into your head. Three lists — Today, Soon, Someday — that quietly do the organizing for you. Optional gentle reminders that never nag.</p>
+          <div class="card-icon orange">1</div>
+          <h3>Parents assign</h3>
+          <p>Pick from a built-in chore library or invent your own. Schedule them as routines that spawn automatically each morning. Stop typing "make your bed" forever.</p>
         </div>
         <div class="card">
-          <div class="card-icon blue">&#36;</div>
-          <h3>The Loot side</h3>
-          <p>Log a spend in two taps. Watch your week and month at a glance. Set soft monthly targets per category and see where the loot is actually going — without linking a single bank account.</p>
+          <div class="card-icon blue">2</div>
+          <h3>Kids prove</h3>
+          <p>Each chore can require photo proof — taken inside the app with a real-time timestamp burned into the image. "I did it earlier" stops being a defense.</p>
         </div>
+        <div class="card">
+          <div class="card-icon orange">3</div>
+          <h3>Loot lands</h3>
+          <p>Approved chores rain pixie-dust sparkles and drop a coin pouch. Loot piles up in the kid's bank, redeemable in a Loot Shop you curate yourself.</p>
+        </div>
+      </div>
+
+      <div style="margin-top: 56px; padding: 28px; background: var(--soft); border-radius: var(--radius); border-left: 4px solid var(--orange); max-width: 760px; margin-left: auto; margin-right: auto;">
+        <h3 style="margin: 0 0 8px; color: var(--ink);">The pixie has moods</h3>
+        <p style="margin: 0; color: var(--text);">
+          Submit a chore and the pixie throws on a halo. Get rejected and the
+          pixie dons devil horns. Get approved and a tiny gold coin pouch
+          appears in the pixie's hand, raining pixie-dust sparkles. Every
+          state has its own animation, because if the chore is going to get
+          done it might as well be theatrical.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- FEATURE GRID -->
+  <!-- WHAT'S INSIDE -->
   <section class="section alt">
     <div class="container">
       <div class="section-head">
-        <h2>Built to feel good every day</h2>
-        <p>Small things matter. Here are some of the small things we sweat.</p>
+        <h2>What's inside</h2>
+        <p>The whole game, in one app, with no hidden meters or growth-hack nonsense.</p>
       </div>
 
       <div class="feature-grid">
         <div class="feature">
-          <div class="dot">&#9889;</div>
-          <h4>Instant launch</h4>
-          <p>The app opens in under a second on every supported device. Always.</p>
+          <div class="dot">&#128247;</div>
+          <h4>Photo-verified chores</h4>
+          <p>Watermarked, timestamped, anti-cheat camera built right in. The image is captured live from inside the app — no camera roll uploads.</p>
+        </div>
+        <div class="feature">
+          <div class="dot">&#128197;</div>
+          <h4>Routines</h4>
+          <p>Schedule chores daily, on weekdays, every other day, or weekly. They spawn automatically each morning so the chore list runs itself.</p>
+        </div>
+        <div class="feature">
+          <div class="dot">&#128106;</div>
+          <h4>Multiple kids</h4>
+          <p>Assign one chore to two or three kids with points split evenly. Group chores share a photo checklist — siblings can collaborate or fight over who took which picture.</p>
+        </div>
+        <div class="feature">
+          <div class="dot">&#128104;</div>
+          <h4>Multiple parents</h4>
+          <p>Each parent gets their own profile and avatar. Approvals can come from anyone, so whoever's around handles the verdict.</p>
+        </div>
+        <div class="feature">
+          <div class="dot">&#128176;</div>
+          <h4>Loot Shop</h4>
+          <p>Stock it with the rewards your kids actually care about. Set the point costs. Approve redemptions when you're ready. Screen time, ice cream, allowance — your call.</p>
+        </div>
+        <div class="feature">
+          <div class="dot">&#9729;</div>
+          <h4>Family sync</h4>
+          <p>Everything mirrors over your private iCloud across iPhone, iPad, and Mac. Multiple devices, one household, no extra account.</p>
         </div>
         <div class="feature">
           <div class="dot">&#128274;</div>
-          <h4>On-device by default</h4>
-          <p>Your tasks and spending live on your phone. iCloud / Google sync is optional and end-to-end your business.</p>
+          <h4>Parent-only controls</h4>
+          <p>Face ID gates parent mode so kids can't approve their own work. Optional 4-digit PINs keep siblings out of each other's profiles.</p>
         </div>
         <div class="feature">
-          <div class="dot">&#128276;</div>
-          <h4>Zero dark patterns</h4>
-          <p>No streaks, no guilt loops, no pressure to come back. The app is here for you, not the other way around.</p>
-        </div>
-        <div class="feature">
-          <div class="dot">&#127752;</div>
-          <h4>Light, dark, high-contrast</h4>
-          <p>Big-text support and full keyboard navigation. Designed to feel good for everyone.</p>
-        </div>
-        <div class="feature">
-          <div class="dot">&#128181;</div>
-          <h4>No bank linking</h4>
-          <p>Log spending manually, in seconds. Your transactions stay yours. No third party ever sees them.</p>
-        </div>
-        <div class="feature">
-          <div class="dot">&#9993;</div>
-          <h4>Real support</h4>
-          <p>Email a human and get a real reply. Usually same day, always within two.</p>
+          <div class="dot">&#9889;</div>
+          <h4>Built for actual families</h4>
+          <p>No streaks, no guilt loops, no in-app advertising. The pixie is the only one trying to get attention here.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WHY -->
+  <!-- WHO IT'S FOR -->
   <section class="section">
     <div class="container">
       <div class="section-head">
-        <h2>Why one app for both?</h2>
-        <p>Because tracking what you need to do and what you spend are the two routines that benefit most from a place to dump them — and they almost always live on the same phone, in the same minute, with the same intent: "let me just get this out of my head."</p>
+        <h2>Who it's for</h2>
+        <p>Families with kids of all ages who'd like the daily chore conversation to be shorter.</p>
+      </div>
+
+      <div class="feature-grid" style="max-width:880px; margin: 0 auto;">
+        <div class="feature">
+          <div class="dot">&#128587;</div>
+          <h4>Tired-of-nagging parents</h4>
+          <p>If you've said "did you brush your teeth" more than 6,000 times, this is your app.</p>
+        </div>
+        <div class="feature">
+          <div class="dot">&#9878;</div>
+          <h4>Households with multiple kids</h4>
+          <p>Where "fair" is a moving target and someone is always claiming someone else didn't do their share.</p>
+        </div>
+        <div class="feature">
+          <div class="dot">&#127909;</div>
+          <h4>Anyone who likes a little theater</h4>
+          <p>Pixie animations make accountability genuinely fun. Even the rejection is good content.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVACY -->
+  <section class="section alt">
+    <div class="container">
+      <div class="section-head">
+        <h2>Privacy</h2>
+      </div>
+      <div style="max-width: 720px; margin: 0 auto; text-align:center; font-size: 18px; line-height: 1.7; color: var(--text);">
+        <p>
+          Everything lives in your iCloud and on your devices. We don't run
+          analytics. We don't sell anything. The dust pixie keeps your secrets
+          — they're a professional.
+        </p>
+        <p style="margin-top: 24px;">
+          <a class="btn btn-primary" href="privacy.html">Read the full Privacy Policy</a>
+        </p>
       </div>
     </div>
   </section>
@@ -159,10 +224,10 @@
       <div class="footer-grid">
         <div>
           <a class="brand" href="../index.html">
-            <img src="../assets/logo.svg" alt="" style="width:32px;height:32px;">
+            <img src="../assets/logo.png" alt="" style="width:32px;height:32px;">
             <span class="brand-text"><span class="o">GHOST</span><span class="b">LABS</span></span>
           </a>
-          <p class="tagline">An independent software studio building thoughtful, useful apps.</p>
+          <p class="tagline">A boutique software studio building thoughtful, useful apps.</p>
         </div>
         <div>
           <h5>Tidy Task &amp; Loot</h5>
