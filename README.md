@@ -61,7 +61,7 @@ To swap the logo, replace `assets/logo.png` with a new file of the same name. Al
 
 ## Contact
 
-support@ghost-labs.com
+contact@ghost-labs.com
 
 ## License
 
