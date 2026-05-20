@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="robots" content="noindex,nofollow" />
+<title>Cleveland Granite &amp; Marble — Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:        #ffffff;
+    --bg-2:      #f5f5f7;
+    --ink:       #1d1d1f;
+    --ink-2:     #424245;
+    --ink-dim:   #6e6e73;
+    --ink-muted: #86868b;
+    --accent:    #4e6a73;
+    --accent-2:  #2e4148;
+    --line:      #d2d2d7;
+    --display:   "Inter Tight", "Inter", system-ui, sans-serif;
+    --sans:      "Inter", system-ui, -apple-system, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    font-weight: 400;
+    overflow: hidden;
+    letter-spacing: -0.005em;
+  }
+  body::before {
+    content: "";
+    position: fixed; inset: 0; z-index: 1000;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.025 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode: multiply;
+    opacity: .8;
+  }
+  .stage {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    position: relative;
+    isolation: isolate;
+  }
+  .stage::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to right, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.7) 60%, rgba(46, 65, 72, 0.12) 100%),
+      url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=85") center/cover no-repeat;
+    z-index: -1;
+    filter: saturate(0.9) contrast(1.02);
+  }
+  .card {
+    width: 100%;
+    max-width: 460px;
+    padding: 56px 44px;
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    border: 1px solid rgba(210, 210, 215, 0.6);
+    border-radius: 20px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 30px 80px -30px rgba(28, 30, 34, 0.22);
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 14px;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .eyebrow .num { color: var(--ink-muted); font-weight: 400; }
+  .brand {
+    font-family: var(--display);
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 30px;
+    color: var(--ink);
+  }
+  .brand .amp { color: var(--accent); font-weight: 500; padding: 0 2px; }
+  h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 1.0;
+    margin: 0 0 14px;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+  }
+  h1 .light { font-weight: 300; color: var(--ink-dim); display: block; }
+  p.intro {
+    color: var(--ink-2);
+    font-size: 15px;
+    margin: 0 0 32px;
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+  }
+  .input-row { position: relative; margin-bottom: 6px; }
+  input[type="password"], input[type="text"] {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    padding: 15px 48px 15px 18px;
+    font-family: var(--sans);
+    font-size: 15px;
+    text-align: center;
+    letter-spacing: 0.06em;
+    transition: border-color .25s ease, background .25s ease;
+    border-radius: 10px;
+  }
+  input:focus {
+    outline: 0;
+    background: #fff;
+    border-color: var(--accent);
+  }
+  input::placeholder {
+    color: var(--ink-muted);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 11px;
+  }
+  .toggle {
+    position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+    background: transparent; border: 0;
+    color: var(--ink-muted);
+    width: 36px; height: 36px;
+    cursor: pointer;
+    transition: color .2s ease;
+    border-radius: 8px;
+  }
+  .toggle:hover { color: var(--accent); }
+  .toggle svg { width: 18px; height: 18px; }
+  .btn {
+    width: 100%;
+    margin-top: 16px;
+    padding: 14px 24px;
+    background: var(--ink);
+    color: var(--bg);
+    border: 0;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background .25s ease, opacity .2s ease;
+    letter-spacing: -0.005em;
+    border-radius: 999px;
+  }
+  .btn:hover { background: var(--accent); }
+  .btn:disabled { opacity: .55; cursor: wait; }
+  .msg {
+    margin-top: 18px;
+    font-size: 13px;
+    color: #b04040;
+    min-height: 18px;
+    letter-spacing: -0.005em;
+  }
+  .foot {
+    margin-top: 32px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--ink-muted);
+    letter-spacing: -0.005em;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <form class="card" id="gate" autocomplete="off">
+    <div class="eyebrow"><span class="num">01</span><span>Preview · Cleveland</span></div>
+    <div class="brand">Cleveland Granite <span class="amp">&amp;</span> Marble</div>
+    <h1>
+      This site is in
+      <span class="light">development.</span>
+    </h1>
+    <p class="intro">Enter the preview password to view the work in progress.</p>
+
+    <div class="input-row">
+      <input id="pw" type="password" placeholder="Password" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" />
+      <button type="button" class="toggle" id="toggle" aria-label="Show password" tabindex="-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+      </button>
+    </div>
+
+    <button type="submit" class="btn" id="submit">Unlock Preview</button>
+    <div class="msg" id="msg"></div>
+
+    <div class="foot">
+      <span>© Cleveland Granite &amp; Marble</span>
+      <span>Since 1990</span>
+    </div>
+  </form>
+</div>
+
+<script id="payload" type="application/json">__PAYLOAD__</script>
+
+<script>
+(() => {
+  const payload = JSON.parse(document.getElementById("payload").textContent);
+  const pw     = document.getElementById("pw");
+  const form   = document.getElementById("gate");
+  const submit = document.getElementById("submit");
+  const msg    = document.getElementById("msg");
+  const toggle = document.getElementById("toggle");
+
+  toggle.addEventListener("click", () => {
+    pw.type = pw.type === "password" ? "text" : "password";
+    pw.focus();
+  });
+
+  setTimeout(() => pw.focus(), 50);
+
+  const hex2buf = (h) => {
+    const u = new Uint8Array(h.length / 2);
+    for (let i = 0; i < u.length; i++) u[i] = parseInt(h.substr(i*2, 2), 16);
+    return u;
+  };
+
+  async function decrypt(password) {
+    const enc = new TextEncoder();
+    const baseKey = await crypto.subtle.importKey(
+      "raw", enc.encode(password), "PBKDF2", false, ["deriveBits"]
+    );
+    const bits = await crypto.subtle.deriveBits(
+      { name: "PBKDF2", salt: hex2buf(payload.salt), iterations: payload.iter, hash: "SHA-256" },
+      baseKey, 64 * 8
+    );
+    const aesKeyRaw = bits.slice(0, 32);
+    const macKeyRaw = bits.slice(32, 64);
+
+    const macKey = await crypto.subtle.importKey(
+      "raw", macKeyRaw, { name: "HMAC", hash: "SHA-256" }, false, ["verify"]
+    );
+    const salt = hex2buf(payload.salt);
+    const iv   = hex2buf(payload.iv);
+    const ct   = hex2buf(payload.ct);
+    const data = new Uint8Array(salt.length + iv.length + ct.length);
+    data.set(salt, 0); data.set(iv, salt.length); data.set(ct, salt.length + iv.length);
+    const ok = await crypto.subtle.verify("HMAC", macKey, hex2buf(payload.mac), data);
+    if (!ok) throw new Error("WRONG_PASSWORD");
+
+    const aesKey = await crypto.subtle.importKey(
+      "raw", aesKeyRaw, { name: "AES-CBC" }, false, ["decrypt"]
+    );
+    const plain = await crypto.subtle.decrypt({ name: "AES-CBC", iv }, aesKey, ct);
+    return new TextDecoder("utf-8").decode(plain);
+  }
+
+  async function unlock(password) {
+    submit.disabled = true;
+    submit.textContent = "Unlocking…";
+    msg.textContent = "";
+    try {
+      const html = await decrypt(password);
+      try { sessionStorage.setItem("cg_pw", password); } catch {}
+      document.open();
+      document.write(html);
+      document.close();
+    } catch (e) {
+      submit.disabled = false;
+      submit.textContent = "Unlock Preview";
+      msg.textContent = e.message === "WRONG_PASSWORD"
+        ? "Incorrect password. Please try again."
+        : "Something went wrong unlocking the page.";
+      pw.value = "";
+      pw.focus();
+    }
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!pw.value) return;
+    unlock(pw.value);
+  });
+
+  try {
+    const cached = sessionStorage.getItem("cg_pw");
+    if (cached) unlock(cached);
+  } catch {}
+})();
+</script>
+</body>
+</html>
