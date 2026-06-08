@@ -627,6 +627,9 @@
   .project.p7 { grid-column: span 4; aspect-ratio: 1/1; }
   .project.p8 { grid-column: span 4; aspect-ratio: 1/1; }
   .project.p9 { grid-column: span 4; aspect-ratio: 1/1; }
+  .project.p10 { grid-column: span 4; aspect-ratio: 1/1; }
+  .project.p11 { grid-column: span 4; aspect-ratio: 1/1; }
+  .project.p12 { grid-column: span 4; aspect-ratio: 1/1; }
   @media (max-width: 900px) {
     .project { grid-column: span 6 !important; aspect-ratio: 4/3 !important; }
   }
@@ -913,6 +916,16 @@
   @media (max-width: 600px) {
     .foot-bottom { flex-direction: column; gap: 12px; text-align: center; }
   }
+  .built-by {
+    display: inline-flex; align-items: center; gap: 7px;
+    color: var(--ink-muted);
+    font-size: 12px;
+    letter-spacing: -0.005em;
+    transition: color .2s ease, opacity .2s ease;
+    opacity: .85;
+  }
+  .built-by:hover { color: var(--accent); opacity: 1; }
+  .built-by .ghost-logo { height: 30px; width: auto; display: block; }
 
   /* — Preview banner — */
   .preview-banner {
@@ -1114,9 +1127,9 @@
       </div>
 
       <div class="project-grid">
-        <a class="project p1 reveal" href="#" data-img="images/kitchen-marble-backsplash.jpg">
-          <img loading="lazy" src="images/kitchen-marble-backsplash.jpg" alt="Kitchen with a full-height book-matched marble backsplash and range hood" />
-          <div class="cap"><div class="kind">Kitchen / Marble</div><div class="name">Book-Matched Backsplash</div></div>
+        <a class="project p1 reveal" href="#" data-img="images/kitchen-arched-window.jpg">
+          <img loading="lazy" src="images/kitchen-arched-window.jpg" alt="Dark kitchen with an arched window and a white marble waterfall island" />
+          <div class="cap"><div class="kind">Kitchen / Marble</div><div class="name">Arched-Window Island</div></div>
         </a>
         <a class="project p2 reveal" href="#" data-img="images/kitchen-granite-island.jpg">
           <img loading="lazy" src="images/kitchen-granite-island.jpg" alt="Open-plan kitchen with a light granite island" />
@@ -1126,29 +1139,41 @@
           <img loading="lazy" src="images/fireplace-black-marble.jpg" alt="Black marble fireplace surround with shiplap chimney and built-ins" />
           <div class="cap"><div class="kind">Hearth / Marble</div><div class="name">Black Marble Surround</div></div>
         </a>
-        <a class="project p4 reveal" href="#" data-img="images/bath-double-vanity.jpg">
-          <img loading="lazy" src="images/bath-double-vanity.jpg" alt="Floating double vanity with a white quartz top and stone wall" />
-          <div class="cap"><div class="kind">Bath / Quartz</div><div class="name">Floating Double Vanity</div></div>
-        </a>
-        <a class="project p5 reveal" href="#" data-img="images/kitchen-waterfall-island.jpg">
+        <a class="project p4 reveal" href="#" data-img="images/kitchen-waterfall-island.jpg">
           <img loading="lazy" src="images/kitchen-waterfall-island.jpg" alt="Kitchen with a white marble waterfall island, range hood, and grey cabinetry" />
           <div class="cap"><div class="kind">Kitchen / Marble</div><div class="name">Marble Waterfall Island</div></div>
         </a>
-        <a class="project p6 reveal" href="#" data-img="images/kitchen-arched-window.jpg">
-          <img loading="lazy" src="images/kitchen-arched-window.jpg" alt="Dark kitchen with an arched window and a white marble waterfall island" />
-          <div class="cap"><div class="kind">Kitchen / Marble</div><div class="name">Arched-Window Kitchen</div></div>
+        <a class="project p5 reveal" href="#" data-img="images/grey-granite-kitchen.jpg">
+          <img loading="lazy" src="images/grey-granite-kitchen.jpg" alt="Kitchen peninsula in grey granite with grey shaker cabinets" />
+          <div class="cap"><div class="kind">Kitchen / Granite</div><div class="name">Granite Peninsula Kitchen</div></div>
         </a>
-        <a class="project p7 reveal" href="#" data-img="images/bar-marble-pantry.jpg">
+        <a class="project p6 reveal" href="#" data-img="images/bath-double-vanity.jpg">
+          <img loading="lazy" src="images/bath-double-vanity.jpg" alt="Floating double vanity with a white quartz top and stone wall" />
+          <div class="cap"><div class="kind">Bath / Quartz</div><div class="name">Floating Double Vanity</div></div>
+        </a>
+        <a class="project p7 reveal" href="#" data-img="images/fireplace-cream-marble.jpg">
+          <img loading="lazy" src="images/fireplace-cream-marble.jpg" alt="Cream marble fireplace surround in a wood-paneled built-in" />
+          <div class="cap"><div class="kind">Hearth / Marble</div><div class="name">Cream Marble Hearth</div></div>
+        </a>
+        <a class="project p8 reveal" href="#" data-img="images/bar-marble-pantry.jpg">
           <img loading="lazy" src="images/bar-marble-pantry.jpg" alt="Wet bar and butler's pantry with a marble waterfall counter and wine fridge" />
           <div class="cap"><div class="kind">Bar / Marble</div><div class="name">Wet Bar &amp; Pantry</div></div>
         </a>
-        <a class="project p8 reveal" href="#" data-img="images/granite-slab.jpg">
+        <a class="project p9 reveal" href="#" data-img="images/granite-slab.jpg">
           <img loading="lazy" src="images/granite-slab.jpg" alt="A hand-picked granite slab with dramatic grey veining" />
           <div class="cap"><div class="kind">Selection / Granite</div><div class="name">Hand-Picked Slab</div></div>
         </a>
-        <a class="project p9 reveal" href="#" data-img="images/fireplace-cream-marble.jpg">
-          <img loading="lazy" src="images/fireplace-cream-marble.jpg" alt="Cream marble fireplace surround in a wood-paneled built-in" />
-          <div class="cap"><div class="kind">Hearth / Marble</div><div class="name">Cream Marble Hearth</div></div>
+        <a class="project p10 reveal" href="#" data-img="images/kitchen-marble-backsplash.jpg">
+          <img loading="lazy" src="images/kitchen-marble-backsplash.jpg" alt="Kitchen with a full-height book-matched marble backsplash and range hood" />
+          <div class="cap"><div class="kind">Kitchen / Marble</div><div class="name">Book-Matched Backsplash</div></div>
+        </a>
+        <a class="project p11 reveal" href="#" data-img="images/granite-shelves.jpg">
+          <img loading="lazy" src="images/granite-shelves.jpg" alt="Floating granite shelves on brass brackets above a granite desk" />
+          <div class="cap"><div class="kind">Detail / Granite</div><div class="name">Floating Stone Shelves</div></div>
+        </a>
+        <a class="project p12 reveal" href="#" data-img="images/granite-sink.jpg">
+          <img loading="lazy" src="images/granite-sink.jpg" alt="Undermount composite sink set into a granite countertop" />
+          <div class="cap"><div class="kind">Detail / Granite</div><div class="name">Granite Composite Sink</div></div>
         </a>
       </div>
     </div>
@@ -1479,6 +1504,10 @@
     </div>
     <div class="foot-bottom">
       <div>© <span id="year"></span> Cleveland Granite &amp; Marble</div>
+      <a class="built-by" href="https://ghost-labs.com" target="_blank" rel="noopener noreferrer">
+        <span>Built by</span>
+        <img class="ghost-logo" src="images/ghost-labs-logo.png" alt="Ghost Labs" />
+      </a>
       <div>Cleveland · Ohio</div>
     </div>
   </div>
@@ -1490,9 +1519,9 @@
 <div class="lightbox" id="lightbox" role="dialog" aria-label="Image lightbox">
   <button class="close" aria-label="Close">×</button>
   <button class="nav-btn prev" aria-label="Previous">‹</button>
-  <img id="lbImg" src="" alt="" />
+  <img id="lbImg" alt="" />
   <button class="nav-btn next" aria-label="Next">›</button>
-  <div class="counter" id="lbCount">1 / 9</div>
+  <div class="counter" id="lbCount">1 / 12</div>
 </div>
 
 <script>
@@ -1502,6 +1531,7 @@
   // Gallery tiles hide entirely; hero/feature/about visuals show subtle gradient.
   document.querySelectorAll("img").forEach(img => {
     img.addEventListener("error", function () {
+      if (this.id === "lbImg" || this.classList.contains("ghost-logo")) return;   // keep lightbox + credit logo (alt text shows if missing)
       this.style.display = "none";
       const tile = this.closest(".project");
       if (tile) { tile.style.display = "none"; return; }
@@ -1544,6 +1574,7 @@
   let idx = 0;
   function openAt(i) {
     idx = (i + projects.length) % projects.length;
+    lbImg.style.display = "block";
     lbImg.src = projects[idx].dataset.img;
     lbCount.textContent = (idx + 1) + " / " + projects.length;
     lb.classList.add("open");
