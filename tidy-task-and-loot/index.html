@@ -3,273 +3,85 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tidy Task &amp; Loot — Ghost Labs</title>
-  <meta name="description" content="Tidy Task & Loot is a chore game for families where kids run the cleanup, a dust pixie keeps score, and chores get done with photo-verified proof.">
-  <!-- Open Graph / social media preview -->
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Ghost Labs">
-  <meta property="og:title" content="Tidy Task & Loot — Ghost Labs">
-  <meta property="og:description" content="A chore game where the kids run the cleanup and a friendly dust pixie keeps score. Photo-proof chores, loot points, and theatrical accountability.">
-  <meta property="og:url" content="https://ghost-labs.com/tidy-task-and-loot/">
-  <meta property="og:image" content="https://ghost-labs.com/assets/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Tidy Task & Loot — Ghost Labs">
-  <meta name="twitter:description" content="A chore game where the kids run the cleanup and a friendly dust pixie keeps score. Photo-proof chores, loot points, and theatrical accountability.">
-  <meta name="twitter:image" content="https://ghost-labs.com/assets/og-image.png">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <title>Ghost Labs — Preview (locked)</title>
+  <meta name="description" content="Ghost Labs preview site — password required.">
   <link rel="icon" type="image/png" href="../assets/logo.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
-  <meta name="theme-color" content="#0E1116">
   <link rel="stylesheet" href="../assets/styles.css">
 </head>
 <body>
+<style>
+  body { margin: 0; font-family: ui-sans-serif, system-ui, sans-serif; background: #0E1116; color: #fff; min-height: 100vh; display: flex; flex-direction: column; }
+  .preview-banner { background: #E97B2A; color: #1a0d04; padding: 10px 16px; text-align: center; font-weight: 700; letter-spacing: .08em; font-size: 13px; text-transform: uppercase; }
+  .gate { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+  .gate-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: 14px; padding: 36px 32px; max-width: 420px; width: 100%; text-align: center; }
+  .gate-card h1 { margin: 0 0 8px; font-size: 22px; font-weight: 700; }
+  .gate-card p { margin: 0 0 24px; color: rgba(255,255,255,.7); font-size: 15px; line-height: 1.5; }
+  .gate-card input { width: 100%; padding: 12px 14px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.18); border-radius: 8px; color: #fff; font-size: 15px; margin-bottom: 12px; box-sizing: border-box; }
+  .gate-card input:focus { outline: none; border-color: #E97B2A; }
+  .gate-card button { width: 100%; padding: 12px; background: #E97B2A; color: #1a0d04; border: 0; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; }
+  .gate-card button:hover { background: #C9651A; }
+  .gate-card .err { color: #ff8a8a; font-size: 13px; margin-top: 10px; min-height: 18px; }
+  .gate-card .footer { margin-top: 24px; font-size: 12px; color: rgba(255,255,255,.4); }
+</style>
+<div class="preview-banner">Preview — not yet published</div>
+<div class="gate" id="gate">
+  <div class="gate-card">
+    <h1>This page is locked</h1>
+    <p>Ghost Labs is still in preview. Enter the password to view this page.</p>
+    <input id="pw" type="password" autocomplete="off" placeholder="Password" autofocus>
+    <button id="go">Unlock</button>
+    <div class="err" id="err"></div>
+    <div class="footer">© Ghost Labs, LLC</div>
+  </div>
+</div>
+<script id="ct" type="text/plain">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</script>
+<script>
+(function(){
+  const SALT_B64 = "Hn3kncVU3xVDgN4h4c9RDQ==";
+  const IV_B64 = "yOMz5Z52PuCmIWvH";
+  const CT_B64 = document.getElementById('ct').textContent.trim();
+  const b64ToBuf = (b) => Uint8Array.from(atob(b), c => c.charCodeAt(0));
+  async function tryUnlock(pw){
+    try {
+      const salt = b64ToBuf(SALT_B64);
+      const iv = b64ToBuf(IV_B64);
+      const ct = b64ToBuf(CT_B64);
+      const enc = new TextEncoder();
+      const km = await crypto.subtle.importKey('raw', enc.encode(pw), 'PBKDF2', false, ['deriveKey']);
+      const key = await crypto.subtle.deriveKey(
+        { name:'PBKDF2', salt, iterations:200000, hash:'SHA-256' },
+        km, { name:'AES-GCM', length:256 }, false, ['decrypt']
+      );
+      const pt = await crypto.subtle.decrypt({ name:'AES-GCM', iv }, key, ct);
+      const html = new TextDecoder().decode(pt);
+      // remember in session so navigation within preview works
+      try { sessionStorage.setItem('gl_pw', pw); } catch(e){}
+      // inject decrypted content
+      const banner = document.querySelector('.preview-banner').outerHTML;
+      document.body.innerHTML = banner + html;
+      // re-run any inline scripts in the decrypted content
+      document.querySelectorAll('script').forEach(old => {
+        if (old.id === 'ct') return;
+        const s = document.createElement('script');
+        if (old.src) s.src = old.src; else s.textContent = old.textContent;
+        old.parentNode.replaceChild(s, old);
+      });
+    } catch (e) {
+      document.getElementById('err').textContent = 'Wrong password.';
+    }
+  }
+  document.getElementById('go').addEventListener('click', () => tryUnlock(document.getElementById('pw').value));
+  document.getElementById('pw').addEventListener('keydown', (e) => { if (e.key==='Enter') tryUnlock(e.target.value); });
+  // auto-unlock if session password is present
+  try {
+    const saved = sessionStorage.getItem('gl_pw');
+    if (saved) tryUnlock(saved);
+  } catch(e){}
+})();
+</script>
 
-  <header class="nav">
-    <div class="container nav-inner">
-      <a class="brand" href="../index.html">
-        <img src="../assets/logo-bw.png?v=3" alt="Ghost Labs">
-      </a>
-      <button class="menu-toggle" aria-label="Open menu">&#9776;</button>
-      <ul class="nav-links">
-        <li><a href="../index.html#projects">Projects</a></li>
-        <li><a href="../index.html#about">About</a></li>
-        <li><a href="../index.html#contact">Contact</a></li>
-        <li><a class="nav-cta" href="support.html">Get support &rarr;</a></li>
-      </ul>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <section class="app-hero">
-    <div class="container app-hero-grid">
-      <div>
-        <span class="eyebrow">Tidy Task &amp; Loot</span>
-        <h1 style="font-size:clamp(34px,4.5vw,52px); line-height:1.05; margin:0 0 16px; font-weight:800;">
-          Your dust pixie
-          <span style="background:linear-gradient(90deg,var(--orange),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent;">is watching</span>.
-        </h1>
-        <p style="color:rgba(255,255,255,.85); max-width:560px; font-size:18px; margin:0 0 14px;">
-          And honestly? Things have been getting out of hand under the couch.
-        </p>
-        <p style="color:rgba(255,255,255,.75); max-width:560px; font-size:17px; margin:0 0 28px;">
-          Tidy Task &amp; Loot is a chore game where the kids run the cleanup and a
-          friendly dust pixie keeps score. Parents assign chores. Kids snap
-          timestamped photos as proof they actually complete their tasks. Loot
-          points land in their bank. The pixie pulls on a halo and floats off to
-          the next mess. <strong style="color:#fff;">Until something goes past due.</strong>
-          Then the pixie comes back wearing devil horns and carrying a pitchfork.
-          We've all been there.
-        </p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="#how">How it works</a>
-          <a class="btn btn-ghost" href="support.html">Get support</a>
-        </div>
-        <div class="badge-row">
-          <a class="badge" href="#" aria-label="Coming soon to App Store">
-            <span>&#63743;</span>
-            <span><span class="small">Coming soon</span>App Store</span>
-          </a>
-        </div>
-      </div>
-      <div style="display:flex; justify-content:center; align-items:center;">
-        <div style="position:relative; width:min(340px,80%); aspect-ratio:1;">
-          <div style="position:absolute; inset:-12%; background:radial-gradient(circle, rgba(233,123,42,.35), transparent 60%); filter:blur(28px); border-radius:50%; z-index:0;"></div>
-          <img src="../assets/tidy-task-loot-icon.png" alt="Tidy Task &amp; Loot app icon" style="position:relative; z-index:1; width:100%; height:100%; object-fit:cover; border-radius:22%; box-shadow: 0 24px 60px rgba(0,0,0,.4), 0 0 0 1px rgba(255,255,255,.08);">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <nav class="subnav">
-    <div class="container subnav-inner">
-      <a class="active" href="index.html">Overview</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms of Service</a>
-      <a href="support.html">Support</a>
-    </div>
-  </nav>
-
-  <!-- HOW IT WORKS -->
-  <section class="section" id="how">
-    <div class="container">
-      <div class="section-head">
-        <h2>How it works</h2>
-        <p>Three simple loops: assign, prove, redeem. The theatrics are free.</p>
-      </div>
-
-      <div class="cards" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
-        <div class="card">
-          <div class="card-icon orange">1</div>
-          <h3>Parents assign</h3>
-          <p>Pick from a built-in chore library or invent your own. Schedule them as routines that spawn automatically each morning. Stop typing "make your bed" forever.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon blue">2</div>
-          <h3>Kids prove</h3>
-          <p>Each chore can require photo proof — taken inside the app with a real-time timestamp burned into the image. "I did it earlier" stops being a defense.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon orange">3</div>
-          <h3>Loot lands</h3>
-          <p>Approved chores rain pixie-dust sparkles and drop a coin pouch. Loot piles up in the kid's bank, redeemable in a Loot Shop you curate yourself.</p>
-        </div>
-      </div>
-
-      <div style="margin-top: 56px; padding: 28px; background: var(--soft); border-radius: var(--radius); border-left: 4px solid var(--orange); max-width: 760px; margin-left: auto; margin-right: auto;">
-        <h3 style="margin: 0 0 8px; color: var(--ink);">The pixie has moods</h3>
-        <p style="margin: 0; color: var(--text);">
-          Submit a chore and the pixie throws on a halo. Get rejected and the
-          pixie dons devil horns. Get approved and a tiny gold coin pouch
-          appears in the pixie's hand, raining pixie-dust sparkles. Every
-          state has its own animation, because if the chore is going to get
-          done it might as well be theatrical.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHAT'S INSIDE -->
-  <section class="section alt">
-    <div class="container">
-      <div class="section-head">
-        <h2>What's inside</h2>
-        <p>The whole game, in one app, with no hidden meters or growth-hack nonsense.</p>
-      </div>
-
-      <div class="feature-grid">
-        <div class="feature">
-          <div class="dot">&#128247;</div>
-          <h4>Photo-verified chores</h4>
-          <p>Watermarked, timestamped, anti-cheat camera built right in. The image is captured live from inside the app — no camera roll uploads.</p>
-        </div>
-        <div class="feature">
-          <div class="dot">&#128197;</div>
-          <h4>Routines</h4>
-          <p>Schedule chores daily, on weekdays, every other day, or weekly. They spawn automatically each morning so the chore list runs itself.</p>
-        </div>
-        <div class="feature">
-          <div class="dot">&#128106;</div>
-          <h4>Multiple kids</h4>
-          <p>Assign one chore to two or three kids with points split evenly. Group chores share a photo checklist — siblings can collaborate or fight over who took which picture.</p>
-        </div>
-        <div class="feature">
-          <div class="dot">&#128104;</div>
-          <h4>Multiple parents</h4>
-          <p>Each parent gets their own profile and avatar. Approvals can come from anyone, so whoever's around handles the verdict.</p>
-        </div>
-        <div class="feature">
-          <div class="dot">&#128176;</div>
-          <h4>Loot Shop</h4>
-          <p>Stock it with the rewards your kids actually care about. Kids can request new awards too — parents review the request and set the point value. Screen time, ice cream, allowance — your call, your price.</p>
-        </div>
-        <div class="feature">
-          <div class="dot">&#9729;</div>
-          <h4>Family sync</h4>
-          <p>Everything mirrors over your private iCloud across iPhone, iPad, and Mac. Multiple devices, one household, no extra account.</p>
-        </div>
-        <div class="feature">
-          <div class="dot">&#128274;</div>
-          <h4>Parent-only controls</h4>
-          <p>Face ID gates parent mode so kids can't approve their own work. Optional 4-digit PINs keep siblings out of each other's profiles.</p>
-        </div>
-        <div class="feature">
-          <div class="dot">&#9889;</div>
-          <h4>Built for actual families</h4>
-          <p>No streaks, no guilt loops, no in-app advertising. The pixie is the only one trying to get attention here.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHO IT'S FOR -->
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <h2>Who it's for</h2>
-        <p>Families with kids of all ages who'd like the daily chore conversation to be shorter.</p>
-      </div>
-
-      <div class="feature-grid" style="max-width:880px; margin: 0 auto;">
-        <div class="feature">
-          <div class="dot">&#128587;</div>
-          <h4>Tired-of-nagging parents</h4>
-          <p>If you've said "did you brush your teeth" more than 6,000 times, this is your app.</p>
-        </div>
-        <div class="feature">
-          <div class="dot">&#9878;</div>
-          <h4>Households with multiple kids</h4>
-          <p>Where "fair" is a moving target and someone is always claiming someone else didn't do their share.</p>
-        </div>
-        <div class="feature">
-          <div class="dot">&#127909;</div>
-          <h4>Anyone who likes a little theater</h4>
-          <p>Pixie animations make accountability genuinely fun. Even the rejection is good content.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRIVACY -->
-  <section class="section alt">
-    <div class="container">
-      <div class="section-head">
-        <h2>Privacy</h2>
-      </div>
-      <div style="max-width: 720px; margin: 0 auto; text-align:center; font-size: 18px; line-height: 1.7; color: var(--text);">
-        <p>
-          Everything lives in your iCloud and on your devices. We don't run
-          analytics. We don't sell anything. The dust pixie keeps your secrets
-          — they're a professional.
-        </p>
-        <p style="margin-top: 24px;">
-          <a class="btn btn-primary" href="privacy.html">Read the full Privacy Policy</a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <a class="brand" href="../index.html">
-            <img src="../assets/logo-icon.png" alt="" style="width:28px;height:28px;">
-        <span class="brand-text" style="font-size:14px;"><span class="o">GHOST</span><span class="b">LABS</span></span>
-      </a>
-          <p class="tagline">A boutique software studio building thoughtful, useful apps.</p>
-        </div>
-        <div>
-          <h5>Tidy Task &amp; Loot</h5>
-          <ul>
-            <li><a href="index.html">Overview</a></li>
-            <li><a href="privacy.html">Privacy</a></li>
-            <li><a href="terms.html">Terms</a></li>
-            <li><a href="support.html">Support</a></li>
-          </ul>
-        </div>
-        <div>
-          <h5>Ghost Labs</h5>
-          <ul>
-            <li><a href="../index.html#about">About</a></li>
-            <li><a href="../index.html#contact">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <h5>Email</h5>
-          <ul>
-            <li><a href="mailto:contact@ghost-labs.com">contact@ghost-labs.com</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>&copy; <span data-year></span> Ghost Labs, LLC. All rights reserved.</span>
-        <span><a href="mailto:contact@ghost-labs.com">contact@ghost-labs.com</a></span>
-      </div>
-    </div>
-  </footer>
-
-  <script src="../assets/app.js"></script>
 </body>
 </html>
