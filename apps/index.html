@@ -3,85 +3,194 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="googlebot" content="noindex, nofollow">
-  <title>Ghost Labs — Preview (locked)</title>
-  <meta name="description" content="Ghost Labs preview site — password required.">
+  <title>Apps — Ghost Labs</title>
+  <meta name="description" content="Ghost Labs Apps — consumer apps crafted with care. Maker of Tidy Task & Loot.">
+  <!-- Open Graph / social media preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ghost Labs">
+  <meta property="og:title" content="Apps — Ghost Labs">
+  <meta property="og:description" content="Ghost Labs Apps — consumer apps crafted with care.">
+  <meta property="og:url" content="https://ghost-labs.com/apps/">
+  <meta property="og:image" content="https://ghost-labs.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Apps — Ghost Labs">
+  <meta name="twitter:description" content="Ghost Labs Apps — consumer apps crafted with care.">
+  <meta name="twitter:image" content="https://ghost-labs.com/assets/og-image.png">
   <link rel="icon" type="image/png" href="../assets/logo.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#0E1116">
   <link rel="stylesheet" href="../assets/styles.css">
 </head>
 <body>
-<style>
-  body { margin: 0; font-family: ui-sans-serif, system-ui, sans-serif; background: #0E1116; color: #fff; min-height: 100vh; display: flex; flex-direction: column; }
-  .preview-banner { background: #E97B2A; color: #1a0d04; padding: 10px 16px; text-align: center; font-weight: 700; letter-spacing: .08em; font-size: 13px; text-transform: uppercase; }
-  .gate { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
-  .gate-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: 14px; padding: 36px 32px; max-width: 420px; width: 100%; text-align: center; }
-  .gate-card h1 { margin: 0 0 8px; font-size: 22px; font-weight: 700; }
-  .gate-card p { margin: 0 0 24px; color: rgba(255,255,255,.7); font-size: 15px; line-height: 1.5; }
-  .gate-card input { width: 100%; padding: 12px 14px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.18); border-radius: 8px; color: #fff; font-size: 15px; margin-bottom: 12px; box-sizing: border-box; }
-  .gate-card input:focus { outline: none; border-color: #E97B2A; }
-  .gate-card button { width: 100%; padding: 12px; background: #E97B2A; color: #1a0d04; border: 0; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; }
-  .gate-card button:hover { background: #C9651A; }
-  .gate-card .err { color: #ff8a8a; font-size: 13px; margin-top: 10px; min-height: 18px; }
-  .gate-card .footer { margin-top: 24px; font-size: 12px; color: rgba(255,255,255,.4); }
-</style>
-<div class="preview-banner">Preview — not yet published</div>
-<div class="gate" id="gate">
-  <div class="gate-card">
-    <h1>This page is locked</h1>
-    <p>Ghost Labs is still in preview. Enter the password to view this page.</p>
-    <input id="pw" type="password" autocomplete="off" placeholder="Password" autofocus>
-    <button id="go">Unlock</button>
-    <div class="err" id="err"></div>
-    <div class="footer">© Ghost Labs, LLC</div>
-  </div>
-</div>
-<script id="ct" type="text/plain">P3ckdODP0uVHXGHVmRDwP8VHyJcjxlJ3oGZXLgyE09XVz/B9z8W26C/McTLDcB+rboEZYIF6d5qHMPJcl4VHnqwtv11dywBglsbKE4B+b4ruajNrQfNun+k78WAvv8zmfBZ5yQd9uIFWfjI+foyDYemVstDsfq4R+AX8VzDova+bqwJlxjxuYf+Rbxxc9Y26AwC5A+ZJs/g3SaKroLpZwZSREDhtbuiIgWLBhTYt5wfSmOhz0g9DROI8KULeoixdk27fggHnnl0Wx1f3umV8HIX+5P+p/uOPjMi3E3XoYm3Exfyjt44HQzJD30x2VZWL8x2Uh/QM+EHaEPZrkP4yaQiQEfW/Gdn0ja30VHcCluAnp13zqvFYmaZLGzDOhjw/Raq3el4XyH+VWZ8aOG3ugPE2OJryt2TXfU+NTaOyIdZ4nte37+3sWkR9tL/0jAz9+jBUFRw0J4EVcVOVhjb+QzyKTMZhU0J5IFofloDX2BhzM8MTSZhimo1gC4WTQ7dbF1wzVFwKBenY26CGia1qIcCKMv4TRdOuGtkxykrAW51zZvMnIOmUu8DeG8xV/BxMI2tjAk7fOVIIPeTBiUHGujQiR8yoPtvUbanpXJNsKG6xQeHFhwh0jAlrmWRi1QeGplho8TG+M4wutYU8uVFwnfoS8sLkXPFy0g9YrfbiCuvIHJiVC7chb0pMLK9brCVc38aBsuUDJiqtuuwsY5dSDbtc/33czbBRxrg81xc6I4rbvQ6k/PR6IVS/LxHXQhMY5UlMU6UeNYm5WtxAwYK7NIw/r9BD9VdSa6JpuE6gGJcecSR2cfLL1v6Ey3d6fRFyic6C88D+R7ID9scdJ9GVBgqR75/D2xmUNlXadg9MNKnUTH74VEDnIph6ojea4MMOh74yPIV/F5kJOfV4AEeSVXsqlIHcw1l3eOgiGeGb91LLAZcDAly5HkAGK+uKZIUKxFBtg84Xu3UTZN+Y+KG0QH2LEyvxPWCXueopEL4c3EFbxs7aIBs8BGeWph9vOUlubteIGmzs5iBz/n+XG0t/0IUAoVFmqaoMy4oh8YBKd6CXKauZvZAH89kv/SofNJvasI1cs/akbgyrbk2lJicvpYJXydNmSV5ZKrl7MlKQ8C4/b0oZIl+UDPolHDcm2qdZnMBza9ePimZFE/QZXr1I1hDP0YBJWt+YgevVY6+pqIZM9gSzNm3ZRxB7Eu2KVcwEiI27sTfAu1OxzkGImH8tcd04BdoqlrGosYuYXmFf2XElRSyxQvxDF5C1XykfW1I23G84PN7LWIG3g0UAqCnCOUUhWSwNWagTRR9XCRFtudbHF9kRDQLdD4u/NB0hD73qmBfmOA3yf2V5vrB70gJdYg9cDpDjeCmrjqUNJnhGHUU5kYRkbcBX9TyN5FZLpLjENfUH/rF68j8RoOx+x9uZByZ4gB4Q92EEQIluNUzAtKWuZ1K3hWbjfCuiwgYaqdWVv9HOtkpkYwaSYYcln/Pb8kK1PM7MUJmSFZ8OC5IyIbKZfow0oiitLHtHNpsCxRod70k4dKLbP4XaGBcJw0qlhaeQf6CGO8MTT0SUTKWjaL/tmT+UPNlW1/3IvBJZ6Fr+jeAVPn+lJuiOgmJXfjWh6RTuyFHkwb22Cw7QNn/r8JyaDtI1Oj9YcQs9tG8spoDttun1yetkESpl+s41Rz07QzKLbw10H6m6L4RgqdAtpTv/KyD1eTlgzTbobQ5uul9whbLZhyF8QeZPk/gwkojdbOXn4DKfNHfrpupt0dSMmuXiep17YZpIVJbwz2h/N5zUidMsYvShz5Sb7K5PQt6VNctiozAVa57vCaY5gEho6WOvJm1ZjVgzAHvhlcw0Q9n/cRdCffaYuuYulTwNKjWHov4Khtfw3dGXxpzu0UhiWP7D+rvKXOFOQqaPmBngo7XdUsINfS65b7RtHRA1Am7OIhad4XfhyzpyJO74XkrpTDy8MIPqVx7Zn0UZCiiL8YqJbVhjDLy2/y75Ypy/KIuID/ACveW3KYySZUuzKMWg6CgEJXkm+azf3s9ZvSCM/M/ghij4+f3zqe5JOUZb/5W/8Of4OqLVWJUVUHne7/55byoKDGUDwbXn/gVmSsU5THx9RrTi2PoknXtWH0RN/Ae001P7+dL130X3T39cWXPYgLcLZUFtXUKUE9wMZQlhmfYFZYv/NKD89bupGLQ0ZQuB3GKIh98gXTB3ILOsd1wi+IolzyguGr3JYbHpaMNjGtFjH5fbSCTK7ficJl7jpjIbOEpZpOW3kYbY5+y3nHA/4uY1F/J0fB9eXQ8Zc+YKUGP1mGvyFBlIb2exVTJdU+WP2xiV6jH4Zexu+qhyfsCzl4t8ojRJyFdgM70kcOa05BiknVnQeu3T6Omfm6aenvYjdcNob8/mdrmFJUmeTNhPXSTFzPqoGEeJTCv8fNeD9EWJEyH8xr/Ae9oMVF1xnCCpTf9yC/lfqAAQXpqVQaQm+SDlNnHBRsCzWMgwj7WLHt7JdTwJ0Pgh47GWAPgQ3GgO/YfnfmMM/zDuoX4VzzdO8RVXy/39RG1OaFG80rNsa8cZekcNcRtUAuTmUtdzh5X+LVnwj/fuSVYJh0A9HhvSMREU/lby2WSPIUaNhtyfHwvdUTEDL+NUKP3AWu/PdZZDNL2ZShAv5L10Ar6U2P+6AQ9ANjznKibeZdC06T/PNFOE1XIBP5J5AsnCqkjjx/AdFHuRsMLdfdDYZvEX/YDiK06TO5ul+xaBqYciXptYVY7rrS2A23HsQrhJLJw7oeI/Nm0fnJ01Fj3N5bRJ+XJDldIs68oNs0F6EUp4YAxjcCgAIoTdJl023IGejqRqF1vTWr/ViJLnAdYtVvaSKSuPf4yDUkeCwBaJ5d7ipQirMO8mcZMpg7ImzsdSk3XfGlHWFXjyhVJcwF1JUOLdGDqM+tizo2i9TlKeHVKY8sUzw05EPCtYU7XSwRuOVgt8yWVbMaMjwRvks14hHSpCs8yfxk9xBOYLNYvYP+jdh3WefKWnRL29yhGWl+wmALH+dqFrbP/ThUkSAFhUfkSfINGb0zmV1iC97vOjPl2kxa+7FNPbu3ZbTLjny95eB7XgUClKsc0JACtue05rBlsXWYj6iGOHwUFd/aGWYrPMPjEMKWPH0r5LsNA5XbuOdwgij5/bBwYilQNg9u9e6NWOizPWeiasf5Id0YNGIUDcKy7Iau3AlvbANKfWAlaswRBOSGSGn3+4eGvWGErmyki6YIrzv4QkmLPCqozNP8t/PwBzIszB2HmG3jO3sp471g+DejGCjmqm04aREke5or5iZY/k5K4bts0fqOfMirIo5GtnpQSLykBl+J9+Eu8J7GupSW4dZs+x1htwf6ZYjPzQmlbn7pDRKN29SEaUHq7ilPOQONgWNxtGvUrgwDFXWdM3VmEPUDzBhO42c1vBQfnxo9OY9r1HNyXLm1xAj9LpBxpqinnFItgdlO/E5lF067WzfYuOXqCxITEnDMxEaqMYGg98ypUwNwYNnQJdn9UgrsCHNi9vMiWD2i163nHZI3e0M3b+Wv4BJoBFOpVYHC3dxYGkOtBZdntvb5N2u7tmgdQnXs5JZHLKQ4IAtXqEsA1yMLPpU2TSmyKl75UsjHASLl7phJSFD2lwlj7A0TTXKXmZ8ukPPw+rIebXbNss3hOqtrWmVjtKJaEYNwZIPxnZiYDHZmftwfqdO9hAKOwzpX2y1baesqmMUuMpzHoBASdBnHKsO0hu8t14EUqG5QcL4AHbmeV/lwfkxXnHRFeZ8KGW8gRGSk5TtJm74wmtVVZ273v5ONTxEDr4qZHce+V/H6JiLZqVaVQdE83sO6e3Y9AE5YrhAJr+WjVPrry3XPsps6CUXF3tddAVOQcv5O92G+1D2emncqGbUUGz7zzhLv5eA00oWbAR8ST/Xop1EMwcdFzmMTpXLRI66WaTKs33rd6/ssjFjbVNAq6N/R2GrdgSKvFzYIN5C3D0+pfRFQEbDoCoZXoWORSFnE2AyQOZx1XT+y5CYPJ8y1kgqXLKQ7B8iEpoG4TJ5rFU+v9ecQ8+M3DK66KR1kxtqAwTyI0jfzcjTMG+EOCke632/k5QmOOysWu0F+cXhlGtXNTFeVX156KDdSUiP8J1g+eyarMgDWMFOAaCIsF9/y9ptapAQUKd5LjgcEpUvKR8P30qTrunhXFGBTylcIbkIsr6/OaxoXNsIGcoFV8YKLeOXhJcNHns8U5h8lqWBdCpWGJhTZ4Y62XMCxfl9xd8hmtuWJvhqUiFGi/PfuB1zRbJkFnyNat4Xt/ee+VDgifrKidQKWpK71RmsZU6jven6daWq9hoaub+lAjDZXDTD0CV805v56Ln8wAb1pQaJfaUS0J39LqzPIUa5MPromBWrfWmnungUYQ73ayptw5ZhX5L/rED29X7uZh1Lq+h+ih5EGkjXW0C56fQzcJH3eollbFeU+IsX9/LW2+0nbWlwc5/tdFVgvL57W3sBG5vnu5PKZksYxyL8mpeFXrN6MWayz+4WUwx8WQCGjSZycxr9LlgTWMGARO3PUnYLltEs3jG17zkLkYiLQvuDDwEydqUykuG0Nf4uEpUR8hJCASC++q97Y4q/Eg62EUrdvAy9eWMBMsT/9/hqAPpbjHIcT+AFWMWyeGqnlhW4RncCQJyMOncEViCR5KvE3W1TYxZYc9R8JSgfVHdNwqm+sXcSw1ugydqAM/m8ATWypJaJaSv3O6XfoUlEYpWVJPP7WrPp1CBtod3P+Jhr0XwdJMDuTEhpzJ+AeeJPd4RJ80urcV5LSwqvivz6Vn2M3M75Je5eRtEBM/UzAiGFXlw/w+j8jU4VAfIWXg/Hf9y3ISdBbbE1NrVVp9AxCOEeE2aFwc+LlkfweF2qXWhOKR4fDeedC9xTXZPlcO+LSCYGDnjNSbFjAOtZsG1HToFlN41k6NEoQ+oi65hTBFX9zBO1sg+7xFkCdmCXWU2N4Wsaiy0fiVYOw45CJ5IG6/cMeLoVtS8lUgpTLD69Y82iRzYYhBry983jWJb4KEDquhF/4WkAL5Et7/t3Tu/mqPNRZfc22bppnzd0H5rY3Xt9wbTI1GuA7GrYtBpOMG3QELbv4vDbaKPNE6HREuTGA51kxBzVes5cQCiTIhu8wEKS6BHaO1Iq8GzOmkRNSAiL2flrHpzl8HAw1Rz2pIvXOH55euf3Ir0+V9RZFEDzo2BM45ihA//fX19KIfD2tmUJCJD1LxVHnFvetsIeLhxuXsY0rcfCCJ6PzzQBVbvH9+cLZLC/WF3BwfeQYSezs7BLFGv3t+7LE2ZTCFt+wr/SYfxIzE4KKMitnT+tKEqHKfJTu0nFfWlOCL9iMKydcKIoBK+JyV81hDJLfsQNOaVeccQEh8Z3J4NAVwq11WyLzbwQwWzvn9HHWr5wTfRL70GuYwoO//dX/FAcqrkws8jTQIDe1nEaIXagxO1hNHT8v7TUAT8msCwcX3GT9KgQ6EnV+t2btpSbcAHPxY4tSGyGBWK5IV97DBmCMg/D0P2lZ/TQpr4LV1wtLitVPPU4KUEJ+ywiL9f4VHgdSZnLkS5yC9bie98RPkhiCurciFTdP6rvyf1KJ3zil7KyosQ5PRO4HFBlAPfBvh73szRVxtdWgokzagpHDXfPlY8vLdXD9RrJ4nROHhcaCOLDPWNCbwoVQQYsV/V+7Pd04BBlS9OtH/MvL3voJtafe4uKM2HfNKi0qnrdeoMVFAITrbpLqh4gnN6ESQ8B2/hkIlaqCOz0O3RpHPlScvuIraVj0DXIhTjcIAz4sBarGZr0tfXp+9oB7XjjNHqEBniNaTwY1VXfcSaxKfBWxbIelciybhrvm7/P7lWCaE+NmIAPFXHfeq6wpQVu1HvHiw4mUzGX8+VYf+zqlvjKuAM7coe89vRIHMEA6hr7sEtw37wPO1ezWc9vYN+TXPuGWLQ7EQiDJGkIDcwvBZqGFH/EsXNR8c1dUxFq3PPXN2sSR6HG59BTjQxaAWu7UIisWMxd15CloaGPLIaQ8SiLd66XSNtJBprr1K6FCZ6NIy49FITpQK9nqPQAglcHWMuwnwuZMhaoavn7HWdNxbm1VPlNQNDbLQ8NUy2LbdG0/TsUf2VfoBfC3BNxucz15fxbOYNuwD+r86LTTS6JQaxHivv5WwTv9gsRkGWFiVx5qAXfQY+QQWRFRzG7BPUX1yX61ELe/GNELKCrlvku3gcGvF4vu9qY5wQXWXJIRXpaQ/KTtXQMQ32We3F2jkerBuRzsnHSG62L/iwC9hkPOrPHMX+fCFsjkzKGvJ93j7WdknhLjpTjPEgYrjDqjDKh3skcMmD9Y3xIUdBVRjJ8aWrGzIKweH+K8ZjJsqRiWKIQh5nOVr41sOX1w9YsCN5R9xtpPrsGfGrRPEznaNFw1+AfYQPR+WBQ8LuXdZlns9SfQ+A+T/XudGUfsXwT+jL/OCPkt6I8n+A+gacTOXL5ygZsomzt9AWXF+lgmlUfiOi9QsPsY3tipegpdqKaoMb4MKmyQG7GvRzwczdsFaRD0tJhIeHtVoxD0UNOptAm+PVCqgC+pohdxpjLYHz2owQY0aWQ0V+PjvJxT4XNAotRqFoulVFiVAJ1iMHiP7jcEGxJl5TpE09lRdQZ8KjF/IJdbjtPvaT17DPObPrB/8LkRtofnGM9sNORvUTt+ClxBeKnbNgkC0iPg+P59sX6AZVX4OgU82jSw0+qo5Zxpkzzlj+V+QbSG/3JwhSmeex7ooPAHRZFjy+xX0LcGN7WBl2RYAWojQ1VwDGSxTouhLi68iVgt2cKg8c1L9KcWWgA3BIsK5YBWup2YnyJekypd166oYGT0oJnd4I7NqE8ZH4WmZFd6aci6SVqLkVxjLEBV/3ghvZwtTLT87755xMHkHuSzIMlEc9DulpRQ+6fFgqPDPNVTquDt0/bdq6M2FG0iddiCd8OXsWckDi1ilzMLOmGDI+WtbOQ//MvTya/MHm3YHqwDCCCpR6dLE/9deX61Yh9Cby9riEyhSh4Yh5comBz3TGxoqAwTXwOrkpsDYMt957QBx7UwOn0+7sV7X0g8+yuSt9MSDDgI8OmIujMJpWvkV96OeaySMYtg8c9gshTHVZQB1k7gMdYzyiJbtRBGmY8voC4Eeu4j0Co20Bc43hgNGrkd2vyk9zOBbR+3zpEV9SAjFfJOQYkhYxFBN3HxnH5W2jKPpA6QLIbs3JIsC93IxPkFzt97KK8uOc2eXjK/IHzTL4jRZw8kjAqih11jfWQJptFCYwa9kx74w4lsN1W0JGYLCRxwrY/ozes4V70sWEh/0SvpuLedLVQ/sy08xcbZh5E3mx3Rf6VS6GQIoManu5BxZR5lkR445koS46DVR/a7fiQ53fC2srlPITfvEafRNeHucAhWHelZ8lbpWL/TYFGOOF+8FRI9yPJW+cQnh4YUXXPT1tiOjU/tC6X73klQXub+D02zsIEiOplzLxfWhgcS9zX/vNkFM2Qb3qVnz8QKhsAtJMp7B6JgG+sjnaBZUT+FL2CG1hd+OoF0pEQFMuvO+Yc9Z/1SgDzfYPMIBhInxIm0CdASfB0g93GkiguMifwGoHA/f0R5xpb2gmW8O4oSGPz/agmz+qeJlxhc94N7cJT+RtkmDN6Z9UuOUaFbplMnqU8s+LpDAOZTekfu8I1gu3Mz0a/zT7YAjWVcqXRwYYV6ohjLyBwsd9V5y44t/HdYsmO9UUhjEoNW86EmjPnlCrZR10y6YZ+bgqhD7yqGkj/pvUovhq6DzjJlYCLsex5YkceSYHQsI74jA6eMsei78VUeCkku/jWVBvmids5ddF0s3tNMMPbfbRjJ/aVN5vEAJYbqjyS5deLnMcD+czKPZFUBAWsg78SiC1NWRGjczAGAXTPCoB4Bdd/FsvRj6OVMoJragj2+Dce1c+diUg0msChrlcKGt/rbEpIndVqvcgmBhUXb0fUoap+2WvrsssMjQbuHu7ZnwKx3nD7epANI8JkKxVY2wIZgjGT+3weSr4EAgk0QJD0zDqSySb1N3P1z1FS4qb5avUvKGkWTP4VWTY4/N9nMc51QNCf6smCTikvJkAflO72iiSUFBjEzON5a+LKtbRG7sRRbgE/Oy2TCNeOybRejKz0AlKgCNrjfetVdCrEJZ04Pho7ReNt92R0ZRSiT4Cmheq+hEung86bVW2lA1N8vKhCGWK73kpLXAVYFeo7+JA71TXiOUj3PtQdOcRbWYpFrWPBj1h8hdAqORVeKOgda3nv8U6VxE2Gp2H9XzQ/qzDEru7rZt3ZKsRIMANZolW/kttcTlXAf5/DhattK9o45Rq5cD7iazg9vFG9mTPU/4mjAL7gQhWICsLeti8+mmvGLEDrmvM2OJbX077pyJ7uSW9WedRmVStdaYicG1kPb7I1aMd+kbvC7HM7wTV3pjnG0m3mkMJ6UobmpSlg+mx3ZSyVWXAbZ0VqY4kazyqIdbuGs203K8hnQqs0U7BrLbRFvM7HZL0UGNgaxEXhSPLHnPpChwHN6/f377S//QSSg8CvpQ/UdmdR0eyhffIhgBxczErLICkKIrnUz1MeEojIUmTdW3UuguI/48J7ye9XrKgB3kbFaCooE+mWDUEUtk33eUkqN+WMLdcTSZfBWVRxP7XBBFLY0oxt+aTNdLIHZ5AeXALh7r5CMvH3JBf/MSSJaFONpoCsr7OMbU0qYBorO5Xa8ElDtwGBFiRfI5QcT2oYlsE+D7e7ohTN/GRP4zA/UC6La13CXosBn+lqWrEdeXU/NNq7OZMceKuLd1/5pvkSmthYR8P3irWAXatTJbACFt/JcGGefJwSwIaJPZ75PMsdy3Noj0XhaXoanJjx2DIk2ZZGFfx+HiTxFSx3S6e3YGr6iAU+GOK3MG8x/bg8VLy/UHYx3jWWDy1wj54JNH/8tECjHaKCfC9Tge35Me8Et92se/qXyCNvnxQ74jP2cxlRyC0Dbk+2dj2gI/T7rdIgh3uGqtqRLIMAlG4zjEK2SEp4Q1zylEUDqA3UlwYuGV3hePggv2dgM+SFPYP3Y2CfPJ74us6Cp5Nl3fpj09GPQUJh2G1lKrT9MHwb9mO8/p5VehNXI/q4aLQss/ubM3ZMcp+WiBz6kmFsdQKb60666IlV/vby6BBaf42g9Y8F/LdhJO6RxxX9t0mYdZP3gRD1Xg2c0pGarYODGc+StoqV7V/vNdNMu3Ijeg5kjQsuXNXS3kR6VSEzSSvId/UiC6LISVVFGz6Dkn/nAqL76W3QdqYuGYc2prLjnr0G2DzgDp92ObKOPdhEKrhhSZ/06JKn8YRm9rgI4VBu6wcUtVqcpTxiQzNiO33f9JWouW9ZcRfK186Oq5HFRMucYafiB9sQ4KW11OrGHTvh1NhxGgAGdeqRXiRtKXOtOCmNwzoI8yvAasrzE6Xm7sPmqFh4/xUeS9/jigB1SIkkkwI39M7CPvYhmrILEYJWRtaL2TFWrESzHAfGe0wRm18bZ5esmdyiDqU9/mMD/WWbELXAzASqPhPQT/RxzeU4HrJv+y6i5pRPsIk5oQ=</script>
-<script>
-(function(){
-  const SALT_B64 = "Hn3kncVU3xVDgN4h4c9RDQ==";
-  const IV_B64 = "UJbSJlGiIFN48Gry";
-  const CT_B64 = document.getElementById('ct').textContent.trim();
-  const b64ToBuf = (b) => Uint8Array.from(atob(b), c => c.charCodeAt(0));
-  async function tryUnlock(pw){
-    try {
-      const salt = b64ToBuf(SALT_B64);
-      const iv = b64ToBuf(IV_B64);
-      const ct = b64ToBuf(CT_B64);
-      const enc = new TextEncoder();
-      const km = await crypto.subtle.importKey('raw', enc.encode(pw), 'PBKDF2', false, ['deriveKey']);
-      const key = await crypto.subtle.deriveKey(
-        { name:'PBKDF2', salt, iterations:200000, hash:'SHA-256' },
-        km, { name:'AES-GCM', length:256 }, false, ['decrypt']
-      );
-      const pt = await crypto.subtle.decrypt({ name:'AES-GCM', iv }, key, ct);
-      const html = new TextDecoder().decode(pt);
-      // remember in session so navigation within preview works
-      try { sessionStorage.setItem('gl_pw', pw); } catch(e){}
-      // inject decrypted content
-      const banner = document.querySelector('.preview-banner').outerHTML;
-      document.body.innerHTML = banner + html;
-      // re-run any inline scripts in the decrypted content
-      document.querySelectorAll('script').forEach(old => {
-        if (old.id === 'ct') return;
-        const s = document.createElement('script');
-        if (old.src) s.src = old.src; else s.textContent = old.textContent;
-        old.parentNode.replaceChild(s, old);
-      });
-    } catch (e) {
-      document.getElementById('err').textContent = 'Wrong password.';
-    }
-  }
-  document.getElementById('go').addEventListener('click', () => tryUnlock(document.getElementById('pw').value));
-  document.getElementById('pw').addEventListener('keydown', (e) => { if (e.key==='Enter') tryUnlock(e.target.value); });
-  // auto-unlock if session password is present
-  try {
-    const saved = sessionStorage.getItem('gl_pw');
-    if (saved) tryUnlock(saved);
-  } catch(e){}
-})();
-</script>
+
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="../index.html">
+        <img src="../assets/logo-bw.png?v=3" alt="Ghost Labs">
+      </a>
+      <button class="menu-toggle" aria-label="Open menu">&#9776;</button>
+            <ul class="nav-links">
+        <li><a href="../apps/" class="active-section">Apps</a></li>
+        <li><a href="../cloud/">Cloud</a></li>
+        <li><a href="../foundry/">Foundry</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container" style="text-align:center;">
+      <div style="margin: 0 auto 24px;">
+        <div style="position:relative; display:inline-block;">
+          <div style="position:absolute; inset:5%; background:radial-gradient(circle, rgba(233,123,42,.25), transparent 70%); filter:blur(20px); border-radius:50%; z-index:0;"></div>
+          <img src="../assets/logo-icon.png" alt="Ghost Labs" style="position:relative; z-index:1; width:min(360px, 65vw); height:auto; display:block;">
+        </div>
+        <div style="font-weight:800; letter-spacing:1px; font-size:clamp(28px, 4.5vw, 44px); margin-top:14px; line-height:1;">
+          <span style="color:var(--orange);">GHOST</span><span style="color:var(--blue);">LABS</span>
+        </div>
+      </div>
+      <span class="eyebrow">Independent Boutique App Studio</span>
+      <h1 style="margin: 0 auto 18px; max-width: 880px;">Boutique-Crafted Apps. <span class="grad">Hauntingly Good</span>.</h1>
+      <p class="lead" style="margin: 0 auto 28px; max-width: 640px;">
+        Ghost Labs is a boutique software studio crafting practical, well-designed
+        apps for everyday life. We build the kind of tools we wish existed —
+        fast, focused, and friendly.
+      </p>
+      <div class="cta-row" style="justify-content:center;">
+        <a class="btn btn-primary" href="#projects">Explore our apps</a>
+        <a class="btn btn-ghost" href="#about">Our story</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-head">
+        <h2>Our projects</h2>
+        <p>Each app gets the same care: clean design, real privacy, and updates that actually ship.</p>
+      </div>
+
+      <div class="cards" style="grid-template-columns: repeat(auto-fit, minmax(300px, 420px)); justify-content: center;">
+        <a class="card" href="../tidy-task-and-loot/index.html" aria-label="Tidy Task and Loot">
+          <img src="../assets/tidy-task-loot-icon.png" alt="Tidy Task &amp; Loot app icon" style="width:96px; height:96px; border-radius:22px; margin-bottom:18px; box-shadow: 0 6px 20px rgba(0,0,0,.18);">
+          <h3>Tidy Task &amp; Loot</h3>
+          <p>A chore game where the kids run the cleanup and a friendly dust pixie keeps score. Photo-proof chores, loot points, and theatrical accountability — without the nagging.</p>
+          <span class="card-cta">Learn more &rarr;</span>
+        </a>
+      </div>
+
+      <p style="text-align:center; margin-top: 28px; color: var(--muted); font-size: 14px;">
+        More apps in the workshop. Stay tuned.
+      </p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section alt" id="about">
+    <div class="container">
+      <div class="section-head">
+        <h2>What we're about</h2>
+        <p>Ghost Labs, LLC is a small studio that ships software with intention.</p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature">
+          <div class="dot">1</div>
+          <h4>Privacy first</h4>
+          <p>We use Apple's CloudKit to sync your data across your devices, but it lives in your private iCloud — never on our servers. We collect as little as possible, full stop.</p>
+        </div>
+        <div class="feature">
+          <div class="dot">2</div>
+          <h4>Built to evolve</h4>
+          <p>Some apps are subscription-backed, others are one-time purchases. Either way, you get continuous updates — new features, polish, and fixes keep shipping long after you buy.</p>
+        </div>
+        <div class="feature">
+          <div class="dot">3</div>
+          <h4>Quietly delightful</h4>
+          <p>Considered design, smooth animation, and tiny touches that make the everyday a little nicer.</p>
+        </div>
+        <div class="feature">
+          <div class="dot">4</div>
+          <h4>A little bit of magic</h4>
+          <p>Dust pixies, hidden animations, tiny surprises. Our apps have a playful side because the everyday should feel a little brighter.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-head">
+        <h2>Get in touch</h2>
+        <p>Bug reports, feature ideas, partnership inquiries — we read everything.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Send us a note</h3>
+          <p>The fastest way to reach us is by email. We typically reply within one to two business days.</p>
+          <p style="margin-top: 18px;">
+            <a class="btn btn-primary" href="mailto:contact@ghost-labs.com">contact@ghost-labs.com</a>
+          </p>
+        </div>
+        <div class="contact-card">
+          <h3>App support</h3>
+          <p>Looking for help with a specific app? Each app has its own dedicated support page.</p>
+          <div class="contact-row">
+            <strong>Tidy Task &amp; Loot</strong>
+            <a href="../tidy-task-and-loot/support.html">Support &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="../index.html">
+            <img src="../assets/logo-icon.png" alt="" style="width:28px;height:28px;">
+        <span class="brand-text" style="font-size:14px;"><span class="o">GHOST</span><span class="b">LABS</span></span>
+      </a>
+          <p class="tagline">An independent software studio building thoughtful, useful apps.</p>
+        </div>
+        <div>
+          <h5>Apps</h5>
+          <ul>
+            <li><a href="../tidy-task-and-loot/index.html">Tidy Task &amp; Loot</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Company</h5>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="../tidy-task-and-loot/privacy.html">Privacy Policy</a></li>
+            <li><a href="../tidy-task-and-loot/terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span data-year></span> Ghost Labs, LLC. All rights reserved.</span>
+        <span><a href="mailto:contact@ghost-labs.com">contact@ghost-labs.com</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/app.js"></script>
 
 </body>
 </html>
