@@ -723,3 +723,60 @@ span.badge { cursor: default; }
   .card-icon, .dot { transition: transform .25s cubic-bezier(.4, 0, .2, 1); }
   .card:hover .card-icon, .feature:hover .dot { transform: translateY(-2px); }
 }
+
+/* ---------------------------------------------------------------------------
+   Hero ghost — the ghost hovers inside its badge.
+
+   The mark is served as two layers cut from the original artwork: the disc with
+   the ghost lifted out (logo-icon-bg.png) and the ghost alone (logo-icon-ghost.png),
+   positioned back over its own footprint in percentages so the pair scales as one
+   image. Only the ghost moves, so the badge itself stays still the way a logo
+   should. A soft shadow rides underneath and tightens as the ghost rises — that
+   counter-motion is what sells the lift; a bob on its own just reads as a jitter.
+   --------------------------------------------------------------------------- */
+.ghost-lift{
+  position:relative; display:inline-block;
+  width:min(360px, 65vw); line-height:0;
+}
+
+.ghost-aura{
+  position:absolute; inset:5%; z-index:0; border-radius:50%;
+  background:radial-gradient(circle, rgba(233,123,42,.25), transparent 70%);
+  filter:blur(20px);
+}
+
+.ghost-disc{ position:relative; z-index:1; display:block; width:100%; height:auto; }
+
+/* the ghost's own footprint in the source art, as a share of the disc */
+.ghost-body{
+  position:absolute; z-index:3;
+  left:32.617%; top:22.266%; width:34.766%; height:auto;
+  transform-origin:50% 100%;
+  animation: ghost-hover 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+.ghost-shade{
+  position:absolute; z-index:2;
+  left:36.5%; top:75.2%; width:27%; height:5.2%;
+  background:radial-gradient(closest-side ellipse, rgba(22,63,96,.55), rgba(22,63,96,0) 100%);
+  transform-origin:50% 50%;
+  animation: ghost-shade 6s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes ghost-hover{
+  0%,100% { transform: translate(0, 0)           rotate(0deg); }
+  25%     { transform: translate(-1.6%, -4.4%)   rotate(-1.8deg); }
+  50%     { transform: translate(0, -7.2%)       rotate(0deg); }
+  75%     { transform: translate(1.6%, -4.4%)    rotate(1.8deg); }
+}
+
+@keyframes ghost-shade{
+  0%,100% { transform: scale(1);        opacity:1; }
+  50%     { transform: scale(.78, .68); opacity:.45; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .ghost-body, .ghost-shade{ animation: none; }
+}

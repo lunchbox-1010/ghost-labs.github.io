@@ -45,9 +45,11 @@
   <section class="hero">
     <div class="container" style="text-align:center;">
       <div style="margin: 0 auto 24px;">
-        <div style="position:relative; display:inline-block;">
-          <div style="position:absolute; inset:5%; background:radial-gradient(circle, rgba(233,123,42,.25), transparent 70%); filter:blur(20px); border-radius:50%; z-index:0;"></div>
-          <img src="assets/logo-icon.png" alt="Ghost Labs" style="position:relative; z-index:1; width:min(360px, 65vw); height:auto; display:block;">
+        <div class="ghost-lift">
+          <div class="ghost-aura" aria-hidden="true"></div>
+          <img class="ghost-disc" src="assets/logo-icon-bg.png" alt="Ghost Labs">
+          <div class="ghost-shade" aria-hidden="true"></div>
+          <img class="ghost-body" src="assets/logo-icon-ghost.png" alt="" aria-hidden="true">
         </div>
         <div style="font-weight:800; letter-spacing:1px; font-size:clamp(28px, 4.5vw, 44px); margin-top:14px; line-height:1;">
           <span style="color:var(--orange);">GHOST</span><span style="color:var(--blue);">LABS</span>
@@ -150,7 +152,7 @@
         <div class="feature">
           <div class="dot">3</div>
           <h3>Quietly delightful</h3>
-          <p>Considered design, smooth animation, and tiny touches that make the everyday a little nicer — whether you're a kid earning loot points or an ops team running a production dashboard.</p>
+          <p>Interface craft that holds up under real load — clear hierarchy, honest states, and interaction that stays smooth when the data doesn't. The same bar applies to a family chore board and an operations console watching production: tools people are glad to open every day.</p>
         </div>
         <div class="feature">
           <div class="dot">4</div>
