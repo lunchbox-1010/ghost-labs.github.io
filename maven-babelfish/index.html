@@ -199,19 +199,11 @@
   .orbiter{ position:absolute; top:0; left:0; width:var(--of); height:var(--of);
             --of:clamp(62px, 9vmin, 92px);
             offset-path:path("M 16,60 A 191,44 0 0 1 398,60 A 191,44 0 0 1 16,60");
-            offset-rotate:0deg;
-            /* one loop, two jobs: travel the oval, and change places with the button halfway
-               round — behind it going one way, in front of it coming back */
-            animation:orbit var(--orbit-time, 11s) linear infinite,
-                      depth var(--orbit-time, 11s) step-end infinite }
+            offset-rotate:0deg; offset-distance:0% }
   /* the fish turns at the two ends of the oval, where it is edge-on and the turn doesn't show */
-  .facing{ position:absolute; inset:0; animation:facing var(--orbit-time, 11s) linear infinite }
+  .facing{ position:absolute; inset:0 }
   .orbiter .fish{ --t:var(--t-orange); --b:var(--b-orange); --beat:.8s; --phase:-.2s;
                   animation:surge 1.7s ease-in-out infinite }
-  @keyframes orbit{ from{ offset-distance:0% } to{ offset-distance:100% } }
-  @keyframes depth{ 0%{ z-index:0 } 50%{ z-index:2 } 100%{ z-index:0 } }
-  @keyframes facing{ 0%,47%{ transform:scaleX(1) } 53%,97%{ transform:scaleX(-1) }
-                     100%{ transform:scaleX(1) } }
 
   /* One control with three stops, in the same corner on every Babelfish page, so there is
      never a second button elsewhere doing a related job. */
@@ -613,6 +605,68 @@ const school = (() => {
 // whichever face is showing and transitions with it, so the content resizes smoothly instead of
 // jumping, and pressing the control also reroutes the school underneath.
 // ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+// The fish circling the control draws a fresh circuit every time round: a different colour
+// from the same five, a different size and pace, a different oval, and either direction. Its
+// facing follows the way it is travelling, and it changes places with the button halfway round
+// — behind it on the far side, in front of it on the near one. A fixed CSS loop read as a
+// mechanism; this reads as a fish that happens to be circling something.
+// ---------------------------------------------------------------------------
+(() => {
+  const orbiter = document.querySelector(".orbiter");
+  const facing = document.querySelector(".facing");
+  const fish = orbiter && orbiter.querySelector(".fish");
+  if (!orbiter || !facing || !fish) return;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const COLOURS = ["orange", "blue", "red", "pink", "purple"];
+  const rnd = (a, b) => a + Math.random() * (b - a);
+  // every variant shares its two endpoints, so swapping ovals between circuits never jumps
+  const OVALS = [
+    "M 16,60 A 175,32 0 0 1 398,60 A 175,32 0 0 1 16,60",
+    "M 16,60 A 191,38 0 0 1 398,60 A 191,38 0 0 1 16,60",
+    "M 16,60 A 200,44 0 0 1 398,60 A 200,44 0 0 1 16,60"
+  ];
+  let timer = null;
+
+  const circuit = () => {
+    const c = COLOURS[Math.floor(Math.random() * COLOURS.length)];
+    const back = Math.random() < 0.5;
+    const secs = rnd(8.5, 16) * 1000;
+    const size = rnd(0.82, 1.12);
+
+    fish.style.setProperty("--t", `var(--t-${c})`);
+    fish.style.setProperty("--b", `var(--b-${c})`);
+    fish.style.setProperty("--beat", rnd(0.66, 0.94).toFixed(2) + "s");
+    orbiter.style.setProperty("--of", `calc(clamp(62px, 9vmin, 92px) * ${size.toFixed(2)})`);
+    orbiter.style.offsetPath = `path("${OVALS[Math.floor(Math.random() * OVALS.length)]}")`;
+
+    const from = back ? "100%" : "0%", to = back ? "0%" : "100%";
+    const a = orbiter.animate([{ offsetDistance: from }, { offsetDistance: to }],
+                              { duration: secs, easing: "linear", fill: "forwards" });
+
+    // the first half of a circuit runs left to right whichever way round it goes
+    facing.animate([
+      { transform: "scaleX(1)",  offset: 0 },    { transform: "scaleX(1)",  offset: 0.47 },
+      { transform: "scaleX(-1)", offset: 0.53 }, { transform: "scaleX(-1)", offset: 0.97 },
+      { transform: "scaleX(1)",  offset: 1 }
+    ], { duration: secs, easing: "linear", fill: "forwards" });
+
+    // forwards, the first half is over the top and behind the button; backwards it is under the
+    // bottom and in front of it
+    orbiter.style.zIndex = back ? "2" : "0";
+    clearTimeout(timer);
+    timer = setTimeout(() => { orbiter.style.zIndex = back ? "0" : "2"; }, secs / 2);
+
+    a.onfinish = circuit;
+  };
+
+  circuit();
+  // a backgrounded tab queues its finish callbacks; start a clean circuit on return
+  addEventListener("pageshow", e => { if (e.persisted) circuit(); });
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) circuit(); });
+})();
+
 // The bar wraps to two rows on a narrow screen, so the corner control is placed against its
 // measured height rather than a guess at it.
 (() => {
