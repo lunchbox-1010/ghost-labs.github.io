@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maven Babelfish — every marketing platform, one language, any AI</title>
+<meta name="description" content="Ad platforms, CRMs, web analytics, email and vendor spreadsheets aggregated into one language, every number verified, answerable in the AI your team already uses.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ghost Labs">
+<meta property="og:title" content="Maven Babelfish — every marketing platform, one language, any AI">
+<meta property="og:description" content="One vocabulary, one currency, one campaign key, one person. Spend joined to the deals it produced, and every number recounted before you see it.">
+<meta property="og:url" content="https://ghost-labs.com/maven-babelfish/learn-more/">
+<meta name="theme-color" content="#070d14">
+<link rel="icon" type="image/png" href="../brand/logo-180.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../brand/logo-square-180.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --ground:#070d14; --panel:#0d1722; --line:rgba(126,148,169,.16);
+    --ink:#eef4fa; --body:#c3d6e6; --muted:#7e94a9;
+    --maven:#5cc2ff; --babel:#f4752e; --signal:#ffd100; --verify:#9fe0a8;
+    --display:"Fraunces",Georgia,"Times New Roman",serif;
+    --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+    --wrap:1080px;
+  }
+  *{ box-sizing:border-box }
+  html,body{ margin:0 }
+  html{ overflow-x:hidden; scroll-behavior:smooth }
+  body{ background:var(--ground); color:var(--ink); font-family:var(--display);
+        background-image:radial-gradient(120% 44% at 50% 0%, #15283a 0%, rgba(7,13,20,0) 62%);
+        overflow-x:hidden; line-height:1.5 }
+  .wrap{ width:100%; max-width:var(--wrap); margin:0 auto; padding-inline:clamp(18px, 5vw, 40px) }
+  section{ padding-block:clamp(38px, 7vmin, 82px) }
+  .rule{ border:0; border-top:1px solid var(--line); margin:0 }
+
+  /* labels, eyebrows and captions are the mono voice; everything narrative is the serif */
+  .eyebrow{ margin:0 0 .9em; font-family:var(--mono); font-weight:500;
+            font-size:clamp(8.5px, 1.1vw, 11px); letter-spacing:.26em; text-transform:uppercase;
+            color:var(--muted) }
+  h2{ margin:0 0 .5em; font-weight:600; font-size:clamp(21px, 3vw, 34px); letter-spacing:-.02em;
+      line-height:1.14 }
+  h3{ margin:0 0 .35em; font-weight:600; font-size:clamp(15px, 1.55vw, 19px); letter-spacing:-.01em }
+  p{ margin:0 0 1em; color:var(--body); font-size:clamp(14px, 1.32vw, 17px) }
+  p:last-child{ margin-bottom:0 }
+  .lede{ font-size:clamp(15px, 1.65vw, 21px); color:#d8e6f2; max-width:58ch }
+
+  /* ---- masthead ---- */
+  header.top{ position:sticky; top:0; z-index:10; background:rgba(7,13,20,.86);
+              backdrop-filter:blur(10px); border-bottom:1px solid var(--line) }
+  .top-in{ display:flex; align-items:center; justify-content:space-between; gap:16px;
+           padding-block:clamp(10px, 1.6vmin, 16px) }
+  .lockup{ margin:0; font-weight:600; font-size:clamp(14px, 1.7vw, 19px); letter-spacing:-.02em;
+           line-height:1; display:flex; align-items:center; gap:.6em }
+  .lockup .a{ color:var(--maven) } .lockup .b{ color:var(--babel) }
+  /* the mark, alive — the kit ships the disc with the fish lifted out, so the layers drop
+     straight back on at inset:0 and rebuild the logo exactly */
+  .mark{ position:relative; display:block; width:clamp(30px, 3.4vw, 40px); aspect-ratio:1;
+         flex:0 0 auto; border-radius:50%;
+         background:url("../scene/disc-without-fish.png") center/contain no-repeat }
+  .mark .swim{ position:absolute; inset:0; animation:surge 1.9s ease-in-out infinite }
+  .mark i{ position:absolute; inset:0; background-size:contain; background-repeat:no-repeat;
+           background-position:center }
+  .mark .tail{ background-image:url("../fish/fish-tail-orange.png"); transform-origin:38.3% 50.1%;
+               animation:tailbeat .86s cubic-bezier(.42,0,.58,1) infinite alternate }
+  .mark .body{ background-image:url("../fish/fish-body-orange.png"); transform-origin:66.4% 49.8%;
+               animation:yaw .86s cubic-bezier(.42,0,.58,1) infinite alternate }
+  @keyframes tailbeat{ from{ transform:rotate(-12deg) } to{ transform:rotate(12deg) } }
+  @keyframes yaw{ from{ transform:rotate(2.2deg) } to{ transform:rotate(-2.2deg) } }
+  @keyframes surge{ 0%,100%{ transform:translate(0,0) } 25%{ transform:translate(1.4%,-1.6%) }
+                    50%{ transform:translate(0,0) } 75%{ transform:translate(1.4%,1.6%) } }
+  .back{ font-family:var(--mono); font-size:clamp(8.5px, 1.05vw, 10.5px); letter-spacing:.18em;
+         text-transform:uppercase; color:var(--muted); text-decoration:none; white-space:nowrap;
+         transition:color .25s ease }
+  .back:hover{ color:var(--babel) }
+
+  /* ---- hero ---- */
+  .hero{ padding-top:clamp(34px, 7vmin, 76px) }
+  .hero h1{ margin:0 0 .5em; font-weight:700; letter-spacing:-.03em; line-height:1.06;
+            font-size:clamp(28px, 5.2vw, 60px); max-width:17ch }
+  .hero h1 b{ color:var(--babel); font-weight:700 }
+  .chip{ display:inline-flex; align-items:center; gap:.55em; color:var(--signal);
+         border:1px solid rgba(255,209,0,.3); border-radius:999px; padding:.34em .8em;
+         font-family:var(--mono); font-size:clamp(8px, 1vw, 10px); letter-spacing:.18em;
+         text-transform:uppercase; margin-bottom:1.4em }
+  .chip::before{ content:""; width:5px; height:5px; border-radius:50%; background:var(--signal);
+                 box-shadow:0 0 8px rgba(255,209,0,.7) }
+
+  /* ---- the figures ----
+     Values wear ink and the mono; the display serif reads as decoration on a number, and
+     colouring the figures would make identity depend on hue. Proportional digits, since these
+     stand alone rather than aligning in a column. */
+  .figures{ display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));
+            gap:clamp(14px, 2.4vw, 30px); border-top:1px solid var(--line);
+            border-bottom:1px solid var(--line); padding-block:clamp(20px, 3.4vmin, 34px) }
+  .fig{ display:flex; flex-direction:column; gap:.45em }
+  .fig-v{ font-family:var(--mono); font-weight:500; font-variant-numeric:proportional-nums;
+          font-size:clamp(24px, 3.2vw, 38px); line-height:1; color:var(--ink); letter-spacing:-.02em }
+  .fig-l{ font-family:var(--mono); font-size:clamp(8px, .95vw, 10px); letter-spacing:.15em;
+          text-transform:uppercase; color:var(--muted); line-height:1.7 }
+
+  /* ---- the flow ---- */
+  .flow{ display:grid; grid-template-columns:1fr auto 1fr auto 1fr; gap:clamp(10px, 1.8vw, 24px);
+         align-items:start }
+  .lane{ background:var(--panel); border:1px solid var(--line); border-radius:14px;
+         padding:clamp(16px, 2.2vw, 26px) }
+  .lane h3{ color:var(--c, var(--ink)); font-family:var(--mono); font-weight:500;
+            font-size:clamp(9px, 1.08vw, 11px); letter-spacing:.2em; text-transform:uppercase;
+            margin-bottom:.9em }
+  .lane p{ font-size:clamp(12.5px, 1.22vw, 15px) }
+  .lane.one{ --c:var(--maven) } .lane.three{ --c:var(--babel) }
+  .lane.two{ --c:var(--verify) }
+  .tokens{ display:flex; flex-wrap:wrap; gap:6px; margin-top:1em }
+  .tokens span{ font-family:var(--mono); font-size:clamp(7.5px, .92vw, 9.5px); letter-spacing:.1em;
+                text-transform:uppercase; color:var(--body);
+                border:1px solid var(--line); border-radius:999px; padding:.34em .66em }
+  .to{ align-self:center; color:var(--muted); opacity:.45; font-size:clamp(14px, 1.8vw, 22px) }
+  .verified{ display:inline-flex; align-items:center; gap:.45em; margin-top:1em;
+             font-family:var(--mono); font-size:clamp(7.5px, .95vw, 9.5px); letter-spacing:.14em;
+             text-transform:uppercase; color:var(--verify);
+             border:1px solid rgba(159,224,168,.3); border-radius:999px; padding:.34em .72em }
+
+  /* ---- why it wins ---- */
+  .wins{ display:grid; grid-template-columns:repeat(auto-fit, minmax(268px, 1fr));
+         gap:clamp(16px, 2.6vw, 32px) }
+  .win{ border-left:2px solid var(--babel); padding-left:clamp(13px, 1.6vw, 20px) }
+  .win.cy{ border-left-color:var(--maven) }
+  .win p{ font-size:clamp(13px, 1.26vw, 16px) }
+
+  /* ---- four ways to use AI ---- */
+  .ways{ display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+         gap:clamp(12px, 1.8vw, 20px) }
+  .way{ background:var(--panel); border:1px solid var(--line); border-radius:14px;
+        padding:clamp(15px, 2vw, 22px); display:flex; flex-direction:column; gap:.5em }
+  .way b{ font-family:var(--mono); font-weight:500; font-size:clamp(8.5px, 1vw, 10.5px);
+          letter-spacing:.17em; text-transform:uppercase; color:var(--maven) }
+  .way span{ color:var(--body); font-size:clamp(12.5px, 1.2vw, 15px) }
+  .way.free b{ color:var(--signal) }
+
+  /* ---- one campaign, four systems ---- */
+  .join{ display:grid; grid-template-columns:1fr auto 1fr; gap:clamp(14px, 2.4vw, 34px);
+         align-items:center }
+  .systems{ display:flex; flex-direction:column; gap:8px }
+  .sys{ display:grid; grid-template-columns:minmax(84px, .42fr) 1fr; gap:clamp(8px, 1.4vw, 18px);
+        align-items:baseline; padding:clamp(9px, 1.3vw, 13px) clamp(11px, 1.6vw, 16px);
+        background:var(--panel); border:1px solid var(--line); border-radius:10px }
+  .sys dt{ font-family:var(--mono); font-size:clamp(7.5px, .92vw, 9.5px); letter-spacing:.14em;
+           text-transform:uppercase; color:var(--muted) }
+  .sys dd{ margin:0; font-family:var(--mono); font-size:clamp(10.5px, 1.16vw, 14px);
+           color:var(--body); word-break:break-word }
+  .joined{ background:linear-gradient(150deg, #0f1e2c, #142536);
+           border:1px solid rgba(244,117,46,.26); border-radius:14px;
+           padding:clamp(18px, 2.6vw, 28px); text-align:center }
+  .joined .name{ font-family:var(--mono); font-size:clamp(11px, 1.25vw, 15px); color:var(--ink);
+                 letter-spacing:.06em; margin:0 0 1em }
+  .joined dl{ display:grid; grid-template-columns:repeat(2, 1fr); gap:clamp(12px, 2vw, 20px);
+              margin:0 0 1.1em }
+  .joined dt{ font-family:var(--mono); font-size:clamp(7.5px, .92vw, 9.5px); letter-spacing:.14em;
+              text-transform:uppercase; color:var(--muted); margin-bottom:.4em }
+  .joined dd{ margin:0; font-family:var(--mono); font-weight:500; color:var(--ink);
+              font-variant-numeric:proportional-nums; font-size:clamp(15px, 1.9vw, 23px) }
+  .joined .lead dd{ font-size:clamp(21px, 3.1vw, 38px) }
+  .joined .lead dt::before{ content:""; display:block; width:26px; height:2px; border-radius:2px;
+                            background:var(--babel); margin:0 auto .7em }
+  .joined .foot{ font-family:var(--mono); font-size:clamp(8px, .98vw, 10px); letter-spacing:.13em;
+                 text-transform:uppercase; color:var(--muted); margin:0; line-height:1.7 }
+
+  /* ---- steps + install ---- */
+  .steps{ display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+          gap:clamp(14px, 2.2vw, 26px) }
+  .step-n{ font-family:var(--mono); font-size:clamp(8.5px, 1vw, 10.5px); letter-spacing:.2em;
+           text-transform:uppercase; color:var(--babel); margin-bottom:.55em }
+  .install{ background:var(--panel); border:1px solid var(--line); border-radius:16px;
+            padding:clamp(22px, 3.4vw, 40px) }
+  .install p{ max-width:62ch }
+
+  footer{ border-top:1px solid var(--line); padding-block:clamp(20px, 3vmin, 34px);
+          font-family:var(--mono); font-size:clamp(8px, 1vw, 10px); letter-spacing:.18em;
+          text-transform:uppercase; color:var(--muted); display:flex; flex-wrap:wrap;
+          align-items:center; justify-content:center; gap:.9em 1.4em; text-align:center }
+  footer a{ color:var(--muted); text-decoration:none;
+            border-bottom:1px solid rgba(126,148,169,.3); transition:color .25s ease }
+  footer a:hover{ color:var(--ink) }
+
+  @media (max-width:820px){
+    .flow{ grid-template-columns:1fr } .to{ transform:rotate(90deg); justify-self:center }
+    .join{ grid-template-columns:1fr } .join .to{ transform:rotate(90deg) }
+    .joined dl{ grid-template-columns:repeat(2, 1fr) }
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{ scroll-behavior:auto }
+    .mark .swim, .mark .tail, .mark .body{ animation:none }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <p class="lockup">
+      <span class="mark" aria-hidden="true"><span class="swim"><i class="tail"></i><i class="body"></i></span></span>
+      <span><span class="a">Maven</span> <span class="b">Babelfish</span></span>
+    </p>
+    <a class="back" href="../">&#8592; The name</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Every marketing platform · one language · any AI</p>
+    <span class="chip">In development</span>
+    <h1>Your marketing data lives in eight places. <b>Babelfish makes it one.</b></h1>
+    <p class="lede">Ad platforms, CRMs, web analytics, email and vendor spreadsheets each name the
+      same campaign differently, count the same person twice and report in their own units — so
+      nobody can say what spend actually produced. Babelfish aggregates every platform into one
+      consistent language, matches campaigns and people across systems, verifies every number, and
+      then makes it all answerable in the AI your team already uses.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="figures">
+    <div class="fig"><span class="fig-v">7</span><span class="fig-l">Platforms, plus any spreadsheet export</span></div>
+    <div class="fig"><span class="fig-v">1</span><span class="fig-l">Campaign key, currency and customer record</span></div>
+    <div class="fig"><span class="fig-v">47</span><span class="fig-l">Governed metrics, defined once</span></div>
+    <div class="fig"><span class="fig-v">11</span><span class="fig-l">Kinds of insight found for you</span></div>
+    <div class="fig"><span class="fig-v">100%</span><span class="fig-l">Of numbers verified before you see them</span></div>
+    <div class="fig"><span class="fig-v">4</span><span class="fig-l">Ways to use AI — one is free</span></div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">From eight dialects to one language</p>
+    <div class="flow">
+      <div class="lane one">
+        <h3>Every platform</h3>
+        <p>HubSpot, Salesforce, Google Ads, Meta, GA4, Mailchimp, any spreadsheet export. You
+          connect them yourself, in minutes.</p>
+      </div>
+      <div class="to" aria-hidden="true">&#8594;</div>
+      <div class="lane two">
+        <h3>Aggregated into one language</h3>
+        <p>Names, channels, currencies and dates translated to one vocabulary; campaigns matched
+          and people merged across systems; spend joined to outcomes.</p>
+        <div class="tokens">
+          <span>One vocabulary</span><span>One currency</span><span>One campaign key</span>
+          <span>One person</span><span>PII masked</span>
+        </div>
+        <span class="verified">&#10003; Every number recounted before you see it</span>
+      </div>
+      <div class="to" aria-hidden="true">&#8594;</div>
+      <div class="lane three">
+        <h3>Your AI</h3>
+        <p>Claude, ChatGPT, Copilot, Gemini, a private model on your own machine — or the free AI
+          that ships with Babelfish.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <div class="wrap">
+    <h2>Why it wins</h2>
+    <p class="lede" style="margin-bottom:2.2em">Aggregation is the product. The AI is the payoff.</p>
+    <div class="wins">
+      <div class="win cy">
+        <h3>It joins what nothing else joins</h3>
+        <p>Ad spend sits in one system and the deal it produced in another. Babelfish matches them
+          — so you can rank campaigns by pipeline created per dollar, not by clicks.</p>
+      </div>
+      <div class="win">
+        <h3>One identity, one campaign, one number</h3>
+        <p>The same person in two CRMs becomes one record; four spellings of a campaign become one
+          key; every currency and date lands in your reporting units.</p>
+      </div>
+      <div class="win cy">
+        <h3>Numbers you can take into a budget meeting</h3>
+        <p>Every figure is recounted against your source data, and findings that are technically
+          right but misleading are held back with the reason.</p>
+      </div>
+      <div class="win">
+        <h3>It tells you what it found</h3>
+        <p>Wasted spend, fading creative, deals that never close, broken tracking, channels gaining
+          and slowing — flagged the moment the data refreshes.</p>
+      </div>
+      <div class="win cy">
+        <h3>Keep the AI you have</h3>
+        <p>No AI bill and no lock-in. Claude, ChatGPT, Copilot or Gemini become fluent in your
+          data — or use the free AI that comes installed with Babelfish.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <div class="wrap">
+    <h2>Four ways to use AI</h2>
+    <p class="lede" style="margin-bottom:2.2em">You choose, and you pay your own AI company — or
+      nothing at all.</p>
+    <div class="ways">
+      <div class="way free"><b>Built-in AI</b><span>Comes installed, free.</span></div>
+      <div class="way"><b>Your AI app</b><span>Your existing subscription.</span></div>
+      <div class="way"><b>Private local AI</b><span>Nothing leaves your machine.</span></div>
+      <div class="way"><b>Compare several</b><span>Answers side by side.</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <div class="wrap">
+    <h2>One campaign, four systems</h2>
+    <p class="lede" style="margin-bottom:2.2em">Every platform spells it differently. Babelfish
+      knows they are the same campaign.</p>
+    <div class="join">
+      <div class="systems">
+        <dl class="sys"><dt>Google Ads</dt><dd>Brand Search | US — Exact</dd></dl>
+        <dl class="sys"><dt>GA4</dt><dd>brand_us_exact (utm)</dd></dl>
+        <dl class="sys"><dt>HubSpot</dt><dd>Brand Search US</dd></dl>
+        <dl class="sys"><dt>Salesforce</dt><dd>BrandSearch-US-2026</dd></dl>
+      </div>
+      <div class="to" aria-hidden="true">&#8594;</div>
+      <div class="joined">
+        <p class="name">Brand Search | US</p>
+        <dl>
+          <div><dt>Ad spend</dt><dd>$14.9k</dd></div>
+          <div><dt>Opportunities</dt><dd>40</dd></div>
+          <div><dt>Pipeline created</dt><dd>$1.87M</dd></div>
+          <div class="lead"><dt>Pipeline per $1</dt><dd>$126</dd></div>
+        </dl>
+        <p class="foot">One row, joined across every system — the number no platform can report on
+          its own</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <div class="wrap">
+    <div class="install">
+      <p class="eyebrow">Install it and go</p>
+      <h2 style="max-width:20ch">Set-up is an afternoon, not a project.</h2>
+      <p>iPhone, Android, Mac and Windows, with the built-in AI already set up. Your data and
+        credentials stay on your device, your AI gets read-only access with personal details
+        masked, and every number traces back to its source record.</p>
+      <div class="steps" style="margin-top:2.4em">
+        <div><p class="step-n">1 · Connect</p><p>Every CRM, ad platform and file.</p></div>
+        <div><p class="step-n">2 · Unify</p><p>One language, verified end to end.</p></div>
+        <div><p class="step-n">3 · Ask any AI</p><p>Yours, private, built-in, or all of them.</p></div>
+        <div><p class="step-n">4 · Act</p><p>Verified answers, findings and fixes.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span class="chip" style="margin:0">In development</span>
+    <span>Maven Babelfish — one language for every marketing platform you use</span>
+    <span><a href="../">The name</a> · <a href="../../enterprise/">Enterprise Foundry</a> · Ghost Labs, LLC</span>
+  </footer>
+</div>
+
+</body>
+</html>
