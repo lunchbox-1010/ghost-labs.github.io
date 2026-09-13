@@ -732,8 +732,9 @@ span.badge { cursor: default; }
    positioned back over its own footprint in percentages so the pair scales as one
    image. Only the ghost moves, so the badge itself stays still the way a logo
    should. It rises and settles straight up and down — no sideways drift, no roll.
-   A soft shadow rides underneath and tightens as it rises; that counter-motion is
-   what reads as height rather than a shape jittering in place.
+   The shadow it casts is the one the original artwork carried, redrawn so it can
+   tighten as the ghost rises; that counter-motion is what reads as height rather
+   than a shape jittering in place.
    --------------------------------------------------------------------------- */
 .ghost-lift{
   position:relative; display:inline-block;
@@ -757,10 +758,15 @@ span.badge { cursor: default; }
   will-change: transform;
 }
 
+/* Geometry and ink traced from the shadow the original artwork carried: centred
+   at 49.9%/84.9% of the disc, 40% of its width, and rgb(51,95,171) against the
+   hill's rgb(60,115,184) — well below the ghost's feet, which is what made the
+   original read as ground rather than a smudge under the body. */
 .ghost-shade{
   position:absolute; z-index:2;
-  left:36.5%; top:75.2%; width:27%; height:5.2%;
-  background:radial-gradient(closest-side ellipse, rgba(22,63,96,.55), rgba(22,63,96,0) 100%);
+  left:29%; top:82.6%; width:42%; height:4.6%;
+  background:radial-gradient(closest-side ellipse,
+             rgba(50,96,172,1) 52%, rgba(50,96,172,0) 100%);
   transform-origin:50% 50%;
   animation: ghost-shade 6s ease-in-out infinite;
   will-change: transform, opacity;
@@ -774,7 +780,7 @@ span.badge { cursor: default; }
 
 @keyframes ghost-shade{
   0%,100% { transform: scale(1);        opacity:1; }
-  50%     { transform: scale(.78, .68); opacity:.45; }
+  50%     { transform: scale(.87, .82); opacity:.62; }
 }
 
 @media (prefers-reduced-motion: reduce){
