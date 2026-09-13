@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Maven Babelfish — Ghost Labs</title>
-<meta name="description" content="Maven Babelfish aggregates every marketing platform into one language — one vocabulary, one currency, one campaign key, one person — and makes it answerable in the AI your team already uses.">
+<meta name="description" content="Your marketing data lives in eight places. Maven Babelfish aggregates every platform into one language, verifies every number, and makes it answerable in the AI your team already uses.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ghost Labs">
 <meta property="og:title" content="Maven Babelfish — every marketing platform, one language, any AI">
@@ -20,99 +20,42 @@
     --maven:#5cc2ff; --babel:#f4752e; --signal:#ffd100;
     --display:"Fraunces",Georgia,"Times New Roman",serif;
     --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
-    --t-orange:url("fish/fish-tail-orange.png");
-    --b-orange:url("fish/fish-body-orange.png");
-    --t-red:url("fish/fish-tail-red.png");
-    --b-red:url("fish/fish-body-red.png");
-    --t-purple:url("fish/fish-tail-purple.png");
-    --b-purple:url("fish/fish-body-purple.png");
-    --t-pink:url("fish/fish-tail-pink.png");
-    --b-pink:url("fish/fish-body-pink.png");
-    --t-blue:url("fish/fish-tail-blue.png");
-    --b-blue:url("fish/fish-body-blue.png");
-    --img-sources:url("scene/corner-sources.png");
-    --img-network:url("scene/corner-network.png");
-    --turn:.52s;
-    --ease:cubic-bezier(.4,0,.2,1);
+    --t-orange:url("fish/fish-tail-orange.png"); --b-orange:url("fish/fish-body-orange.png");
+    --t-red:url("fish/fish-tail-red.png");       --b-red:url("fish/fish-body-red.png");
+    --t-purple:url("fish/fish-tail-purple.png"); --b-purple:url("fish/fish-body-purple.png");
+    --t-pink:url("fish/fish-tail-pink.png");     --b-pink:url("fish/fish-body-pink.png");
+    --t-blue:url("fish/fish-tail-blue.png");     --b-blue:url("fish/fish-body-blue.png");
+    --turn:.55s; --ease:cubic-bezier(.4,0,.2,1);
   }
   *{ box-sizing:border-box }
   html,body{ margin:0 }
   html{ overflow-x:hidden }
-
-  /* one screen, no scrolling: the two entries take what they need and the water takes the rest.
-     Everything is sized in vmin so it holds on a wide desktop and a tall phone alike. */
   body{ background:var(--ground); color:var(--ink); font-family:var(--display);
-        background-image:radial-gradient(105% 62% at 50% 42%, #15283a 0%, rgba(7,13,20,0) 70%);
+        background-image:radial-gradient(110% 66% at 50% 44%, #15283a 0%, rgba(7,13,20,0) 70%);
         overflow-x:hidden; position:relative; min-height:100svh;
-        display:flex; flex-direction:column; justify-content:center;
-        padding-block:clamp(10px, min(3vmin, 2.6vh), 34px); padding-left:20px; padding-right:20px }
+        display:flex; flex-direction:column; justify-content:flex-start;
+        padding:clamp(14px, 3vmin, 34px) clamp(18px, 4vw, 40px) }
 
-  /* ---- the mark's own artwork, pulled apart and sent to opposite corners ---- */
-  .corner{ position:absolute; background-repeat:no-repeat; background-size:contain;
+  /* ---- the water is now the whole page, not a band between two halves ----
+     Fixed to the viewport, so the school fills the screen whether or not the page scrolls,
+     and the content floats on top of it instead of being cut in two by it. */
+  .water{ position:fixed; inset:0; overflow:hidden; z-index:0; pointer-events:none;
+           transition:opacity .7s var(--ease) }
+  /* once the explanation is up the water drops back, so the copy is read against calm rather
+     than through a school of fish */
+  body.is-open .water{ opacity:.38 }
+  .water::before{ content:""; position:absolute; left:0; right:0; top:34%; height:32%;
+                  background:linear-gradient(90deg, transparent, rgba(92,194,255,.09) 26%,
+                             rgba(244,117,46,.09) 74%, transparent); filter:blur(40px) }
+  .corner{ position:fixed; background-repeat:no-repeat; background-size:contain;
            pointer-events:none; z-index:0 }
-  .corner.sources{ background-image:var(--img-sources); background-position:left top;
-                   top:-2%; left:-8%; width:clamp(170px, min(30vw, 46vh), 420px); aspect-ratio:177/318; opacity:.6 }
-  .corner.network{ background-image:var(--img-network); background-position:right bottom;
-                   bottom:-2%; right:-6%; width:clamp(160px, min(27vw, 40vh), 380px); aspect-ratio:176/212; opacity:.7 }
+  .corner.sources{ background-image:url("scene/corner-sources.png"); background-position:left top;
+                   top:-2%; left:-9%; width:clamp(150px, min(26vw, 42vh), 380px);
+                   aspect-ratio:177/318; opacity:.42 }
+  .corner.network{ background-image:url("scene/corner-network.png"); background-position:right bottom;
+                   bottom:-2%; right:-7%; width:clamp(140px, min(23vw, 36vh), 340px);
+                   aspect-ratio:176/212; opacity:.5 }
 
-  .page{ position:relative; z-index:1; max-width:780px; margin:0 auto; width:100%; flex:0 0 auto;
-         display:flex; flex-direction:column; align-items:center; gap:clamp(7px, min(1.9vmin, 1.7vh), 22px) }
-
-  /* the masthead: the name itself, then one line saying what the page is */
-  .lockup{ margin:0; font-weight:600; font-size:clamp(17px, min(3.3vmin, 3.1vh), 34px);
-           letter-spacing:-.02em; line-height:1 }
-  .lockup .a{ color:var(--maven) }
-  .lockup .b{ color:var(--babel) }
-  header.entry{ margin-bottom:clamp(8px, min(2.4vmin, 2.2vh), 28px);
-                display:flex; flex-direction:column; align-items:center;
-                gap:clamp(5px, min(1.4vmin, 1.3vh), 16px) }
-  .sub{ margin:0; font-family:var(--mono); font-size:clamp(8px, min(1.1vmin, 1vh), 10.5px);
-        letter-spacing:.26em; text-transform:uppercase; color:var(--muted) }
-
-  /* ---- a slot holds both faces of an entry stacked in one grid cell ----
-     Same cell means the slot is always as tall as the taller face, so turning the page over
-     changes no heights, reflows nothing, and can never introduce a scrollbar mid-transition. */
-  .slot{ display:grid; width:100%; justify-items:center }
-  .slot > .face{ grid-area:1/1; display:flex; flex-direction:column; align-items:center;
-                 gap:clamp(5px, min(1.4vmin, 1.3vh), 16px); text-align:center; width:100%;
-                 transition:opacity var(--turn) var(--ease), transform var(--turn) var(--ease),
-                            filter var(--turn) var(--ease);
-                 transition-delay:var(--d, 0s) }
-  /* the outgoing face lifts and blurs out; the incoming one rises from below, so meaning
-     always travels upward out of the water rather than simply cross-dissolving in place */
-  .slot > .face[aria-hidden="true"]{ opacity:0; filter:blur(5px); pointer-events:none }
-  .slot > .face[data-face="a"][aria-hidden="true"]{ transform:translateY(-14px) }
-  .slot > .face[data-face="b"][aria-hidden="true"]{ transform:translateY(14px) }
-
-  .maven{ --c:var(--maven) } .babel{ --c:var(--babel) }
-  .word{ font-weight:700; font-size:clamp(26px, min(8.2vmin, 7.6vh), 86px); line-height:.9; letter-spacing:-.035em;
-         color:var(--c); margin:0 }
-  /* the product-side headlines are two words, so they get a smaller ceiling and room to wrap */
-  .word.two{ font-size:clamp(23px, min(6.6vmin, 6.2vh), 64px); line-height:.96; max-width:14ch }
-  .def{ margin:0; font-style:italic; font-weight:400; font-size:clamp(13px, min(2.7vmin, 2.5vh), 27px);
-        line-height:1.36; max-width:26ch; color:#dceaf6; text-wrap:balance }
-  .def em{ font-style:italic; font-weight:600; color:var(--c) }
-  .def .q{ font-style:normal; font-weight:600; color:var(--c); opacity:.75 }
-  /* the explanation runs plainer and wider than a definition — it is prose, not a quotation */
-  .exp{ margin:0; font-weight:400; font-size:clamp(12px, min(2.15vmin, 2vh), 21px);
-        line-height:1.45; max-width:44ch; color:#cfe0ee; text-wrap:balance }
-  .exp b{ font-weight:600; color:var(--c) }
-  /* a citation line, the way a dictionary credits a coinage */
-  .src{ margin:0; font-family:var(--mono); font-size:clamp(8px, min(1.15vmin, 1.1vh), 11.5px); letter-spacing:.13em;
-        text-transform:uppercase; color:var(--muted); max-width:46ch; line-height:1.75;
-        text-wrap:balance }
-  .src b{ color:var(--c); font-weight:500 }
-
-  /* ---- the lane the fish crosses, from the sources corner to the network corner ---- */
-  /* the water is a fixed band, not whatever is left over — otherwise it pushes the two entries to
-     opposite ends of the screen. The page centres, so the slack sits above and below instead. */
-  .lane{ position:relative; margin-inline:-20px; flex:0 0 auto;
-         height:clamp(104px, min(19vmin, 20.5vh), 240px); z-index:1;
-         overflow:hidden }   /* the fish are absolutely positioned: without this they stretch the page */
-  .lane::before{ content:""; position:absolute; left:4%; right:4%; top:44%; height:34%;
-                 background:linear-gradient(90deg, transparent, rgba(92,194,255,.10) 26%,
-                            rgba(244,117,46,.10) 74%, transparent);
-                 filter:blur(22px) }
   .swimmer{ position:absolute; top:0; left:0; width:var(--fish); height:var(--fish);
             transform:translateX(-9999px); will-change:transform, opacity, filter }
   .fish{ position:absolute; inset:0; animation:surge 1.84s ease-in-out infinite }
@@ -122,86 +65,179 @@
                animation:tailbeat var(--beat) cubic-bezier(.42,0,.58,1) var(--phase) infinite alternate }
   .fish .body{ background-image:var(--b); transform-origin:66.4% 49.8%;
                animation:yaw var(--beat) cubic-bezier(.42,0,.58,1) var(--phase) infinite alternate }
-  /* the school: five fish, each its own size and its own beat, so they never swim in lockstep */
-  .s-orange{ --t:var(--t-orange); --b:var(--b-orange); --fish:clamp(70px, min(21vmin, 20vh), 240px); --beat:.92s; --phase:-.10s }
-  .s-blue  { --t:var(--t-blue);   --b:var(--b-blue);   --fish:clamp(60px, min(17.5vmin, 17vh), 200px); --beat:.81s; --phase:-.37s }
-  .s-red   { --t:var(--t-red);    --b:var(--b-red);    --fish:clamp(50px, min(14.5vmin, 14vh), 166px); --beat:.74s; --phase:-.55s }
-  .s-pink  { --t:var(--t-pink);   --b:var(--b-pink);   --fish:clamp(55px, min(16vmin, 15.5vh), 182px); --beat:.70s; --phase:-.45s }
-  .s-purple{ --t:var(--t-purple); --b:var(--b-purple); --fish:clamp(44px, min(12.5vmin, 12vh), 144px); --beat:.66s; --phase:-.24s }
+  .s-orange{ --t:var(--t-orange); --b:var(--b-orange); --fish:clamp(74px, 17vmin, 210px); --beat:.92s; --phase:-.10s }
+  .s-blue  { --t:var(--t-blue);   --b:var(--b-blue);   --fish:clamp(64px, 14.5vmin, 180px); --beat:.81s; --phase:-.37s }
+  .s-red   { --t:var(--t-red);    --b:var(--b-red);    --fish:clamp(54px, 12vmin, 150px); --beat:.74s; --phase:-.55s }
+  .s-pink  { --t:var(--t-pink);   --b:var(--b-pink);   --fish:clamp(58px, 13vmin, 164px); --beat:.70s; --phase:-.45s }
+  .s-purple{ --t:var(--t-purple); --b:var(--b-purple); --fish:clamp(48px, 10.5vmin, 132px); --beat:.66s; --phase:-.24s }
   @keyframes tailbeat{ from{ transform:rotate(-12deg) } to{ transform:rotate(12deg) } }
   @keyframes yaw{ from{ transform:rotate(2.2deg) } to{ transform:rotate(-2.2deg) } }
   @keyframes surge{ 0%,100%{ transform:translate(0,0) } 25%{ transform:translate(1.4%,-1.6%) }
                     50%{ transform:translate(0,0) } 75%{ transform:translate(1.4%,1.6%) } }
 
-  /* ---- the control: a sixth fish that leaves the water and waits to be clicked ----
-     It sits outside .lane so the lane's overflow:hidden cannot clip it, and its resting place
-     overlaps the bottom edge of the water — so it reads as having just swum out. */
-  .control{ position:relative; z-index:3; display:flex; justify-content:center;
-            margin-top:clamp(-22px, -3.2vmin, -8px); flex:0 0 auto }
-  .turn{ appearance:none; background:none; border:0; padding:6px 10px; margin:0; cursor:pointer;
-         display:flex; align-items:center; gap:clamp(6px, 1.4vmin, 14px); border-radius:999px;
-         color:var(--muted); font:inherit; -webkit-tap-highlight-color:transparent }
-  .turn:focus-visible{ outline:2px solid var(--maven); outline-offset:4px }
-  /* four nested wrappers, one job each: swim-in, facing, hover nudge, and the surge loop —
-     so none of the four transforms ever has to fight another for the same property */
-  .ctl-fish{ position:relative; display:block; width:clamp(34px, min(6.2vmin, 6vh), 58px); aspect-ratio:1;
-             flex:0 0 auto; animation:swimout 1.6s cubic-bezier(.22,.61,.36,1) .8s both }
-  .grow{ position:absolute; inset:0; transform:scale(1.9) }
-  .flip{ position:absolute; inset:0; transition:transform .5s var(--ease) }
-  .hop{ position:absolute; inset:0; transition:transform .28s var(--ease) }
-  .ctl-fish .fish{ --t:var(--t-orange); --b:var(--b-orange); --beat:.78s; --phase:-.2s;
-                   animation:surge 1.62s ease-in-out infinite }
-  @keyframes swimout{
-    from{ transform:translate(-132px, -52px) scale(.72); opacity:0 }
-    55% { opacity:1 }
-    to  { transform:translate(0,0) scale(1); opacity:1 }
-  }
-  @keyframes dart{ 0%{ transform:translateX(0) } 34%{ transform:translateX(-7px) }
-                   100%{ transform:translateX(0) } }
-  .turn:hover .hop, .turn:focus-visible .hop{ transform:translateX(5px) }
-  .turn.darting .hop{ animation:dart .42s cubic-bezier(.3,.8,.3,1) }
-  .is-open .flip{ transform:scaleX(-1) }
-  /* the label is the obvious half of the control: mono caps, in the brand's own label voice */
-  .label{ position:relative; font-family:var(--mono); font-weight:500;
-          font-size:clamp(9px, min(1.3vmin, 1.2vh), 12.5px);
-          letter-spacing:.22em; text-transform:uppercase; white-space:nowrap;
-          transition:opacity .18s linear, color .3s ease; color:#b9cbda }
-  .label::after{ content:""; position:absolute; left:0; right:0; bottom:-.55em; height:1px;
-                 background:currentColor; opacity:.3; transform:scaleX(.34);
-                 transform-origin:left center; transition:transform .38s var(--ease), opacity .3s ease }
-  .turn:hover .label, .turn:focus-visible .label{ color:var(--babel) }
-  .turn:hover .label::after, .turn:focus-visible .label::after{ transform:scaleX(1); opacity:.65 }
-  .label .arrow{ opacity:.55; margin-left:.5em }
-  .label.swapping{ opacity:0 }
+  /* ---- content ---- */
+  /* two rows: the name at the top, and below it the water the school has to itself until
+     the control is pressed. The explanation arrives into the middle of that second row. */
+  .page{ position:relative; z-index:2; width:100%; max-width:1040px; margin:0 auto; flex:1;
+         min-height:0; display:grid; grid-template-rows:auto 1fr;
+         gap:clamp(10px, 2.4vmin, 26px) }
+  .masthead{ display:flex; flex-direction:column; align-items:center;
+             gap:clamp(6px, 1.4vmin, 14px) }
+  .lockup{ margin:0; font-weight:600; font-size:clamp(18px, 3.2vmin, 32px);
+           letter-spacing:-.02em; line-height:1 }
+  .lockup .a{ color:var(--maven) } .lockup .b{ color:var(--babel) }
+  .eyebrow{ margin:0; font-family:var(--mono); font-size:clamp(8.5px, 1.15vmin, 11px);
+            letter-spacing:.26em; text-transform:uppercase; color:var(--muted); text-align:center }
 
-  /* on a phone the corner art has to give the type room, so it drops back and moves further out */
-  @media (max-width:640px){
-    .corner.sources{ opacity:.34; left:-17%; top:-1% }
-    .corner.network{ opacity:.44; right:-17%; bottom:-3% }
-  }
+  /* the two faces are stacked and absolutely placed; the stack's height is driven to whichever
+     one is showing, so the page never jumps and the change reads as a single smooth movement */
+  .stack{ position:relative; width:100%; min-height:0 }
+  /* the definitions ride high, just under the name, so the middle of the screen stays water.
+     the explanation lands in the centre of that same space. */
+  .face{ position:absolute; left:0; right:0 }
+  .face[data-face="a"]{ top:0 }
+  .face[data-face="b"]{ top:50%; transform:translateY(-50%) }
+  .face[data-face="b"] .inner{ padding:clamp(14px, 3vmin, 34px) clamp(10px, 2vw, 26px);
+    background:radial-gradient(58% 66% at 50% 50%, rgba(7,13,20,.74) 0%, rgba(7,13,20,0) 78%) }
+  .inner{ display:flex; flex-direction:column; align-items:center;
+          gap:clamp(10px, 2.2vmin, 24px);
+          transition:opacity var(--turn) var(--ease), transform var(--turn) var(--ease),
+                     filter var(--turn) var(--ease) }
+  .face[aria-hidden="true"] .inner{ opacity:0; filter:blur(6px); pointer-events:none }
+  .face[data-face="a"][aria-hidden="true"] .inner{ transform:translateY(-20px) }
+  .face[data-face="b"][aria-hidden="true"] .inner{ transform:translateY(20px) }
 
-  footer{ position:relative; z-index:1; font-family:var(--mono); font-size:clamp(7.5px, min(1.05vmin, 1vh), 10.5px);
+  /* --- face A: the name --- */
+  .defs{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr));
+         gap:clamp(18px, 4vmin, 54px); width:100%; max-width:880px }
+  .entry{ display:flex; flex-direction:column; align-items:center; text-align:center;
+          gap:clamp(5px, 1.3vmin, 14px) }
+  .maven{ --c:var(--maven) } .babel{ --c:var(--babel) }
+  .word{ margin:0; font-weight:700; font-size:clamp(30px, 6.4vmin, 68px); line-height:.92;
+         letter-spacing:-.035em; color:var(--c) }
+  .def{ margin:0; font-style:italic; font-weight:400; font-size:clamp(13px, 2.1vmin, 22px);
+        line-height:1.38; max-width:24ch; color:#dceaf6; text-wrap:balance }
+  .def em{ font-style:italic; font-weight:600; color:var(--c) }
+  .def .q{ font-style:normal; font-weight:600; color:var(--c); opacity:.75 }
+  .note{ margin:0; font-family:var(--mono); font-size:clamp(8px, 1.1vmin, 10.5px);
+         letter-spacing:.14em; text-transform:uppercase; color:var(--muted); text-align:center;
+         line-height:1.8 }
+  .note b{ color:var(--babel); font-weight:500 }
+
+  /* --- face B: what it does --- */
+  .claim{ margin:0; font-weight:600; font-size:clamp(20px, 3.8vmin, 40px); line-height:1.14;
+          letter-spacing:-.025em; text-align:center; max-width:19ch; text-wrap:balance }
+  .claim b{ color:var(--babel); font-weight:700 }
+  /* three steps, left to right: the same journey the mark itself draws — scattered sources on
+     one side, the ordered network on the other, verification in between */
+  .flow{ display:grid; width:100%; align-items:start;
+         grid-template-columns:1fr auto 1fr auto 1fr; gap:clamp(8px, 1.6vmin, 20px) }
+  .step{ display:flex; flex-direction:column; align-items:center; text-align:center;
+         gap:clamp(5px, 1.1vmin, 11px) }
+  .step h3{ margin:0; font-family:var(--mono); font-weight:500;
+            font-size:clamp(8.5px, 1.15vmin, 11px); letter-spacing:.2em; text-transform:uppercase;
+            color:var(--c, var(--ink)) }
+  .step p{ margin:0; font-size:clamp(11px, 1.62vmin, 16px); line-height:1.45; color:#c3d6e6;
+           max-width:30ch; text-wrap:balance }
+  .step.one{ --c:var(--maven) } .step.three{ --c:var(--babel) }
+  .step.two{ --c:#9fe0a8 }
+  .arrow{ align-self:center; color:var(--muted); opacity:.5;
+          font-size:clamp(13px, 2vmin, 20px); line-height:1 }
+  .verified{ display:inline-flex; align-items:center; gap:.45em; margin-top:.2em;
+             font-family:var(--mono); font-size:clamp(7.5px, 1vmin, 9.5px); letter-spacing:.14em;
+             text-transform:uppercase; color:#9fe0a8;
+             border:1px solid rgba(159,224,168,.3); border-radius:999px; padding:.32em .7em }
+  /* the one number that only exists once the platforms are joined — the whole product in a line */
+  .proof{ display:flex; flex-wrap:wrap; align-items:baseline; justify-content:center;
+          gap:.35em clamp(8px, 1.6vmin, 18px); margin:0;
+          font-family:var(--mono); font-size:clamp(8.5px, 1.18vmin, 11.5px); letter-spacing:.13em;
+          text-transform:uppercase; color:var(--muted); text-align:center; line-height:1.8;
+          border-top:1px solid rgba(126,148,169,.16); padding-top:clamp(9px, 1.8vmin, 18px);
+          width:100%; max-width:900px }
+  .proof b{ color:var(--ink); font-weight:500 }
+  .proof .big{ color:var(--babel); font-weight:500 }
+
+  /* ---- the control: parked in the top-right corner, with a fish circling it ---- */
+  .control{ position:fixed; top:clamp(46px, 6.5vmin, 72px); right:clamp(16px, 3vw, 36px);
+            z-index:5; display:grid; place-items:center }
+  .orbit{ grid-area:1/1; position:relative; width:252px; height:104px;
+          pointer-events:none; transform:scale(var(--orbit-scale, 1)) }
+  .orbiter{ position:absolute; top:0; left:0; width:var(--of); height:var(--of);
+            margin:calc(var(--of) / -2) 0 0 calc(var(--of) / -2);
+            --of:clamp(46px, 6vmin, 62px);
+            offset-path:path("M 12,52 A 114,40 0 0 1 240,52 A 114,40 0 0 1 12,52");
+            offset-rotate:0deg;
+            animation:orbit var(--orbit-time, 11s) linear infinite }
+  /* the fish turns at the two ends of the oval, where it is edge-on and the turn doesn't show */
+  .facing{ position:absolute; inset:0; animation:facing var(--orbit-time, 11s) linear infinite }
+  .orbiter .fish{ --t:var(--t-orange); --b:var(--b-orange); --beat:.8s; --phase:-.2s;
+                  animation:surge 1.7s ease-in-out infinite }
+  @keyframes orbit{ from{ offset-distance:0% } to{ offset-distance:100% } }
+  @keyframes facing{ 0%,47%{ transform:scaleX(1) } 53%,97%{ transform:scaleX(-1) }
+                     100%{ transform:scaleX(1) } }
+
+  .turn{ grid-area:1/1; appearance:none; cursor:pointer; font:inherit;
+         display:inline-flex; align-items:center; gap:.7em;
+         padding:clamp(9px, 1.5vmin, 13px) clamp(15px, 2.2vmin, 22px);
+         border-radius:999px; color:var(--ink);
+         background:rgba(10,20,30,.78); backdrop-filter:blur(9px);
+         border:1px solid rgba(244,117,46,.45);
+         box-shadow:0 4px 22px rgba(0,0,0,.45), 0 0 0 0 rgba(244,117,46,.35);
+         transition:border-color .3s ease, background .3s ease, box-shadow .3s ease,
+                    transform .22s var(--ease);
+         animation:beckon 3.4s ease-in-out infinite }
+  .turn:hover, .turn:focus-visible{ border-color:var(--babel); background:rgba(18,30,42,.9);
+                                    transform:translateY(-2px); animation:none;
+                                    box-shadow:0 8px 26px rgba(0,0,0,.5), 0 0 0 5px rgba(244,117,46,.13) }
+  .turn:focus-visible{ outline:2px solid var(--babel); outline-offset:4px }
+  .turn:active{ transform:translateY(0) }
+  /* a slow pulse, so the corner says "press me" even before the pointer arrives */
+  @keyframes beckon{ 0%,100%{ box-shadow:0 4px 22px rgba(0,0,0,.45), 0 0 0 0 rgba(244,117,46,.34) }
+                     55%{ box-shadow:0 4px 22px rgba(0,0,0,.45), 0 0 0 9px rgba(244,117,46,0) } }
+  .turn .label{ font-family:var(--mono); font-weight:500;
+                font-size:clamp(9px, 1.2vmin, 11.5px); letter-spacing:.2em; text-transform:uppercase;
+                white-space:nowrap; transition:opacity .18s linear }
+  .turn .label.swapping{ opacity:0 }
+  .turn .chev{ color:var(--babel); font-size:1.05em; line-height:1; transition:transform .3s var(--ease) }
+  .turn:hover .chev{ transform:translateX(3px) }
+  body.is-open .turn .chev{ transform:rotate(180deg) }
+  body.is-open .turn:hover .chev{ transform:rotate(180deg) translateX(3px) }
+
+  footer{ position:fixed; left:0; right:0; bottom:0; z-index:2;
+          padding:clamp(9px, 1.8vmin, 18px) 20px;
+          font-family:var(--mono); font-size:clamp(7.5px, 1vmin, 10px);
           letter-spacing:.2em; text-transform:uppercase; color:var(--muted); text-align:center;
-          flex:0 0 auto; margin-top:clamp(8px, min(2.6vmin, 2.2vh), 32px);
           display:flex; align-items:center; justify-content:center; gap:.9em; flex-wrap:wrap }
-  footer a{ color:var(--muted); text-decoration:none; border-bottom:1px solid rgba(126,148,169,.35);
-            padding-bottom:1px; transition:color .25s ease, border-color .25s ease }
+  footer a{ color:var(--muted); text-decoration:none;
+            border-bottom:1px solid rgba(126,148,169,.32); padding-bottom:1px;
+            transition:color .25s ease, border-color .25s ease }
   footer a:hover{ color:var(--ink); border-color:var(--ink) }
-  /* hazard yellow is the brand's dev signal and nothing else — this is the one accent on the page */
   .chip{ display:inline-flex; align-items:center; gap:.55em; color:var(--signal);
-         border:1px solid rgba(255,209,0,.32); border-radius:999px; padding:.35em .8em;
+         border:1px solid rgba(255,209,0,.3); border-radius:999px; padding:.34em .78em;
          letter-spacing:.18em }
   .chip::before{ content:""; width:5px; height:5px; border-radius:50%; background:var(--signal);
                  box-shadow:0 0 8px rgba(255,209,0,.7) }
 
+  /* ---- narrow screens ---- */
+  @media (max-width:860px){
+    .flow{ grid-template-columns:1fr; gap:clamp(12px, 3vmin, 22px) }
+    .arrow{ transform:rotate(90deg); opacity:.35 }
+    .step p{ max-width:36ch }
+  }
+  @media (max-width:640px){
+    :root{ --orbit-scale:.56; --orbit-time:9s }
+    body{ padding-top:clamp(96px, 19vmin, 132px) }   /* clearance for the corner control */
+    .defs{ grid-template-columns:1fr; gap:clamp(16px, 4vmin, 30px) }
+    .corner.sources{ opacity:.24; left:-19% } .corner.network{ opacity:.32; right:-19% }
+    .turn{ padding:9px 14px }
+  }
+  @media (max-width:400px){ :root{ --orbit-scale:.44 } }
+
   @media (prefers-reduced-motion:reduce){
-    .fish,.fish .tail,.fish .body{ animation:none }
-    .ctl-fish{ animation:none }
-    .turn.darting .hop{ animation:none }
-    :root{ --turn:.2s }
-    .slot > .face[aria-hidden="true"]{ filter:none }
-    .slot > .face[data-face="a"][aria-hidden="true"],
-    .slot > .face[data-face="b"][aria-hidden="true"]{ transform:none }
+    .fish,.fish .tail,.fish .body,.orbiter,.facing,.turn{ animation:none }
+    .orbiter{ offset-distance:82% }
+    :root{ --turn:.22s }
+    .face[aria-hidden="true"] .inner{ filter:none; transform:none }
   }
 </style>
 </head>
@@ -210,31 +246,7 @@
 <div class="corner sources" aria-hidden="true"></div>
 <div class="corner network" aria-hidden="true"></div>
 
-<div class="page">
-  <header class="entry">
-    <h1 class="lockup"><span class="a">Maven</span> <span class="b">Babelfish</span></h1>
-    <div class="slot" id="slot-sub">
-      <p class="sub face" data-face="a">One name · two definitions</p>
-      <p class="sub face" data-face="b" aria-hidden="true">One name · what it does</p>
-    </div>
-  </header>
-
-  <section class="slot maven" id="slot-maven" style="--d:.06s">
-    <div class="face" data-face="a">
-      <h2 class="word">Maven</h2>
-      <p class="def"><span class="q">“</span>one who <em>gathers</em> what is known across the whole
-        market — and <em>passes it on</em> to those who ask.<span class="q">”</span></p>
-    </div>
-    <div class="face" data-face="b" aria-hidden="true">
-      <h2 class="word two">Every platform</h2>
-      <p class="exp">Ad platforms, CRMs, web analytics, email and any spreadsheet export — each
-        naming the same campaign differently, counting the same person <b>twice</b>, reporting in
-        its own units.</p>
-    </div>
-  </section>
-</div>
-
-<div class="lane" aria-hidden="true">
+<div class="water" aria-hidden="true">
   <div class="swimmer s-orange"><div class="fish"><i class="tail"></i><i class="body"></i></div></div>
   <div class="swimmer s-blue"><div class="fish"><i class="tail"></i><i class="body"></i></div></div>
   <div class="swimmer s-red"><div class="fish"><i class="tail"></i><i class="body"></i></div></div>
@@ -243,34 +255,85 @@
 </div>
 
 <div class="control">
-  <button class="turn" id="turn" aria-expanded="false"
-          aria-controls="slot-maven slot-babel" aria-label="Show what Maven Babelfish does">
-    <span class="ctl-fish" aria-hidden="true">
-      <span class="grow"><span class="flip"><span class="hop">
-        <span class="fish"><i class="tail"></i><i class="body"></i></span>
-      </span></span></span>
-    </span>
-    <span class="label" id="turn-label">What it does<span class="arrow" aria-hidden="true">→</span></span>
+  <div class="orbit" aria-hidden="true">
+    <div class="orbiter"><div class="facing">
+      <div class="fish"><i class="tail"></i><i class="body"></i></div>
+    </div></div>
+  </div>
+  <button class="turn" id="turn" aria-expanded="false" aria-controls="stack"
+          aria-label="Show what Maven Babelfish does">
+    <span class="label" id="turn-label">What it does</span>
+    <span class="chev" aria-hidden="true">&#8594;</span>
   </button>
 </div>
 
-<div class="page">
-  <section class="slot babel" id="slot-babel" style="--d:.15s">
-    <div class="face" data-face="a">
-      <h2 class="word">Babelfish</h2>
-      <p class="def"><span class="q">“</span>a small <em>fish</em> that, placed in the <em>ear</em>, makes
-        every <em>language</em> in the universe instantly <em>intelligible</em>.<span class="q">”</span></p>
-      <p class="src">Borrowed, with affection, from a <b>science-fiction series</b> you almost certainly know</p>
-    </div>
-    <div class="face" data-face="b" aria-hidden="true">
-      <h2 class="word two">One language</h2>
-      <p class="exp">One vocabulary, one currency, one campaign key, one person. Spend joined to the
-        deals it produced — and every number <b>recounted</b> against your source data before you
-        see it.</p>
-      <p class="src">47 governed metrics, defined once · answerable in the <b>AI your team already uses</b></p>
-    </div>
-  </section>
-</div>
+<main class="page">
+  <div class="masthead">
+    <h1 class="lockup"><span class="a">Maven</span> <span class="b">Babelfish</span></h1>
+    <p class="eyebrow" id="eyebrow">One name · two definitions</p>
+  </div>
+
+  <div class="stack" id="stack">
+
+    <!-- ---------- the name ---------- -->
+    <section class="face" data-face="a">
+     <div class="inner">
+      <div class="defs">
+        <div class="entry maven">
+          <h2 class="word">Maven</h2>
+          <p class="def"><span class="q">“</span>one who <em>gathers</em> what is known across the
+            whole market — and <em>passes it on</em> to those who ask.<span class="q">”</span></p>
+        </div>
+        <div class="entry babel">
+          <h2 class="word">Babelfish</h2>
+          <p class="def"><span class="q">“</span>a small <em>fish</em> that, placed in the
+            <em>ear</em>, makes every <em>language</em> in the universe instantly
+            <em>intelligible</em>.<span class="q">”</span></p>
+        </div>
+      </div>
+      <p class="note">Borrowed, with affection, from a <b>science-fiction series</b> you almost
+        certainly know</p>
+     </div>
+    </section>
+
+    <!-- ---------- what it does ---------- -->
+    <section class="face" data-face="b" aria-hidden="true">
+     <div class="inner">
+      <p class="claim">Your marketing data lives in eight places. <b>Babelfish makes it one.</b></p>
+
+      <div class="flow">
+        <div class="step one">
+          <h3>Every platform</h3>
+          <p>HubSpot, Salesforce, Google Ads, Meta, GA4, Mailchimp, any spreadsheet export. You
+            connect them yourself, in minutes.</p>
+        </div>
+        <div class="arrow" aria-hidden="true">&#8594;</div>
+        <div class="step two">
+          <h3>One language</h3>
+          <p>Names, channels, currencies and dates translated to one vocabulary. Campaigns matched
+            and people merged across systems. Spend joined to the outcomes it produced.</p>
+          <span class="verified">Every number recounted</span>
+        </div>
+        <div class="arrow" aria-hidden="true">&#8594;</div>
+        <div class="step three">
+          <h3>Your AI</h3>
+          <p>Claude, ChatGPT, Copilot, Gemini, or a private model on your own machine — fluent in
+            your data. No AI bill, no lock-in.</p>
+        </div>
+      </div>
+
+      <p class="proof">
+        <span><b>Brand Search | US</b> across four systems</span>
+        <span><b>$14.9k</b> spend</span>
+        <span><b>$1.87M</b> pipeline</span>
+        <span class="big">$126 per $1</span>
+        <span>— the number no platform can report on its own</span>
+      </p>
+     </div>
+    </section>
+
+  </div>
+</main>
 
 <footer>
   <span class="chip">In development</span>
@@ -279,29 +342,38 @@
 
 <script>
 // ---------------------------------------------------------------------------
-// The school. Every fish swims its own crossings: it leaves the lane completely before turning, so
-// the turn is never on screen, and depth, arc, pace and pause are drawn fresh each trip.
+// The school, now swimming the whole viewport rather than a band between two halves.
 //
-// Depth is a single number per crossing. It sets how big the fish is, how bright, how sharp, how
-// fast it appears to travel, and what it passes in front of — so near and far read as near and far
-// rather than just big and small.
+// Each fish draws a fresh route every crossing: entry depth, exit depth, a mid-point that bends
+// it into an arc, its scale, its pace and the pause afterwards. Depth is one number per crossing
+// and sets five things together — size, opacity, blur, apparent speed and z-order — because near
+// things crossing your view faster than far ones is most of what sells depth.
 //
-// Collisions are avoided by reservation: a crossing claims the band of water it will sweep through,
-// and a fish about to set off keeps re-drawing its route until it finds one no other fish has
-// claimed. Nothing steers mid-swim; they simply never pick overlapping water.
+// Collisions are avoided by reservation rather than steering: a crossing claims the band of water
+// its arc will sweep, and a fish about to set off re-draws its route until it finds water nobody
+// has claimed.
+//
+// The page has two currents. Scattered (the default) is what you see beside the two definitions:
+// fish crossing in both directions at unrelated depths, which is the eight-places-at-once the
+// product is answering. Ordered is what the explanation swims in: every fish turns and runs the
+// same way, left to right, spaced into clean lanes. Pressing the control reroutes them — each
+// fish picks up its new heading from exactly where it is, so nothing snaps.
 // ---------------------------------------------------------------------------
-(() => {
-  const lane = document.querySelector(".lane");
-  if (!lane) return;
+const school = (() => {
+  const water = document.querySelector(".water");
+  if (!water) return { reroute(){} };
   const still = matchMedia("(prefers-reduced-motion: reduce)");
-  const L = 0.283, R = 0.717, TOP = 0.326, BOT = 0.666;   // where the fish sits inside its canvas
+  const L = 0.283, R = 0.717, TOP = 0.326, BOT = 0.666;   // where the fish sits in its canvas
   const rnd = (a, b) => a + Math.random() * (b - a);
   const place = (x, y, dir, k) =>
     `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) scale(${(dir * k).toFixed(3)}, ${k.toFixed(3)})`;
 
-  const claimed = new Map();                              // swimmer -> {top, bottom}
-  const GUTTER = 10;
-  const clash = (me, band) => {                           // the fish already in that water, if any
+  let mode = "scattered";
+  const swimmers = [...document.querySelectorAll(".water .swimmer")];
+  const state = new Map();                                 // swimmer -> { anim, dir, lane }
+  const claimed = new Map();
+  const GUTTER = 12;
+  const clash = (me, band) => {
     for (const [who, b] of claimed) {
       if (who === me) continue;
       if (band.top < b.bottom + GUTTER && b.top < band.bottom + GUTTER) return b;
@@ -309,137 +381,171 @@
     return null;
   };
 
-  document.querySelectorAll(".lane .swimmer").forEach((swimmer, i) => {
-    let goingRight = Math.random() < 0.5;
-    let first = true;
+  const start = (swimmer, i, fromTransform) => {
+    const W = water.clientWidth, H = water.clientHeight, F = swimmer.offsetWidth;
+    const st = state.get(swimmer);
 
-    if (still.matches) {
-      const F = swimmer.offsetWidth;
-      swimmer.style.transform =
-        place((lane.clientWidth - F) * (0.12 + 0.24 * i), (lane.clientHeight - F) / 2, 1, 1);
-      return;
-    }
-
-    const cross = () => {
-      const W = lane.clientWidth, H = lane.clientHeight, F = swimmer.offsetWidth;
-
-      // Try a route at a given depth. Returns the route, and whether it found clear water.
-      const route = (dep) => {
-        const k = 0.78 + 0.34 * dep;
-        const span = F * k, inset = (F - span) / 2;
-        const a = -TOP * span - inset, b = H - BOT * span - inset;
-        const lo = Math.min(a, b), hi = Math.max(a, b);
-        let r = null;
-        for (let tries = 0; tries < 40; tries++) {
-          const y0 = rnd(lo, hi), y1 = rnd(lo, hi);
-          const ym = Math.max(lo, Math.min(hi, (y0 + y1) / 2 + rnd(-0.2, 0.2) * H));
-          const band = { top: Math.min(y0, y1, ym) + inset + TOP * span,
-                         bottom: Math.max(y0, y1, ym) + inset + BOT * span, dep, who: swimmer };
-          const hit = clash(swimmer, band);
-          r = { dep, k, span, inset, y0, y1, ym, band, clear: !hit, hit };
-          if (!hit) return r;
-        }
-        return r;
-      };
-
-      // Pick the depth that is furthest from every fish currently in the water. With five of them
-      // this spreads the school into distinct layers on its own, so when two do cross, one is
-      // plainly in front of the other rather than tangled with it.
+    // --- choose a depth -------------------------------------------------------
+    // Ordered mode parks each fish in its own lane so the school reads as parallel streams;
+    // scattered mode just keeps its distance from whoever is already in the water.
+    let dep;
+    if (mode === "ordered") {
+      dep = 0.12 + (st.lane / (swimmers.length - 1)) * 0.82;
+    } else {
       const taken = [...claimed.values()].filter(b => b.who !== swimmer).map(b => b.dep);
-      const far = (c) => taken.length ? Math.min(...taken.map(d => Math.abs(c - d))) : 1;
+      const far = c => taken.length ? Math.min(...taken.map(d => Math.abs(c - d))) : 1;
       let best = 0.5, bestGap = -1;
       for (const c of [0.06, 0.28, 0.5, 0.72, 0.94]) {
         const g = far(c);
         if (g > bestGap) { bestGap = g; best = c; }
       }
-      let r = route(Math.max(0, Math.min(1, best + rnd(-0.05, 0.05))));
-      const { dep, k, span, inset, y0, y1, ym, band } = r;
+      dep = Math.max(0, Math.min(1, best + rnd(-0.05, 0.05)));
+    }
 
-      swimmer.style.opacity = (0.66 + 0.34 * dep).toFixed(2);
-      swimmer.style.filter = dep > 0.88 ? "none" : `blur(${((1 - dep) * 1.7).toFixed(2)}px)`;
-      swimmer.style.zIndex = Math.round(dep * 100);
+    const k = 0.78 + 0.34 * dep;
+    const span = F * k, inset = (F - span) / 2;
+    const a = -TOP * span - inset, b = H - BOT * span - inset;
+    const lo = Math.min(a, b), hi = Math.max(a, b);
 
-      const offLeft = -(R * span) - 8, offRight = W - L * span + 8;
-      const dir = goingRight ? 1 : -1;
-      const to = goingRight ? offRight : offLeft;
-      let from = goingRight ? offLeft : offRight;
-      let easing = "cubic-bezier(.32,.08,.68,.92)";
-      if (first && i === 0) {
-        from = goingRight ? -inset - L * span : W - inset - R * span;
-        easing = "linear";
+    // --- choose a route at that depth ----------------------------------------
+    let y0, y1, ym, band;
+    if (mode === "ordered") {
+      // a lane of its own, held nearly level, with only a little sway left in it
+      const slot = lo + (hi - lo) * (0.08 + (st.lane / (swimmers.length - 1)) * 0.84);
+      y0 = y1 = slot; ym = slot + rnd(-0.02, 0.02) * H;
+      band = { top: slot + inset + TOP * span, bottom: slot + inset + BOT * span, dep, who: swimmer };
+    } else {
+      for (let tries = 0; tries < 40; tries++) {
+        y0 = rnd(lo, hi); y1 = rnd(lo, hi);
+        ym = Math.max(lo, Math.min(hi, (y0 + y1) / 2 + rnd(-0.2, 0.2) * H));
+        band = { top: Math.min(y0, y1, ym) + inset + TOP * span,
+                 bottom: Math.max(y0, y1, ym) + inset + BOT * span, dep, who: swimmer };
+        if (!clash(swimmer, band)) break;
       }
-      first = false;
-      claimed.set(swimmer, band);
+    }
 
-      // near fish cross faster than far ones, which is most of what sells the depth
-      const speed = rnd(0.055, 0.075) * (0.62 + 0.55 * dep);
-      const anim = swimmer.animate([
-        { transform: place(from, y0, dir, k) },
-        { transform: place((from + to) / 2, ym, dir, k), offset: 0.5 },
-        { transform: place(to, y1, dir, k) }
-      ], { duration: Math.abs(to - from) / speed, easing, fill: "forwards" });
+    swimmer.style.opacity = (0.6 + 0.34 * dep).toFixed(2);
+    swimmer.style.filter = dep > 0.88 ? "none" : `blur(${((1 - dep) * 1.8).toFixed(2)}px)`;
+    swimmer.style.zIndex = Math.round(dep * 100);
 
-      anim.onfinish = () => {
-        claimed.delete(swimmer);
-        goingRight = !goingRight;
-        setTimeout(cross, rnd(400, 3200));
-      };
+    const goingRight = mode === "ordered" ? true : st.dir;
+    st.dir = goingRight;
+    const offLeft = -(R * span) - 10, offRight = W - L * span + 10;
+    const dir = goingRight ? 1 : -1;
+    const to = goingRight ? offRight : offLeft;
+    let from = goingRight ? offLeft : offRight;
+    let easing = "cubic-bezier(.32,.08,.68,.92)";
+    if (st.first) { from = goingRight ? offLeft * rnd(.1, 1) : offRight * rnd(.55, 1); easing = "linear"; }
+    st.first = false;
+    claimed.set(swimmer, band);
+
+    // In ordered mode the school runs at one shared pace, so it reads as a current rather than
+    // five unrelated fish that happen to point the same way.
+    const speed = mode === "ordered"
+      ? 0.072 * (0.7 + 0.4 * dep)
+      : rnd(0.055, 0.075) * (0.62 + 0.55 * dep);
+
+    const frames = fromTransform
+      ? [{ transform: fromTransform },
+         { transform: place((from + to) / 2, ym, dir, k), offset: 0.45 },
+         { transform: place(to, y1, dir, k) }]
+      : [{ transform: place(from, y0, dir, k) },
+         { transform: place((from + to) / 2, ym, dir, k), offset: 0.5 },
+         { transform: place(to, y1, dir, k) }];
+
+    const anim = swimmer.animate(frames, {
+      duration: Math.abs(to - from) / speed,
+      easing: fromTransform ? "cubic-bezier(.25,.6,.4,1)" : easing,
+      fill: "forwards"
+    });
+    st.anim = anim;
+    anim.onfinish = () => {
+      claimed.delete(swimmer);
+      if (mode !== "ordered") st.dir = !st.dir;
+      setTimeout(() => start(swimmer, i), mode === "ordered" ? rnd(120, 900) : rnd(400, 3000));
     };
+  };
 
-    if (i === 0) cross(); else setTimeout(cross, i * rnd(900, 2400));
+  if (still.matches) {
+    swimmers.forEach((s, i) => {
+      const F = s.offsetWidth;
+      s.style.transform = place((water.clientWidth - F) * (0.08 + 0.2 * i),
+                                (water.clientHeight - F) * (0.18 + 0.15 * i), 1, 1);
+    });
+    return { reroute(){} };
+  }
+
+  swimmers.forEach((s, i) => {
+    state.set(s, { dir: Math.random() < 0.5, lane: i, first: true });
+    if (i === 0) start(s, i); else setTimeout(() => start(s, i), i * rnd(500, 1500));
   });
+
+  return {
+    reroute(next) {
+      if (next === mode) return;
+      mode = next;
+      // A fish already heading the right way is picked up from exactly where it is and curved
+      // onto its new route — reading the live transform before cancelling is what stops it
+      // snapping. A fish heading the WRONG way is left alone to finish and turn off-screen:
+      // interpolating its scale through zero would squash it to a vertical sliver in mid-water,
+      // and the whole school is built on never showing a turn.
+      swimmers.forEach((s, i) => {
+        const st = state.get(s);
+        if (next === "ordered" && st.dir !== true) return;
+        const current = getComputedStyle(s).transform;
+        if (st.anim) { st.anim.onfinish = null; st.anim.cancel(); }
+        claimed.delete(s);
+        st.first = false;
+        setTimeout(() => start(s, i, current === "none" ? null : current), i * 90);
+      });
+    }
+  };
 })();
 
 // ---------------------------------------------------------------------------
-// Turning the page over. Both faces of every slot live in the same grid cell, so the slot is
-// already as tall as the taller face and nothing moves when they swap — only opacity, a small
-// lift and a blur. The slots are staggered so the change reads as travelling up the page rather
-// than happening to all of it at once. The water is untouched throughout: the school never
-// pauses, and neither does the fish on the button.
+// Turning the page over. The two faces are absolutely stacked; the stack's height is driven to
+// whichever face is showing and transitions with it, so the content resizes smoothly instead of
+// jumping, and pressing the control also reroutes the school underneath.
 // ---------------------------------------------------------------------------
 (() => {
   const btn = document.getElementById("turn");
   const label = document.getElementById("turn-label");
-  if (!btn || !label) return;
-  const slots = [...document.querySelectorAll(".slot")];
+  const eyebrow = document.getElementById("eyebrow");
+  const stack = document.getElementById("stack");
+  if (!btn || !stack) return;
+  const faces = [...stack.querySelectorAll(".face")];
+  const faceOf = k => faces.find(f => f.dataset.face === k);
   let open = false, busy = false;
 
   const COPY = {
-    closed: { text: "What it does",    arrow: "→", aria: "Show what Maven Babelfish does" },
-    open:   { text: "The definitions", arrow: "←", aria: "Go back to the two definitions" }
+    a: { label: "What it does",   aria: "Show what Maven Babelfish does", eyebrow: "One name · two definitions" },
+    b: { label: "The definitions", aria: "Go back to the two definitions", eyebrow: "Every platform · one language · any AI" }
   };
 
-  const turn = () => {
+  const show = key => {
+    faces.forEach(f => f.setAttribute("aria-hidden", String(f.dataset.face !== key)));
+    document.body.classList.toggle("is-open", key === "b");
+    btn.setAttribute("aria-expanded", String(key === "b"));
+    school.reroute(key === "b" ? "ordered" : "scattered");
+
+    const copy = COPY[key];
+    label.classList.add("swapping");
+    setTimeout(() => {
+      label.textContent = copy.label;
+      btn.setAttribute("aria-label", copy.aria);
+      eyebrow.textContent = copy.eyebrow;
+      label.classList.remove("swapping");
+    }, 180);
+  };
+
+  btn.addEventListener("click", () => {
     if (busy) return;
     busy = true;
     open = !open;
-
-    slots.forEach(slot => {
-      slot.querySelectorAll(".face").forEach(face => {
-        const shown = (face.dataset.face === "b") === open;
-        face.setAttribute("aria-hidden", shown ? "false" : "true");
-      });
-    });
-
-    document.body.classList.toggle("is-open", open);
-    btn.setAttribute("aria-expanded", String(open));
-    btn.classList.remove("darting");
-    void btn.offsetWidth;                    // restart the dart even on a rapid second click
-    btn.classList.add("darting");
-
-    // swap the label at the bottom of its own short fade, so the text never changes in plain sight
-    const copy = open ? COPY.open : COPY.closed;
-    label.classList.add("swapping");
-    setTimeout(() => {
-      label.innerHTML = `${copy.text}<span class="arrow" aria-hidden="true">${copy.arrow}</span>`;
-      btn.setAttribute("aria-label", copy.aria);
-      label.classList.remove("swapping");
-    }, 180);
-
+    show(open ? "b" : "a");
     setTimeout(() => { busy = false; }, 420);
-  };
+  });
 
-  btn.addEventListener("click", turn);
 })();
 </script>
 </body>

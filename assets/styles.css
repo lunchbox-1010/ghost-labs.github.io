@@ -541,3 +541,49 @@ img { max-width: 100%; display: block; }
   color: #8A6408; background: #FFF4CC; border: 1px solid #F0DC94;
   border-radius: 999px; padding: 3px 9px; white-space: nowrap;
 }
+
+/* ---------- Four-across service row ---------------------------------------- */
+/* Kept on one line at desktop width; drops to two, then one, rather than leaving
+   an orphan card hanging on a second row. */
+.cards.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.cards.four .card { padding: 24px 22px; }
+.cards.four .card h3 { font-size: 19px; }
+.cards.four .card p { font-size: 14.5px; margin-bottom: 16px; }
+.cards.four .card-icon { width: 48px; height: 48px; font-size: 24px; margin-bottom: 14px; }
+@media (max-width: 1040px) { .cards.four { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px)  { .cards.four { grid-template-columns: 1fr; } }
+
+/* ---------- Product spotlight ----------------------------------------------- */
+/* One featured product at a time. To spotlight something else, swap the contents of
+   .spotlight-body and point .spotlight-art at that product's mark — the shell stays. */
+.spotlight {
+  display: grid; grid-template-columns: auto 1fr;
+  gap: clamp(24px, 4vw, 46px); align-items: center;
+  background: linear-gradient(135deg, #0E1116 0%, #16202B 55%, #1B2A38 100%);
+  border-radius: var(--radius); box-shadow: var(--shadow-lg);
+  padding: clamp(26px, 4vw, 44px) clamp(24px, 4vw, 48px);
+  position: relative; overflow: hidden;
+}
+.spotlight::after {                       /* a light thrown from the top-left, as a spotlight is */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(52% 78% at 16% 22%, rgba(233,123,42,.16), transparent 70%);
+}
+.spotlight-art { position: relative; display: grid; place-items: center; }
+.spotlight-art::before {                  /* the glow the mark sits in */
+  content: ""; position: absolute; width: 132%; aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle, rgba(92,194,255,.22), transparent 68%); filter: blur(18px);
+}
+.spotlight .fish-icon { width: clamp(112px, 15vw, 168px); height: clamp(112px, 15vw, 168px); margin-bottom: 0; }
+.spotlight:hover .fish-icon { --beat: .54s; }
+.spotlight-body { position: relative; z-index: 1; }
+.spotlight-body h3 {
+  margin: 8px 0 10px; font-size: clamp(24px, 3vw, 32px); color: #fff; letter-spacing: -.01em;
+}
+.spotlight-body p { margin: 0 0 20px; color: rgba(255,255,255,.76); font-size: 16px; max-width: 62ch; }
+.spotlight-body .eyebrow { color: var(--orange); }
+.spotlight .btn-ghost { color: #fff; border-color: rgba(255,255,255,.3); }
+.spotlight .btn-ghost:hover { border-color: #fff; color: #fff; }
+@media (max-width: 760px) {
+  .spotlight { grid-template-columns: 1fr; text-align: center; }
+  .spotlight-body .cta-row { justify-content: center; }
+}
