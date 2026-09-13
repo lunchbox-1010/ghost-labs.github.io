@@ -80,9 +80,22 @@
   /* ---- masthead ---- */
   header.top{ position:relative; z-index:9; background:rgba(7,13,20,.86);
               border-bottom:1px solid var(--line) }
+  /* The switch has to land in the same place it does on the name page, where the control
+     floats clamp(16px,3vw,36px) off the viewport's right edge. Wrap-constrained, this bar put
+     it 180px further in on a wide screen, which is the only thing that still told the two
+     pages apart. So the bar goes full-bleed: its right padding is the name page's corner
+     offset, and its left padding still resolves to the content gutter, so the Babelfish mark
+     keeps the left edge it shares with the hero below. Under the wrap width the max() falls
+     through to the plain gutter. */
   .top-in{ display:flex; align-items:center; justify-content:space-between; gap:16px;
-           /* room above and below the switch for the fish to get round it */
-           padding-block:clamp(12px, 5.2vmin, 46px) }
+           max-width:none; margin:0;
+           padding-left:max(clamp(18px, 5vw, 40px),
+                            calc((100vw - var(--wrap)) / 2 + clamp(18px, 5vw, 40px)));
+           padding-right:clamp(16px, 3vw, 36px);
+           /* the name page hangs its control clamp(44px,5vmin,56px) below the bar; the same
+              number here puts the switch at the same height, and gives the fish room to get
+              round it either side */
+           padding-block:clamp(44px, 5vmin, 56px) }
   .lockup{ margin:0; font-weight:600; font-size:clamp(14px, 1.7vw, 19px); letter-spacing:-.02em;
            line-height:1; display:flex; align-items:center; gap:.6em }
   .lockup .a{ color:var(--maven) } .lockup .b{ color:var(--babel) }
@@ -282,7 +295,7 @@
     /* the same switch type as the name page, so the bar is the bar on every stop */
     .seg{ letter-spacing:.07em; padding:clamp(7px, 1.9vw, 10px) clamp(7px, 2.2vw, 12px);
           font-size:clamp(9px, 2.4vw, 10.5px) }
-    .top-in{ padding-inline:12px; gap:10px; padding-block:4px }
+    .top-in{ padding-left:12px; padding-right:12px; gap:10px; padding-block:4px }
     .orbit{ display:none }
     .ripple{ display:block }
     .lockup{ min-width:0; font-size:clamp(12.5px, 3.2vw, 17px); line-height:1.14; gap:.5em }
