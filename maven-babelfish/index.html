@@ -184,18 +184,19 @@
              font-family:var(--mono); font-size:clamp(7.5px, 1vmin, 9.5px); letter-spacing:.14em;
              text-transform:uppercase; color:#9fe0a8;
              border:1px solid rgba(159,224,168,.3); border-radius:999px; padding:.32em .7em }
-  /* The phone lockup and the swim band below it are phone-only; the orbit is the desktop
-     answer to the same idea and they never appear together. */
-  .ctrl-lockup, .ripple{ display:none }
+  /* The swim band is phone-only: the orbit is the wider answer to the same idea and the two
+     never appear together. The lockup shows at every width. */
+  .ripple{ display:none }
+  .ctrl-lockup{ display:flex }
   /* the name wraps to two lines when the row runs out of width, the way it does on
      learn-more; nowrap here is what pushed it under the switch instead */
   .ctrl-lockup{ margin:0; align-items:center; gap:.5em; min-width:0;
-                font-weight:600; font-size:clamp(12.5px, 3.2vw, 17px);
+                font-weight:600; font-size:clamp(12.5px, 1.7vw, 19px);
                 letter-spacing:-.02em; line-height:1.14 }
   .ctrl-lockup .a{ color:var(--maven) } .ctrl-lockup .b{ color:var(--babel) }
   /* the mark, alive — the kit ships the disc with the fish lifted out, so the layers drop
      straight back on at inset:0 and rebuild the logo exactly. Same component as learn-more. */
-  .ctrl-mark{ position:relative; display:block; width:clamp(24px, 6.4vw, 32px); aspect-ratio:1;
+  .ctrl-mark{ position:relative; display:block; width:clamp(24px, 3.4vw, 40px); aspect-ratio:1;
               flex:0 0 auto; border-radius:50%;
               background:url("scene/disc-without-fish.png") center/contain no-repeat }
   .ctrl-mark .swim{ position:absolute; inset:0; animation:surge 1.9s ease-in-out infinite }
@@ -213,10 +214,32 @@
                     width:var(--fish); height:var(--fish); transform:translateX(-9999px);
                     will-change:transform, opacity }
 
-  /* ---- the control: parked in the top-right corner, with a fish circling it ---- */
-  .control{ position:fixed; top:calc(var(--navh, 96px) + clamp(44px, 5vmin, 56px));
-            right:clamp(16px, 3vw, 36px);
-            z-index:60; display:grid; place-items:center }
+  /* ---- the bar: the mark and the name on the left, the three stops on the right, a fish
+     circling them. The same bar learn-more carries, at every width, so a visitor moving
+     between the stops sees one bar with a different segment lit rather than three designs.
+     It is a flex item of body, so order puts it after the Ghost Labs bar despite coming
+     first in the markup; position is relative, not static, because the orbit is absolutely
+     positioned against it. Right padding is the corner offset the control used to hang by,
+     left padding resolves to the same content gutter the sheet below uses, and under the
+     measure the max() falls through to the plain gutter. ---- */
+  .control{ position:relative; order:1; z-index:60; width:100%;
+            background:rgba(7,13,20,.86); border-bottom:1px solid rgba(126,148,169,.16);
+            display:grid; grid-template-columns:1fr auto;
+            grid-template-areas:"name switch" "ripple ripple";
+            align-items:center; justify-items:stretch; gap:6px 14px;
+            padding-left:max(var(--gutter), calc((100vw - 1080px) / 2 + var(--gutter)));
+            padding-right:clamp(16px, 3vw, 36px);
+            padding-block:clamp(44px, 5vmin, 56px) }
+  .ctrl-lockup{ grid-area:name }
+  .switch{ grid-area:switch }
+  .ripple{ grid-area:ripple }
+  .gl-nav{ order:0 }
+  main.sheet{ order:2 }
+  footer{ order:3 }
+  /* the bar says the name, so the sheet asks the question instead of repeating it. Clipped
+     rather than removed, so the page keeps its h1 for a screen reader. */
+  .masthead .lockup{ position:absolute; width:1px; height:1px; overflow:hidden;
+                     clip-path:inset(50%); white-space:nowrap }
   /* the orbit is decoration: taken out of the flow and centred on the button, so the corner
      offsets position the button itself rather than a 252x104 box around it */
   /* No z-index here on purpose: .orbit must not open a stacking context, or the fish
@@ -238,7 +261,9 @@
 
   /* One control with three stops, in the same corner on every Babelfish page, so there is
      never a second button elsewhere doing a related job. */
-  .switch{ grid-area:1/1; position:relative; z-index:1;
+  /* grid-area comes from the bar above (the "switch" cell); this rule used to pin it to 1/1
+     for the old corner grid, which put it in the name's column and stretched it full width */
+  .switch{ position:relative; z-index:1; justify-self:end;
            display:flex; align-items:stretch; padding:3px; border-radius:999px;
            background:rgba(10,20,30,.8); -webkit-backdrop-filter:blur(9px); backdrop-filter:blur(9px);
            border:1px solid rgba(244,117,46,.42);
@@ -353,28 +378,16 @@
        body is the flex column, so order puts it after the bar despite coming first in the
        markup; position stays relative, not static, because the orbit is absolutely
        positioned against it. */
-    .gl-nav{ order:0 }
-    .control{ position:relative; order:1; top:auto; right:auto; margin:0; width:100%;
-              display:grid; grid-template-columns:1fr auto;
-              align-items:center; justify-items:stretch;   /* the base rule's place-items:center
-                 would otherwise size every cell to its content, and the band has none */
-              grid-template-areas:"name switch" "ripple ripple";
-              gap:6px 10px; padding:clamp(8px, 2.4vmin, 14px) 12px 0 }
-    main.sheet{ order:2; padding-top:0 }
-    footer{ order:3 }
-
-    /* The name sits beside the switch the way it does on learn-more, so the two pages carry
-       the same bar. The masthead's h1 is then saying it twice — it is clipped rather than
-       removed, so the heading outline survives for a screen reader. */
-    .ctrl-lockup{ display:flex; grid-area:name }
-    .switch{ grid-area:switch }
-    .masthead .lockup{ position:absolute; width:1px; height:1px; overflow:hidden;
-                       clip-path:inset(50%); white-space:nowrap }
+    .control{ gap:6px 10px; padding-left:12px; padding-right:12px;
+              padding-block:clamp(8px, 2.4vmin, 14px) 0 }
+    .ctrl-lockup{ font-size:clamp(12.5px, 3.2vw, 17px) }
+    .ctrl-mark{ width:clamp(24px, 6.4vw, 32px) }
+    main.sheet{ padding-top:0 }
 
     /* There is no room to orbit a button this size, so the fish patrols the strip underneath
        instead — same randomised crossings as the school, one at a time. */
     .orbit{ display:none }
-    .ripple{ display:block; grid-area:ripple }
+    .ripple{ display:block }
 
     /* the switch has to give up some width for the name to sit beside it: the tracking is
        what costs the most here, and it is decoration at this size */
