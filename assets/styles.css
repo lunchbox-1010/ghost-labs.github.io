@@ -675,5 +675,12 @@ section[id] { scroll-margin-top: 112px; }
   text-transform: uppercase; margin: 0 0 14px; font-weight: 700;
 }
 
+/* The tiles carry drawn marks rather than emoji: emoji render differently on every platform,
+   are not tunable in weight or colour, and read as placeholder. These are line marks on the
+   same gradient tiles, stroked in the tile's own foreground. */
+.card-icon svg { width: 26px; height: 26px; display: block; }
+.cards.four .card-icon svg { width: 23px; height: 23px; }
+.dot svg { width: 20px; height: 20px; display: block; }
+
 /* A "Coming soon" badge is not a link. */
 span.badge { cursor: default; }
