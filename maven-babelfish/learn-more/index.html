@@ -44,9 +44,31 @@
   p:last-child{ margin-bottom:0 }
   .lede{ font-size:clamp(15px, 1.65vw, 21px); color:#d8e6f2; max-width:58ch }
 
+
+  /* ---- the Ghost Labs bar, same one the rest of the site wears ----
+     Written out here rather than pulled from assets/styles.css: that sheet paints a light page
+     and owns .chip, .eyebrow and .lane, all of which mean something else here. The class names
+     are prefixed so nothing can collide if it is ever linked in. */
+  .gl-nav{ position:sticky; top:0; z-index:50; background:rgba(14,17,22,.92);
+           -webkit-backdrop-filter:saturate(160%) blur(8px);
+           backdrop-filter:saturate(160%) blur(8px);
+           border-bottom:1px solid rgba(255,255,255,.06) }
+  .gl-nav-in{ width:100%; max-width:1120px; margin:0 auto; padding:6px 24px;
+              display:flex; align-items:center; justify-content:space-between;
+              gap:14px; flex-wrap:wrap; min-height:clamp(58px, 9vmin, 96px) }
+  .gl-brand{ display:flex; align-items:center; flex:0 0 auto }
+  .gl-brand img{ height:clamp(40px, 7vmin, 80px); width:auto; display:block; object-fit:contain }
+  .gl-links{ display:flex; align-items:center; flex-wrap:wrap; justify-content:flex-end;
+             gap:clamp(10px, 2vw, 28px) }
+  .gl-links a{ color:rgba(255,255,255,.82); text-decoration:none; white-space:nowrap;
+               font-family:ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+               font-size:clamp(11.5px, 1.15vw, 15px); font-weight:500;
+               transition:color .25s ease }
+  .gl-links a:hover{ color:var(--babel) }
+
   /* ---- masthead ---- */
-  header.top{ position:sticky; top:0; z-index:10; background:rgba(7,13,20,.86);
-              backdrop-filter:blur(10px); border-bottom:1px solid var(--line) }
+  header.top{ position:relative; z-index:9; background:rgba(7,13,20,.86);
+              border-bottom:1px solid var(--line) }
   .top-in{ display:flex; align-items:center; justify-content:space-between; gap:16px;
            padding-block:clamp(10px, 1.6vmin, 16px) }
   .lockup{ margin:0; font-weight:600; font-size:clamp(14px, 1.7vw, 19px); letter-spacing:-.02em;
@@ -206,6 +228,18 @@
 </head>
 <body>
 
+<header class="gl-nav">
+  <div class="gl-nav-in">
+    <a class="gl-brand" href="../../index.html"><img src="../../assets/logo-bw.png?v=3" alt="Ghost Labs"></a>
+    <nav class="gl-links">
+      <a href="../../apps/">App Foundry</a>
+      <a href="../../enterprise/">Enterprise Foundry</a>
+      <a href="../../foundry/">Brand Foundry</a>
+      <a href="../../index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
 <header class="top">
   <div class="wrap top-in">
     <p class="lockup">
@@ -220,7 +254,7 @@
   <div class="wrap">
     <p class="eyebrow">Every marketing platform · one language · any AI</p>
     <span class="chip">In development</span>
-    <h1>Your marketing data lives in eight places. <b>Babelfish makes it one.</b></h1>
+    <h1>Your marketing data lives in every tool you use. <b>Babelfish makes it one.</b></h1>
     <p class="lede">Ad platforms, CRMs, web analytics, email and vendor spreadsheets each name the
       same campaign differently, count the same person twice and report in their own units — so
       nobody can say what spend actually produced. Babelfish aggregates every platform into one
@@ -231,7 +265,7 @@
 
 <section>
   <div class="wrap">
-    <p class="eyebrow">From eight dialects to one language</p>
+    <p class="eyebrow">From every dialect to one language</p>
     <div class="flow">
       <div class="lane one">
         <h3>Every platform</h3>
@@ -292,8 +326,9 @@
       </div>
       <div class="win cy">
         <h3>Keep the AI you have</h3>
-        <p>No AI bill and no lock-in. Claude, ChatGPT, Copilot or Gemini become fluent in your
-          data — or use the free AI that comes installed with Babelfish.</p>
+        <p>Babelfish never bills you for AI. You keep your own account with Claude, ChatGPT,
+          Copilot or Gemini and pay them directly at their price — no markup, no reselling, no
+          lock-in. Or use the free AI that installs with Babelfish and pay nobody.</p>
       </div>
     </div>
   </div>
@@ -304,11 +339,11 @@
 <section>
   <div class="wrap">
     <h2>Four ways to use AI</h2>
-    <p class="lede" style="margin-bottom:2.2em">You choose, and you pay your own AI company — or
-      nothing at all.</p>
+    <p class="lede" style="margin-bottom:2.2em">You choose. Whichever you pick, you pay that AI
+      company directly — or nothing at all, if you use the one that comes installed.</p>
     <div class="ways">
-      <div class="way free"><b>Built-in AI</b><span>Comes installed, free.</span></div>
-      <div class="way"><b>Your AI app</b><span>Your existing subscription.</span></div>
+      <div class="way free"><b>Built-in AI</b><span>Comes installed. Costs nothing.</span></div>
+      <div class="way"><b>Your AI app</b><span>Your own subscription, billed by them.</span></div>
       <div class="way"><b>Private local AI</b><span>Nothing leaves your machine.</span></div>
       <div class="way"><b>Compare several</b><span>Answers side by side.</span></div>
     </div>

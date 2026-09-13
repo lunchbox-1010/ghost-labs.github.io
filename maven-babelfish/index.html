@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Maven Babelfish — Ghost Labs</title>
-<meta name="description" content="Your marketing data lives in eight places. Maven Babelfish aggregates every platform into one language, verifies every number, and makes it answerable in the AI your team already uses.">
+<meta name="description" content="Your marketing data is scattered across every tool you use. Maven Babelfish aggregates every platform into one language, verifies every number, and makes it answerable in the AI your team already uses.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ghost Labs">
 <meta property="og:title" content="Maven Babelfish — every marketing platform, one language, any AI">
@@ -34,9 +34,11 @@
   body{ background:var(--ground); color:var(--ink); font-family:var(--display);
         background-image:radial-gradient(110% 66% at 50% 44%, #15283a 0%, rgba(7,13,20,0) 70%);
         overflow-x:hidden; position:relative; min-height:100svh;
-        display:flex; flex-direction:column; justify-content:center;
-        gap:clamp(10px, 2.2vmin, 26px);
-        padding:clamp(14px, 3vmin, 34px) var(--gutter) }
+        display:flex; flex-direction:column }
+  /* the bar takes what it needs; what is left is the page, centred inside it */
+  main.sheet{ flex:1; display:flex; flex-direction:column; justify-content:center;
+              gap:clamp(10px, 2.2vmin, 26px);
+              padding:clamp(12px, 2.6vmin, 30px) var(--gutter) 0 }
 
   /* ---- the water: a band of its own, with the page's two halves above and below it ----
      A fixed height rather than whatever is left over: letting it absorb the slack drives the
@@ -77,6 +79,28 @@
   @keyframes yaw{ from{ transform:rotate(2.2deg) } to{ transform:rotate(-2.2deg) } }
   @keyframes surge{ 0%,100%{ transform:translate(0,0) } 25%{ transform:translate(1.4%,-1.6%) }
                     50%{ transform:translate(0,0) } 75%{ transform:translate(1.4%,1.6%) } }
+
+
+  /* ---- the Ghost Labs bar, same one the rest of the site wears ----
+     Written out here rather than pulled from assets/styles.css: that sheet paints a light page
+     and owns .chip, .eyebrow and .lane, all of which mean something else here. The class names
+     are prefixed so nothing can collide if it is ever linked in. */
+  .gl-nav{ position:sticky; top:0; z-index:50; background:rgba(14,17,22,.92);
+           -webkit-backdrop-filter:saturate(160%) blur(8px);
+           backdrop-filter:saturate(160%) blur(8px);
+           border-bottom:1px solid rgba(255,255,255,.06) }
+  .gl-nav-in{ width:100%; max-width:1120px; margin:0 auto; padding:6px 24px;
+              display:flex; align-items:center; justify-content:space-between;
+              gap:14px; flex-wrap:wrap; min-height:clamp(58px, 9vmin, 96px) }
+  .gl-brand{ display:flex; align-items:center; flex:0 0 auto }
+  .gl-brand img{ height:clamp(40px, 7vmin, 80px); width:auto; display:block; object-fit:contain }
+  .gl-links{ display:flex; align-items:center; flex-wrap:wrap; justify-content:flex-end;
+             gap:clamp(10px, 2vw, 28px) }
+  .gl-links a{ color:rgba(255,255,255,.82); text-decoration:none; white-space:nowrap;
+               font-family:ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+               font-size:clamp(11.5px, 1.15vw, 15px); font-weight:500;
+               transition:color .25s ease }
+  .gl-links a:hover{ color:var(--babel) }
 
   /* ---- content ---- */
   .masthead{ display:flex; flex-direction:column; align-items:center;
@@ -162,7 +186,8 @@
   .stat:not(.lead)::before{ content:""; width:28px; height:2px; margin-bottom:.45em }
 
   /* ---- the control: parked in the top-right corner, with a fish circling it ---- */
-  .control{ position:fixed; top:clamp(40px, 5.5vmin, 62px); right:clamp(16px, 3vw, 36px);
+  .control{ position:fixed; top:calc(var(--navh, 96px) + clamp(12px, 2.2vmin, 26px));
+            right:clamp(16px, 3vw, 36px);
             z-index:5; display:grid; place-items:center }
   /* the orbit is decoration: taken out of the flow and centred on the button, so the corner
      offsets position the button itself rather than a 252x104 box around it */
@@ -211,7 +236,7 @@
   body.is-open .turn:hover .chev{ transform:rotate(180deg) translateX(3px) }
 
   footer{ position:relative; z-index:2; flex:0 0 auto;
-          padding:clamp(12px, 2vmin, 20px) 20px 0;
+          padding:clamp(12px, 2vmin, 20px) 20px;
           font-family:var(--mono); font-size:clamp(7.5px, 1vmin, 10px);
           letter-spacing:.2em; text-transform:uppercase; color:var(--muted); text-align:center;
           display:flex; align-items:center; justify-content:center; gap:.9em; flex-wrap:wrap }
@@ -233,7 +258,7 @@
   }
   @media (max-width:640px){
     :root{ --orbit-scale:.8; --orbit-time:9s }
-    body{ padding-top:clamp(92px, 18vmin, 124px) }   /* clearance for the corner control */
+    main.sheet{ padding-top:clamp(58px, 13vmin, 92px) }  /* clearance for the corner control */
     .corner.sources{ opacity:.24; left:-19% } .corner.network{ opacity:.32; right:-19% }
     .turn{ padding:8px 13px }
     .turn .label{ letter-spacing:.16em }
@@ -266,9 +291,22 @@
   </button>
 </div>
 
+<header class="gl-nav">
+  <div class="gl-nav-in">
+    <a class="gl-brand" href="../index.html"><img src="../assets/logo-bw.png?v=3" alt="Ghost Labs"></a>
+    <nav class="gl-links">
+      <a href="../apps/">App Foundry</a>
+      <a href="../enterprise/">Enterprise Foundry</a>
+      <a href="../foundry/">Brand Foundry</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="sheet">
 <div class="col masthead">
   <h1 class="lockup"><span class="a">Maven</span> <span class="b">Babelfish</span></h1>
-  <p class="eyebrow" id="eyebrow">One name · two definitions</p>
+  <p class="eyebrow" id="eyebrow">What’s in a name?</p>
 </div>
 
 <!-- ---------- above the water ---------- -->
@@ -284,7 +322,7 @@
   </section>
   <section class="face" data-face="b" aria-hidden="true">
     <div class="inner">
-      <p class="claim">Your marketing data lives in eight places. <b>Babelfish makes it one.</b></p>
+      <p class="claim">Your marketing data lives in every tool you use. <b>Babelfish makes it one.</b></p>
     </div>
   </section>
 </div>
@@ -330,8 +368,9 @@
         <div class="arrow" aria-hidden="true">&#8594;</div>
         <div class="step three">
           <h3>Your AI</h3>
-          <p>Claude, ChatGPT, Copilot, Gemini, or a private model on your own machine — fluent in
-            your data. No AI bill, no lock-in.</p>
+          <p>Claude, ChatGPT, Copilot, Gemini, or a private model on your own machine — fluent
+            in your data. You pay your AI provider directly, never us. Or use the free one that
+            installs with Babelfish.</p>
         </div>
       </div>
 
@@ -339,6 +378,8 @@
     </div>
   </section>
 </div>
+
+</main>
 
 <footer>
   <span class="chip">In development</span>
@@ -359,7 +400,7 @@
 // has claimed.
 //
 // The page has two currents. Scattered (the default) is what you see beside the two definitions:
-// fish crossing in both directions at unrelated depths, which is the eight-places-at-once the
+// fish crossing in both directions at unrelated depths, which is the everywhere-at-once the
 // product is answering. Ordered is what the explanation swims in: every fish turns and runs the
 // same way, left to right, spaced into clean lanes. Pressing the control reroutes them — each
 // fish picks up its new heading from exactly where it is, so nothing snaps.
@@ -512,6 +553,17 @@ const school = (() => {
 // whichever face is showing and transitions with it, so the content resizes smoothly instead of
 // jumping, and pressing the control also reroutes the school underneath.
 // ---------------------------------------------------------------------------
+// The bar wraps to two rows on a narrow screen, so the corner control is placed against its
+// measured height rather than a guess at it.
+(() => {
+  const nav = document.querySelector(".gl-nav");
+  if (!nav) return;
+  const set = () => document.documentElement.style.setProperty("--navh", nav.offsetHeight + "px");
+  set();
+  addEventListener("resize", set);
+  new ResizeObserver(set).observe(nav);
+})();
+
 (() => {
   const btn = document.getElementById("turn");
   const label = document.getElementById("turn-label");
@@ -523,7 +575,7 @@ const school = (() => {
   let open = false, busy = false;
 
   const COPY = {
-    a: { label: "What it does",   aria: "Show what Maven Babelfish does", eyebrow: "One name · two definitions" },
+    a: { label: "What it does",   aria: "Show what Maven Babelfish does", eyebrow: "What’s in a name?" },
     b: { label: "The definitions", aria: "Go back to the two definitions", eyebrow: "Every platform · one language · any AI" }
   };
 
