@@ -30,8 +30,8 @@
       <a class="brand" href="../index.html">
         <img src="../assets/logo-bw.png?v=3" alt="Ghost Labs">
       </a>
-      <button class="menu-toggle" aria-label="Open menu">&#9776;</button>
-      <ul class="nav-links">
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">&#9776;</button>
+      <ul class="nav-links" id="primary-nav">
         <li><a href="../apps/">App Foundry</a></li>
         <li><a href="../enterprise/" class="active-section">Enterprise Foundry</a></li>
         <li><a href="../foundry/">Brand Foundry</a></li>
@@ -72,7 +72,7 @@
     <div class="container">
       <div class="section-head">
         <h2>What we do</h2>
-        <p>Four practices, deeply intertwined.</p>
+        <p>Three services, and the products we ship ourselves.</p>
       </div>
 
       <div class="cards four">
@@ -97,9 +97,9 @@
           <span class="card-cta">Talk to us &rarr;</span>
         </a>
 
-        <a class="card" href="#products" aria-label="Apps and products">
-          <div class="card-icon orange">&#128241;</div>
-          <h3>Apps &amp; products</h3>
+        <a class="card" href="#products" aria-label="Our products">
+          <div class="card-icon orange">&#128230;</div>
+          <h3>Our products</h3>
           <p>Business software we build and ship ourselves — cross-platform apps on iPhone, Android, Mac and Windows, on the same platforms above. <strong>Maven Babelfish</strong> is the first.</p>
           <span class="card-cta">See the products &rarr;</span>
         </a>
@@ -142,22 +142,22 @@
       <div class="feature-grid">
         <div class="feature">
           <div class="dot">1</div>
-          <h4>Microsoft-certified architects</h4>
+          <h3>Microsoft-certified architects</h3>
           <p>Hands-on across Azure landing zones, Entra ID, networking, AKS, Functions, App Service, Cosmos DB, and the broader stack.</p>
         </div>
         <div class="feature">
           <div class="dot">2</div>
-          <h4>Compliance-aware</h4>
+          <h3>Compliance-aware</h3>
           <p>Designs that consider HIPAA, SOC 2, PCI, and FedRAMP-aligned patterns from day one — not as an afterthought.</p>
         </div>
         <div class="feature">
           <div class="dot">3</div>
-          <h4>Cost discipline</h4>
+          <h3>Cost discipline</h3>
           <p>FinOps habits baked in: reservation strategy, autoscale tuning, cost guardrails, and visibility your finance team will actually use.</p>
         </div>
         <div class="feature">
           <div class="dot">4</div>
-          <h4>Hybrid &amp; edge</h4>
+          <h3>Hybrid &amp; edge</h3>
           <p>Azure Arc, ExpressRoute, on-prem connectivity, and edge workloads — for orgs that aren't fully in the cloud and don't need to be.</p>
         </div>
       </div>
@@ -165,26 +165,26 @@
   </section>
 
   <!-- WHO IT'S FOR -->
-  <section class="section">
+  <section class="section alt">
     <div class="container">
       <div class="section-head">
         <h2>Who we work with</h2>
         <p>Teams that want a senior partner, not a deck and a handoff.</p>
       </div>
-      <div class="feature-grid" style="max-width: 880px; margin: 0 auto;">
+      <div class="feature-grid three">
         <div class="feature">
           <div class="dot">&#127970;</div>
-          <h4>Mid-market enterprises</h4>
+          <h3>Mid-market enterprises</h3>
           <p>Organizations modernizing legacy workloads, navigating M&amp;A integration, or standing up a proper landing zone for the first time.</p>
         </div>
         <div class="feature">
           <div class="dot">&#129523;</div>
-          <h4>Engineering teams</h4>
+          <h3>Engineering teams</h3>
           <p>Internal platform groups who want a senior partner to pair with — not a consultant who hands over a PDF and leaves.</p>
         </div>
         <div class="feature">
           <div class="dot">&#129302;</div>
-          <h4>AI-curious leadership</h4>
+          <h3>AI-curious leadership</h3>
           <p>Teams ready to ship real AI into production without becoming the next cautionary headline.</p>
         </div>
       </div>
@@ -203,7 +203,7 @@
           <h3>Email us directly</h3>
           <p>The fastest way to start. We typically reply within one to two business days, and we read everything ourselves.</p>
           <p style="margin-top: 18px;">
-            <a class="btn btn-primary" href="mailto:contact@ghost-labs.com?subject=Cloud%20inquiry">contact@ghost-labs.com</a>
+            <a class="btn btn-primary" href="mailto:contact@ghost-labs.com?subject=Enterprise%20Foundry%20inquiry">contact@ghost-labs.com</a>
           </p>
         </div>
         <div class="contact-card">
@@ -229,10 +229,10 @@
             <img src="../assets/logo-icon.png" alt="" style="width:28px;height:28px;">
             <span class="brand-text" style="font-size:14px;"><span class="o">GHOST</span><span class="b">LABS</span></span>
           </a>
-          <p class="tagline">A boutique software studio with three sides — Apps, Cloud, and Foundry.</p>
+          <p class="tagline">A boutique software studio with three foundries — App, Enterprise, and Brand.</p>
         </div>
         <div>
-          <h5>Studio</h5>
+          <h2 class="footer-head">Studio</h2>
           <ul>
             <li><a href="../apps/">App Foundry</a></li>
             <li><a href="../enterprise/">Enterprise Foundry</a></li>
@@ -240,7 +240,7 @@
           </ul>
         </div>
         <div>
-          <h5>Enterprise Foundry</h5>
+          <h2 class="footer-head">Enterprise Foundry</h2>
           <ul>
             <li><a href="#services">Services</a></li>
             <li><a href="#products">Products</a></li>
@@ -249,7 +249,7 @@
           </ul>
         </div>
         <div>
-          <h5>Email</h5>
+          <h2 class="footer-head">Email</h2>
           <ul>
             <li><a href="mailto:contact@ghost-labs.com">contact@ghost-labs.com</a></li>
           </ul>

@@ -16,7 +16,7 @@ Live site: https://ghost-labs.com
 
 ```
 .
-├── index.html                    Homepage (hero, the three foundries, about, contact)
+├── index.html                    Homepage (hero, the three foundries, product spotlight, about, contact)
 ├── apps/index.html               App Foundry
 ├── enterprise/index.html         Enterprise Foundry (services + products)
 ├── foundry/index.html            Brand Foundry
@@ -28,6 +28,7 @@ Live site: https://ghost-labs.com
 │   └── app.js                    Mobile menu + footer year
 ├── maven-babelfish/              Product page + its own brand kit
 │   ├── index.html                The name page: two definitions that turn into the pitch
+│   ├── learn-more/index.html     The full sheet: the flow, why it wins, the four ways to use AI
 │   ├── fish/                     The swimmer, cut into tail and body layers, five colours
 │   ├── scene/                    The mark pulled apart — corner art, and the disc minus the fish
 │   └── brand/                    Maven Babelfish logo at every size
@@ -81,7 +82,7 @@ This repo is hosted on **GitHub Pages**.
 
 Edit any HTML file directly in the GitHub web editor (pencil icon → edit → commit) and the site rebuilds in about a minute.
 
-To swap the logo, replace `assets/logo.png` with a new file of the same name. All five HTML files reference it from there.
+To swap the logo, replace `assets/logo.png` with a new file of the same name. Every page references it from there except the Maven Babelfish pages, which carry their own mark in `maven-babelfish/brand/`.
 
 ## Adding a new app
 
@@ -103,3 +104,12 @@ contact@ghost-labs.com
 ## License
 
 © Ghost Labs, LLC. All rights reserved.
+
+
+## A note on what is not in this repo
+
+Client working files and anything not meant to be public do not belong here. GitHub Pages
+publishes every directory that does not begin with an underscore, so a folder of source files
+sitting next to a published page is itself published — a password gate in front of one copy
+does nothing if the plaintext is served from the folder beside it. Keep client work in a
+private repo.

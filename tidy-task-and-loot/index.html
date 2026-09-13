@@ -31,8 +31,8 @@
       <a class="brand" href="../index.html">
         <img src="../assets/logo-bw.png?v=3" alt="Ghost Labs">
       </a>
-      <button class="menu-toggle" aria-label="Open menu">&#9776;</button>
-            <ul class="nav-links">
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">&#9776;</button>
+            <ul class="nav-links" id="primary-nav">
         <li><a href="../apps/" class="active-section">App Foundry</a></li>
         <li><a href="../enterprise/">Enterprise Foundry</a></li>
         <li><a href="../foundry/">Brand Foundry</a></li>
@@ -67,7 +67,7 @@
           <a class="btn btn-ghost" href="support.html">Get support</a>
         </div>
         <div class="badge-row">
-          <a class="badge" href="#" aria-label="Coming soon to App Store">
+          <span class="badge" aria-label="Coming soon to App Store">
             <span>&#63743;</span>
             <span><span class="small">Coming soon</span>App Store</span>
           </a>
@@ -117,7 +117,7 @@
         </div>
       </div>
 
-      <div style="margin-top: 56px; padding: 28px; background: var(--soft); border-radius: var(--radius); border-left: 4px solid var(--orange); max-width: 760px; margin-left: auto; margin-right: auto;">
+      <div class="pixie-note">
         <h3 style="margin: 0 0 8px; color: var(--ink);">The pixie has moods</h3>
         <p style="margin: 0; color: var(--text);">
           Submit a chore and the pixie throws on a halo. Get rejected and the
@@ -141,42 +141,42 @@
       <div class="feature-grid">
         <div class="feature">
           <div class="dot">&#128247;</div>
-          <h4>Photo-verified chores</h4>
+          <h3>Photo-verified chores</h3>
           <p>Watermarked, timestamped, anti-cheat camera built right in. The image is captured live from inside the app — no camera roll uploads.</p>
         </div>
         <div class="feature">
           <div class="dot">&#128197;</div>
-          <h4>Routines</h4>
+          <h3>Routines</h3>
           <p>Schedule chores daily, on weekdays, every other day, or weekly. They spawn automatically each morning so the chore list runs itself.</p>
         </div>
         <div class="feature">
           <div class="dot">&#128106;</div>
-          <h4>Multiple kids</h4>
+          <h3>Multiple kids</h3>
           <p>Assign one chore to two or three kids with points split evenly. Group chores share a photo checklist — siblings can collaborate or fight over who took which picture.</p>
         </div>
         <div class="feature">
           <div class="dot">&#128104;</div>
-          <h4>Multiple parents</h4>
+          <h3>Multiple parents</h3>
           <p>Each parent gets their own profile and avatar. Approvals can come from anyone, so whoever's around handles the verdict.</p>
         </div>
         <div class="feature">
           <div class="dot">&#128176;</div>
-          <h4>Loot Shop</h4>
+          <h3>Loot Shop</h3>
           <p>Stock it with the rewards your kids actually care about. Kids can request new awards too — parents review the request and set the point value. Screen time, ice cream, allowance — your call, your price.</p>
         </div>
         <div class="feature">
           <div class="dot">&#9729;</div>
-          <h4>Family sync</h4>
+          <h3>Family sync</h3>
           <p>Everything mirrors over your private iCloud across iPhone, iPad, and Mac. Multiple devices, one household, no extra account.</p>
         </div>
         <div class="feature">
           <div class="dot">&#128274;</div>
-          <h4>Parent-only controls</h4>
+          <h3>Parent-only controls</h3>
           <p>Face ID gates parent mode so kids can't approve their own work. Optional 4-digit PINs keep siblings out of each other's profiles.</p>
         </div>
         <div class="feature">
           <div class="dot">&#9889;</div>
-          <h4>Built for actual families</h4>
+          <h3>Built for actual families</h3>
           <p>No streaks, no guilt loops, no in-app advertising. The pixie is the only one trying to get attention here.</p>
         </div>
       </div>
@@ -191,20 +191,20 @@
         <p>Families with kids of all ages who'd like the daily chore conversation to be shorter.</p>
       </div>
 
-      <div class="feature-grid" style="max-width:880px; margin: 0 auto;">
+      <div class="feature-grid three">
         <div class="feature">
           <div class="dot">&#128587;</div>
-          <h4>Tired-of-nagging parents</h4>
+          <h3>Tired-of-nagging parents</h3>
           <p>If you've said "did you brush your teeth" more than 6,000 times, this is your app.</p>
         </div>
         <div class="feature">
           <div class="dot">&#9878;</div>
-          <h4>Households with multiple kids</h4>
+          <h3>Households with multiple kids</h3>
           <p>Where "fair" is a moving target and someone is always claiming someone else didn't do their share.</p>
         </div>
         <div class="feature">
           <div class="dot">&#127909;</div>
-          <h4>Anyone who likes a little theater</h4>
+          <h3>Anyone who likes a little theater</h3>
           <p>Pixie animations make accountability genuinely fun. Even the rejection is good content.</p>
         </div>
       </div>
@@ -239,10 +239,10 @@
             <img src="../assets/logo-icon.png" alt="" style="width:28px;height:28px;">
         <span class="brand-text" style="font-size:14px;"><span class="o">GHOST</span><span class="b">LABS</span></span>
       </a>
-          <p class="tagline">A boutique software studio building thoughtful, useful apps.</p>
+          <p class="tagline">A boutique software studio with three foundries — App, Enterprise, and Brand.</p>
         </div>
         <div>
-          <h5>Tidy Task &amp; Loot</h5>
+          <h2 class="footer-head">Tidy Task &amp; Loot</h2>
           <ul>
             <li><a href="index.html">Overview</a></li>
             <li><a href="privacy.html">Privacy</a></li>
@@ -251,14 +251,14 @@
           </ul>
         </div>
         <div>
-          <h5>Ghost Labs</h5>
+          <h2 class="footer-head">Ghost Labs</h2>
           <ul>
             <li><a href="../index.html#about">About</a></li>
             <li><a href="../index.html#contact">Contact</a></li>
           </ul>
         </div>
         <div>
-          <h5>Email</h5>
+          <h2 class="footer-head">Email</h2>
           <ul>
             <li><a href="mailto:contact@ghost-labs.com">contact@ghost-labs.com</a></li>
           </ul>

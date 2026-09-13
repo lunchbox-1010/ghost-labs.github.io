@@ -10,6 +10,11 @@
 <meta property="og:title" content="Maven Babelfish — every marketing platform, one language, any AI">
 <meta property="og:description" content="Ad platforms, CRMs, web analytics, email and spreadsheet exports, aggregated into one language and verified on the way back.">
 <meta property="og:url" content="https://ghost-labs.com/maven-babelfish/">
+<meta property="og:image" content="https://ghost-labs.com/maven-babelfish/brand/logo-256.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Maven Babelfish — every marketing platform, one language, any AI">
+<meta name="twitter:description" content="Ad platforms, CRMs, web analytics, email and spreadsheet exports, aggregated into one language and verified on the way back.">
+<meta name="twitter:image" content="https://ghost-labs.com/maven-babelfish/brand/logo-256.png">
 <meta name="theme-color" content="#070d14">
 <link rel="icon" type="image/png" href="brand/logo-180.png">
 <link rel="apple-touch-icon" sizes="180x180" href="brand/logo-square-180.png">
@@ -91,14 +96,15 @@
            border-bottom:1px solid rgba(255,255,255,.06) }
   .gl-nav-in{ width:100%; max-width:1120px; margin:0 auto; padding:6px 24px;
               display:flex; align-items:center; justify-content:space-between;
-              gap:14px; flex-wrap:wrap; min-height:clamp(58px, 9vmin, 96px) }
+              gap:12px; flex-wrap:wrap; min-height:clamp(58px, 9vmin, 96px) }
   .gl-brand{ display:flex; align-items:center; flex:0 0 auto }
   .gl-brand img{ height:clamp(40px, 7vmin, 80px); width:auto; display:block; object-fit:contain }
   .gl-links{ display:flex; align-items:center; flex-wrap:wrap; justify-content:flex-end;
              gap:clamp(10px, 2vw, 28px) }
   .gl-links a{ color:rgba(255,255,255,.82); text-decoration:none; white-space:nowrap;
                font-family:ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-               font-size:clamp(11.5px, 1.15vw, 15px); font-weight:500;
+               font-size:clamp(12.5px, 1.15vw, 15px); font-weight:500;
+               padding:10px 2px;          /* a 14px-tall tap target was well under guidance */
                transition:color .25s ease }
   .gl-links a:hover{ color:var(--babel) }
 
@@ -176,36 +182,19 @@
              font-family:var(--mono); font-size:clamp(7.5px, 1vmin, 9.5px); letter-spacing:.14em;
              text-transform:uppercase; color:#9fe0a8;
              border:1px solid rgba(159,224,168,.3); border-radius:999px; padding:.32em .7em }
-  /* the way on from the explanation into the full sheet */
-  .more{ display:inline-flex; align-items:center; gap:.6em; text-decoration:none;
-         font-family:var(--mono); font-weight:500;
-         font-size:clamp(9px, 1.18vmin, 11.5px); letter-spacing:.2em; text-transform:uppercase;
-         color:var(--ink); background:rgba(244,117,46,.1);
-         border:1px solid rgba(244,117,46,.42); border-radius:999px;
-         padding:clamp(9px, 1.4vmin, 13px) clamp(16px, 2.2vmin, 24px);
-         transition:background .3s ease, border-color .3s ease, transform .22s var(--ease) }
-  .more span{ color:var(--babel); transition:transform .3s var(--ease) }
-  .more:hover{ background:rgba(244,117,46,.18); border-color:var(--babel); transform:translateY(-2px) }
-  .more:hover span{ transform:translateX(4px) }
-  .more:focus-visible{ outline:2px solid var(--babel); outline-offset:4px }
-  .stat.lead::before{ content:""; width:28px; height:2px; border-radius:2px;
-                      background:var(--babel); margin-bottom:.45em }
-  /* the other two carry the same spacer, unpainted, so all three figures start on one line */
-  .stat:not(.lead)::before{ content:""; width:28px; height:2px; margin-bottom:.45em }
-
   /* ---- the control: parked in the top-right corner, with a fish circling it ---- */
   .control{ position:fixed; top:calc(var(--navh, 96px) + clamp(12px, 2.2vmin, 26px));
             right:clamp(16px, 3vw, 36px);
             z-index:5; display:grid; place-items:center }
   /* the orbit is decoration: taken out of the flow and centred on the button, so the corner
      offsets position the button itself rather than a 252x104 box around it */
-  .orbit{ position:absolute; top:50%; left:50%; width:252px; height:104px;
-          margin:-52px 0 0 -126px; pointer-events:none;
+  .orbit{ position:absolute; top:50%; left:50%; width:366px; height:108px;
+          margin:-54px 0 0 -183px; pointer-events:none;
           transform:scale(var(--orbit-scale, 1)) }
   .orbiter{ position:absolute; top:0; left:0; width:var(--of); height:var(--of);
             margin:calc(var(--of) / -2) 0 0 calc(var(--of) / -2);
             --of:clamp(46px, 6vmin, 62px);
-            offset-path:path("M 12,52 A 114,40 0 0 1 240,52 A 114,40 0 0 1 12,52");
+            offset-path:path("M 14,54 A 169,42 0 0 1 352,54 A 169,42 0 0 1 14,54");
             offset-rotate:0deg;
             animation:orbit var(--orbit-time, 11s) linear infinite }
   /* the fish turns at the two ends of the oval, where it is edge-on and the turn doesn't show */
@@ -216,32 +205,26 @@
   @keyframes facing{ 0%,47%{ transform:scaleX(1) } 53%,97%{ transform:scaleX(-1) }
                      100%{ transform:scaleX(1) } }
 
-  .turn{ grid-area:1/1; appearance:none; cursor:pointer; font:inherit;
-         display:inline-flex; align-items:center; gap:.7em;
-         padding:clamp(9px, 1.5vmin, 13px) clamp(15px, 2.2vmin, 22px);
-         border-radius:999px; color:var(--ink);
-         background:rgba(10,20,30,.78); backdrop-filter:blur(9px);
-         border:1px solid rgba(244,117,46,.45);
-         box-shadow:0 4px 22px rgba(0,0,0,.45), 0 0 0 0 rgba(244,117,46,.35);
-         transition:border-color .3s ease, background .3s ease, box-shadow .3s ease,
-                    transform .22s var(--ease);
-         animation:beckon 3.4s ease-in-out infinite }
-  .turn:hover, .turn:focus-visible{ border-color:var(--babel); background:rgba(18,30,42,.9);
-                                    transform:translateY(-2px); animation:none;
-                                    box-shadow:0 8px 26px rgba(0,0,0,.5), 0 0 0 5px rgba(244,117,46,.13) }
-  .turn:focus-visible{ outline:2px solid var(--babel); outline-offset:4px }
-  .turn:active{ transform:translateY(0) }
-  /* a slow pulse, so the corner says "press me" even before the pointer arrives */
-  @keyframes beckon{ 0%,100%{ box-shadow:0 4px 22px rgba(0,0,0,.45), 0 0 0 0 rgba(244,117,46,.34) }
-                     55%{ box-shadow:0 4px 22px rgba(0,0,0,.45), 0 0 0 9px rgba(244,117,46,0) } }
-  .turn .label{ font-family:var(--mono); font-weight:500;
-                font-size:clamp(9px, 1.2vmin, 11.5px); letter-spacing:.2em; text-transform:uppercase;
-                white-space:nowrap; transition:opacity .18s linear }
-  .turn .label.swapping{ opacity:0 }
-  .turn .chev{ color:var(--babel); font-size:1.05em; line-height:1; transition:transform .3s var(--ease) }
-  .turn:hover .chev{ transform:translateX(3px) }
-  body.is-open .turn .chev{ transform:rotate(180deg) }
-  body.is-open .turn:hover .chev{ transform:rotate(180deg) translateX(3px) }
+  /* One control with three stops, in the same corner on every Babelfish page, so there is
+     never a second button elsewhere doing a related job. */
+  .switch{ grid-area:1/1; display:flex; align-items:stretch; padding:3px; border-radius:999px;
+           background:rgba(10,20,30,.8); -webkit-backdrop-filter:blur(9px); backdrop-filter:blur(9px);
+           border:1px solid rgba(244,117,46,.42);
+           box-shadow:0 4px 22px rgba(0,0,0,.45) }
+  .seg{ appearance:none; border:0; background:none; cursor:pointer; font:inherit;
+        display:inline-flex; align-items:center; justify-content:center; text-decoration:none;
+        padding:clamp(7px, 1.2vmin, 11px) clamp(10px, 1.7vmin, 17px); border-radius:999px;
+        font-family:var(--mono); font-weight:500;
+        font-size:clamp(8.5px, 1.15vmin, 11px); letter-spacing:.16em; text-transform:uppercase;
+        white-space:nowrap; color:rgba(238,244,250,.62);
+        transition:color .25s ease, background .3s ease }
+  .seg:hover{ color:var(--ink) }
+  .seg:focus-visible{ outline:2px solid var(--babel); outline-offset:3px }
+  .seg[aria-current]{ color:var(--ink); background:rgba(244,117,46,.22);
+                      box-shadow:inset 0 0 0 1px rgba(244,117,46,.4) }
+  .seg.go{ color:var(--babel) }
+  .seg.go::after{ content:"\2192"; margin-left:.5em; transition:transform .3s var(--ease) }
+  .seg.go:hover::after{ transform:translateX(3px) }
 
   footer{ position:relative; z-index:2; flex:0 0 auto;
           padding:clamp(12px, 2vmin, 20px) 20px;
@@ -292,11 +275,11 @@
       <div class="fish"><i class="tail"></i><i class="body"></i></div>
     </div></div>
   </div>
-  <button class="turn" id="turn" aria-expanded="false" aria-controls="stack"
-          aria-label="Show what Maven Babelfish does">
-    <span class="label" id="turn-label">What it does</span>
-    <span class="chev" aria-hidden="true">&#8594;</span>
-  </button>
+  <nav class="switch" aria-label="Maven Babelfish">
+    <button class="seg" type="button" data-go="a" aria-current="true">The name</button>
+    <button class="seg" type="button" data-go="b" aria-controls="above below">What it does</button>
+    <a class="seg go" href="learn-more/">Learn more</a>
+  </nav>
 </div>
 
 <header class="gl-nav">
@@ -382,7 +365,6 @@
         </div>
       </div>
 
-      <a class="more" href="learn-more/">Learn more<span aria-hidden="true">&#8594;</span></a>
     </div>
   </section>
 </div>
@@ -426,6 +408,13 @@ const school = (() => {
   const swimmers = [...document.querySelectorAll(".lane .swimmer")];
   const state = new Map();                                 // swimmer -> { anim, dir, lane }
   const claimed = new Map();
+  const timers = new Set();
+  // A tab that is hidden keeps its timers queued but stops painting. Come back after a while —
+  // or return through the browser's back/forward cache — and every queued crossing fires at
+  // once, which is what stacks the fish on top of each other and sends some of them the wrong
+  // way. So every pending crossing is tracked and the school can be put back to a known state.
+  const later = (fn, ms) => { const id = setTimeout(() => { timers.delete(id); fn(); }, ms);
+                              timers.add(id); return id; };
   const GUTTER = 12;
   const clash = (me, band) => {
     for (const [who, b] of claimed) {
@@ -516,11 +505,12 @@ const school = (() => {
     anim.onfinish = () => {
       claimed.delete(swimmer);
       if (mode !== "ordered") st.dir = !st.dir;
-      setTimeout(() => start(swimmer, i), mode === "ordered" ? rnd(120, 900) : rnd(400, 3000));
+      later(() => start(swimmer, i), mode === "ordered" ? rnd(120, 900) : rnd(400, 3000));
     };
   };
 
   if (still.matches) {
+    state.clear();
     swimmers.forEach((s, i) => {
       const F = s.offsetWidth;
       s.style.transform = place((water.clientWidth - F) * (0.08 + 0.2 * i),
@@ -531,10 +521,32 @@ const school = (() => {
 
   swimmers.forEach((s, i) => {
     state.set(s, { dir: Math.random() < 0.5, lane: i, first: true });
-    if (i === 0) start(s, i); else setTimeout(() => start(s, i), i * rnd(500, 1500));
+    if (i === 0) start(s, i); else later(() => start(s, i), i * rnd(500, 1500));
+  });
+
+  const reset = () => {
+    timers.forEach(clearTimeout); timers.clear();
+    claimed.clear();
+    swimmers.forEach((s, i) => {
+      const st = state.get(s);
+      if (st.anim) { st.anim.onfinish = null; st.anim.cancel(); }
+      st.first = true;
+      s.style.transform = "translateX(-9999px)";
+      later(() => start(s, i), i * rnd(120, 700));
+    });
+  };
+
+  // Returning through the back/forward cache restores the page mid-animation with all of its
+  // timers about to fire; a long spell on another tab does the same. Both start clean.
+  addEventListener("pageshow", e => { if (e.persisted) reset(); });
+  let hiddenAt = 0;
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) hiddenAt = Date.now();
+    else if (hiddenAt && Date.now() - hiddenAt > 2000) reset();
   });
 
   return {
+    reset,
     reroute(next) {
       if (next === mode) return;
       mode = next;
@@ -550,7 +562,7 @@ const school = (() => {
         if (st.anim) { st.anim.onfinish = null; st.anim.cancel(); }
         claimed.delete(s);
         st.first = false;
-        setTimeout(() => start(s, i, current === "none" ? null : current), i * 90);
+        later(() => start(s, i, current === "none" ? null : current), i * 90);
       });
     }
   };
@@ -573,18 +585,16 @@ const school = (() => {
 })();
 
 (() => {
-  const btn = document.getElementById("turn");
-  const label = document.getElementById("turn-label");
+  const segs = [...document.querySelectorAll(".seg[data-go]")];
   const eyebrow = document.getElementById("eyebrow");
   const stacks = [document.getElementById("above"), document.getElementById("below")].filter(Boolean);
-  if (!btn || !stacks.length) return;
+  if (!segs.length || !stacks.length) return;
   const faces = stacks.flatMap(s => [...s.querySelectorAll(".face")]);
-  const facesOf = k => faces.filter(f => f.dataset.face === k);
   let open = false, busy = false;
 
-  const COPY = {
-    a: { label: "What it does",   aria: "Show what Maven Babelfish does", eyebrow: "What’s in a name?" },
-    b: { label: "The definitions", aria: "Go back to the two definitions", eyebrow: "Every platform, one language, any AI." }
+  const EYEBROW = {
+    a: "What’s in a name?",
+    b: "Every platform, one language, any AI."
   };
 
   // the stack grows to whichever face is showing, so a tall explanation scrolls on a phone
@@ -601,29 +611,32 @@ const school = (() => {
   };
 
   const show = key => {
-    faces.forEach(f => f.setAttribute("aria-hidden", String(f.dataset.face !== key)));
+    open = key === "b";
+    faces.forEach(f => {
+      const hidden = f.dataset.face !== key;
+      f.setAttribute("aria-hidden", String(hidden));
+      // pointer-events alone still lets the keyboard reach a link inside a hidden face
+      f.inert = hidden;
+    });
     fit();
-    document.body.classList.toggle("is-open", key === "b");
-    btn.setAttribute("aria-expanded", String(key === "b"));
-    school.reroute(key === "b" ? "ordered" : "scattered");
-
-    const copy = COPY[key];
-    label.classList.add("swapping");
-    setTimeout(() => {
-      label.textContent = copy.label;
-      btn.setAttribute("aria-label", copy.aria);
-      eyebrow.textContent = copy.eyebrow;
-      label.classList.remove("swapping");
-    }, 180);
+    document.body.classList.toggle("is-open", open);
+    segs.forEach(s => {
+      if (s.dataset.go === key) s.setAttribute("aria-current", "true");
+      else s.removeAttribute("aria-current");
+    });
+    school.reroute(open ? "ordered" : "scattered");
+    if (eyebrow) eyebrow.textContent = EYEBROW[key];
   };
 
-  btn.addEventListener("click", () => {
-    if (busy) return;
+  segs.forEach(s => s.addEventListener("click", () => {
+    if (busy || s.dataset.go === (open ? "b" : "a")) return;
     busy = true;
-    open = !open;
-    show(open ? "b" : "a");
+    show(s.dataset.go);
     setTimeout(() => { busy = false; }, 420);
-  });
+  }));
+
+  // arriving from the sheet's "What it does" stop lands on the right face
+  show(location.hash === "#what-it-does" ? "b" : "a");
 
   fit();
   addEventListener("resize", fit);
