@@ -403,6 +403,14 @@ const school = (() => {
   const rnd = (a, b) => a + Math.random() * (b - a);
   const place = (x, y, dir, k) =>
     `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) scale(${(dir * k).toFixed(3)}, ${k.toFixed(3)})`;
+  // where a fish actually is right now: matrix(a,b,c,d,e,f) with a = dir*k, d = k, e/f = x/y
+  const at = el => {
+    const m = getComputedStyle(el).transform;
+    const n = m && m.match(/matrix\(([^)]+)\)/);
+    if (!n) return null;
+    const v = n[1].split(",").map(Number);
+    return { sx: v[0], sy: v[3], x: v[4], y: v[5] };
+  };
 
   let mode = "scattered";
   const swimmers = [...document.querySelectorAll(".lane .swimmer")];
@@ -424,7 +432,7 @@ const school = (() => {
     return null;
   };
 
-  const start = (swimmer, i, fromTransform) => {
+  const start = (swimmer, i, from0) => {
     const W = water.clientWidth, H = water.clientHeight, F = swimmer.offsetWidth;
     const st = state.get(swimmer);
 
@@ -471,7 +479,9 @@ const school = (() => {
     swimmer.style.filter = dep > 0.88 ? "none" : `blur(${((1 - dep) * 1.8).toFixed(2)}px)`;
     swimmer.style.zIndex = Math.round(dep * 100);
 
-    const goingRight = mode === "ordered" ? true : st.dir;
+    // A fish picked up mid-crossing keeps the heading it already has. Taking a new one would
+    // interpolate its scale through zero and squash it to a sliver in open water.
+    const goingRight = from0 ? from0.sx > 0 : (mode === "ordered" ? true : st.dir);
     st.dir = goingRight;
     const offLeft = -(R * span) - 10, offRight = W - L * span + 10;
     const dir = goingRight ? 1 : -1;
@@ -488,17 +498,33 @@ const school = (() => {
       ? 0.072 * (0.7 + 0.4 * dep)
       : rnd(0.055, 0.075) * (0.62 + 0.55 * dep);
 
-    const frames = fromTransform
-      ? [{ transform: fromTransform },
-         { transform: place((from + to) / 2, ym, dir, k), offset: 0.45 },
-         { transform: place(to, y1, dir, k) }]
-      : [{ transform: place(from, y0, dir, k) },
-         { transform: place((from + to) / 2, ym, dir, k), offset: 0.5 },
-         { transform: place(to, y1, dir, k) }];
+    let frames, span_px;
+    if (from0) {
+      // Continue from where the fish is, toward the exit ahead of it. The old version kept the
+      // original off-screen entry as the path's start, so the mid keyframe sat behind the fish
+      // and it swam backwards to reach it.
+      const midX = (from0.x + to) / 2;
+      const midY = (from0.y + y1) / 2 + (ym - (from0.y + y1) / 2) * 0.3;
+      frames = [
+        { transform: `translate(${from0.x.toFixed(1)}px, ${from0.y.toFixed(1)}px) ` +
+                     `scale(${from0.sx.toFixed(3)}, ${from0.sy.toFixed(3)})` },
+        { transform: place(midX, midY, dir, k), offset: 0.5 },
+        { transform: place(to, y1, dir, k) }
+      ];
+      span_px = Math.abs(to - from0.x);
+    } else {
+      frames = [
+        { transform: place(from, y0, dir, k) },
+        { transform: place((from + to) / 2, ym, dir, k), offset: 0.5 },
+        { transform: place(to, y1, dir, k) }
+      ];
+      span_px = Math.abs(to - from);
+    }
 
     const anim = swimmer.animate(frames, {
-      duration: Math.abs(to - from) / speed,
-      easing: fromTransform ? "cubic-bezier(.25,.6,.4,1)" : easing,
+      // a fish re-targeted near its exit has almost no distance left; don't let it snap
+      duration: Math.max(600, span_px / speed),
+      easing: from0 ? "cubic-bezier(.25,.6,.4,1)" : easing,
       fill: "forwards"
     });
     st.anim = anim;
@@ -557,12 +583,17 @@ const school = (() => {
       // and the whole school is built on never showing a turn.
       swimmers.forEach((s, i) => {
         const st = state.get(s);
+        // heading the wrong way for the new current? leave it to finish and turn off-screen
         if (next === "ordered" && st.dir !== true) return;
-        const current = getComputedStyle(s).transform;
+        const here = at(s);
+        if (!here) return;
+        // hold the fish where it is while the restart is staggered — cancelling drops it back
+        // to its CSS transform, which is off-screen, and that is the teleport
+        s.style.transform = `translate(${here.x}px, ${here.y}px) scale(${here.sx}, ${here.sy})`;
         if (st.anim) { st.anim.onfinish = null; st.anim.cancel(); }
         claimed.delete(s);
         st.first = false;
-        later(() => start(s, i, current === "none" ? null : current), i * 90);
+        later(() => start(s, i, here), i * 60);
       });
     }
   };

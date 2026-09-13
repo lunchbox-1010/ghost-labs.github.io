@@ -681,6 +681,45 @@ section[id] { scroll-margin-top: 112px; }
 .card-icon svg { width: 26px; height: 26px; display: block; }
 .cards.four .card-icon svg { width: 23px; height: 23px; }
 .dot svg { width: 20px; height: 20px; display: block; }
+/* The marks are drawn in a 24-unit box but rendered at three sizes, so a single authored
+   stroke-width would land at three different weights on screen. These are set so the stroke
+   measures the same 1.5px everywhere. */
+.card-icon svg { stroke-width: 1.39; }
+.cards.four .card-icon svg { stroke-width: 1.57; }
+.dot svg { stroke-width: 1.8; }
 
 /* A "Coming soon" badge is not a link. */
 span.badge { cursor: default; }
+
+
+/* ---------- The marks draw themselves ---------------------------------------
+   Every shape carries pathLength="1", so one dash length draws them all at the same rate
+   whatever their real outline length. Default state is fully drawn, so the icons are correct
+   with no JavaScript; the animation's own from-state is what hides them for the draw. */
+@media (prefers-reduced-motion: no-preference) {
+  .card-icon svg > *, .dot svg > * { stroke-dasharray: 1.02; stroke-dashoffset: 0; }
+
+  @keyframes ic-draw {
+    from { stroke-dashoffset: 1.02; }
+    to   { stroke-dashoffset: 0; }
+  }
+
+  /* once, as the tile arrives on screen */
+  .ic-in .card-icon svg > *, .ic-in .dot svg > * {
+    animation: ic-draw .8s cubic-bezier(.4, 0, .2, 1) both;
+  }
+  /* and again on hover, a touch quicker */
+  .card:hover .card-icon svg > *, .feature:hover .dot svg > * {
+    animation: ic-draw .55s cubic-bezier(.4, 0, .2, 1) both;
+  }
+
+  /* the parts arrive in order rather than all at once */
+  .card-icon svg > *:nth-child(2), .dot svg > *:nth-child(2) { animation-delay: .07s; }
+  .card-icon svg > *:nth-child(3), .dot svg > *:nth-child(3) { animation-delay: .14s; }
+  .card-icon svg > *:nth-child(4), .dot svg > *:nth-child(4) { animation-delay: .21s; }
+  .card-icon svg > *:nth-child(5), .dot svg > *:nth-child(5) { animation-delay: .28s; }
+
+  /* the tile itself lifts a little under the pointer */
+  .card-icon, .dot { transition: transform .25s cubic-bezier(.4, 0, .2, 1); }
+  .card:hover .card-icon, .feature:hover .dot { transform: translateY(-2px); }
+}
