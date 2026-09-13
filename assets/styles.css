@@ -731,7 +731,11 @@ span.badge { cursor: default; }
    the ghost lifted out (logo-icon-bg.png) and the ghost alone (logo-icon-ghost.png),
    positioned back over its own footprint in percentages so the pair scales as one
    image. Only the ghost moves, so the badge itself stays still the way a logo
-   should. It rises and settles straight up and down — no sideways drift, no roll.
+   should. It rises and settles straight up and down, twice, and then holds still
+   — a greeting on arrival rather than a loop that never lets the page settle.
+   Each iteration is one rise and one fall, so two of them is four movements and
+   the last one lands on the resting position; no fill mode needed, because 0% and
+   100% of the keyframes are that position.
    The shadow it casts is the one the original artwork carried, redrawn so it can
    tighten as the ghost rises; that counter-motion is what reads as height rather
    than a shape jittering in place.
@@ -754,7 +758,8 @@ span.badge { cursor: default; }
   position:absolute; z-index:3;
   left:32.617%; top:22.266%; width:34.766%; height:auto;
   transform-origin:50% 100%;
-  animation: ghost-hover 6s ease-in-out infinite;
+  /* two rises and two settles, then it rests. See the note above the keyframes. */
+  animation: ghost-hover 6s ease-in-out 2;
   will-change: transform;
 }
 
@@ -768,7 +773,7 @@ span.badge { cursor: default; }
   background:radial-gradient(closest-side ellipse,
              rgba(50,96,172,1) 52%, rgba(50,96,172,0) 100%);
   transform-origin:50% 50%;
-  animation: ghost-shade 6s ease-in-out infinite;
+  animation: ghost-shade 6s ease-in-out 2;
   will-change: transform, opacity;
 }
 
