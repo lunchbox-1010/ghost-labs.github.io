@@ -184,6 +184,35 @@
              font-family:var(--mono); font-size:clamp(7.5px, 1vmin, 9.5px); letter-spacing:.14em;
              text-transform:uppercase; color:#9fe0a8;
              border:1px solid rgba(159,224,168,.3); border-radius:999px; padding:.32em .7em }
+  /* The phone lockup and the swim band below it are phone-only; the orbit is the desktop
+     answer to the same idea and they never appear together. */
+  .ctrl-lockup, .ripple{ display:none }
+  /* the name wraps to two lines when the row runs out of width, the way it does on
+     learn-more; nowrap here is what pushed it under the switch instead */
+  .ctrl-lockup{ margin:0; align-items:center; gap:.5em; min-width:0;
+                font-weight:600; font-size:clamp(12.5px, 3.2vw, 17px);
+                letter-spacing:-.02em; line-height:1.14 }
+  .ctrl-lockup .a{ color:var(--maven) } .ctrl-lockup .b{ color:var(--babel) }
+  /* the mark, alive — the kit ships the disc with the fish lifted out, so the layers drop
+     straight back on at inset:0 and rebuild the logo exactly. Same component as learn-more. */
+  .ctrl-mark{ position:relative; display:block; width:clamp(24px, 6.4vw, 32px); aspect-ratio:1;
+              flex:0 0 auto; border-radius:50%;
+              background:url("scene/disc-without-fish.png") center/contain no-repeat }
+  .ctrl-mark .swim{ position:absolute; inset:0; animation:surge 1.9s ease-in-out infinite }
+  .ctrl-mark i{ position:absolute; inset:0; background-size:contain; background-repeat:no-repeat;
+                background-position:center }
+  .ctrl-mark .tail{ background-image:var(--t-orange); transform-origin:38.3% 50.1%;
+                    animation:tailbeat .86s cubic-bezier(.42,0,.58,1) infinite alternate }
+  .ctrl-mark .body{ background-image:var(--b-orange); transform-origin:66.4% 49.8%;
+                    animation:yaw .86s cubic-bezier(.42,0,.58,1) infinite alternate }
+
+  /* the band the fish patrols instead of orbiting. Its swimmer is the same sprite the school
+     uses, just sized for a strip rather than the page. */
+  .ripple{ position:relative; overflow:hidden; height:clamp(30px, 8.6vw, 44px) }
+  .ripple .swimmer{ --fish:clamp(22px, 6.6vw, 34px); position:absolute; top:0; left:0;
+                    width:var(--fish); height:var(--fish); transform:translateX(-9999px);
+                    will-change:transform, opacity }
+
   /* ---- the control: parked in the top-right corner, with a fish circling it ---- */
   .control{ position:fixed; top:calc(var(--navh, 96px) + clamp(44px, 5vmin, 56px));
             right:clamp(16px, 3vw, 36px);
@@ -325,10 +354,33 @@
        markup; position stays relative, not static, because the orbit is absolutely
        positioned against it. */
     .gl-nav{ order:0 }
-    .control{ position:relative; order:1; top:auto; right:auto;
-              margin:clamp(12px, 3vmin, 22px) auto 0 }
-    main.sheet{ order:2; padding-top:clamp(8px, 2vmin, 18px) }
+    .control{ position:relative; order:1; top:auto; right:auto; margin:0; width:100%;
+              display:grid; grid-template-columns:1fr auto;
+              align-items:center; justify-items:stretch;   /* the base rule's place-items:center
+                 would otherwise size every cell to its content, and the band has none */
+              grid-template-areas:"name switch" "ripple ripple";
+              gap:6px 10px; padding:clamp(8px, 2.4vmin, 14px) 12px 0 }
+    main.sheet{ order:2; padding-top:0 }
     footer{ order:3 }
+
+    /* The name sits beside the switch the way it does on learn-more, so the two pages carry
+       the same bar. The masthead's h1 is then saying it twice — it is clipped rather than
+       removed, so the heading outline survives for a screen reader. */
+    .ctrl-lockup{ display:flex; grid-area:name }
+    .switch{ grid-area:switch }
+    .masthead .lockup{ position:absolute; width:1px; height:1px; overflow:hidden;
+                       clip-path:inset(50%); white-space:nowrap }
+
+    /* There is no room to orbit a button this size, so the fish patrols the strip underneath
+       instead — same randomised crossings as the school, one at a time. */
+    .orbit{ display:none }
+    .ripple{ display:block; grid-area:ripple }
+
+    /* the switch has to give up some width for the name to sit beside it: the tracking is
+       what costs the most here, and it is decoration at this size */
+    .seg{ letter-spacing:.07em; padding:clamp(7px, 1.9vw, 10px) clamp(7px, 2.2vw, 12px);
+          font-size:clamp(9px, 2.4vw, 10.5px) }
+    .ctrl-lockup{ min-width:0 }
 
     /* Four links plus the mark did not fit one row, so the row broke and then broke again,
        leaving Contact on a line of its own and a bar three rows deep. Smaller mark, smaller
@@ -345,7 +397,14 @@
     .turn{ padding:8px 13px }
     .turn .label{ letter-spacing:.16em }
   }
-  @media (max-width:400px){ :root{ --orbit-scale:.52 } }
+
+  /* Narrower than this the name cannot even wrap into the space the switch leaves, so the
+     two stack rather than one being painted over by the other. */
+  @media (max-width:380px){
+    :root{ --orbit-scale:.52 }
+    .control{ grid-template-columns:1fr; grid-template-areas:"name" "switch" "ripple";
+              justify-items:center; gap:8px 0 }
+  }
 
   @media (prefers-reduced-motion:reduce){
     .fish,.fish .tail,.fish .body,.orbiter,.facing,.turn{ animation:none }
@@ -353,6 +412,7 @@
     .tank-egg .egg-fish{ transform:translate(80%, 50%) }
     .tank-egg .egg-face{ transform:scaleX(1) }
     .orbiter{ offset-distance:82% }
+    .ctrl-mark .swim, .ctrl-mark .tail, .ctrl-mark .body{ animation:none }
     :root{ --turn:.22s }
     .face[aria-hidden="true"] .inner{ filter:none; transform:none }
   }
@@ -364,6 +424,12 @@
 <div class="corner network" aria-hidden="true"></div>
 
 <div class="control">
+  <!-- Phone only, and decorative: the page's real h1 stays in the masthead, where it is only
+       visually hidden at this width, so the heading outline is untouched. -->
+  <p class="ctrl-lockup" aria-hidden="true">
+    <span class="ctrl-mark"><span class="swim"><i class="tail"></i><i class="body"></i></span></span>
+    <span><span class="a">Maven</span> <span class="b">Babelfish</span></span>
+  </p>
   <div class="orbit" aria-hidden="true">
     <div class="orbiter"><div class="facing">
       <div class="fish"><i class="tail"></i><i class="body"></i></div>
@@ -374,6 +440,9 @@
     <button class="seg" type="button" data-go="b" aria-controls="above below">What it does</button>
     <a class="seg go" href="learn-more/">Learn more</a>
   </nav>
+  <div class="ripple" aria-hidden="true">
+    <div class="swimmer s-blue"><div class="fish"><i class="tail"></i><i class="body"></i></div></div>
+  </div>
 </div>
 
 <header class="gl-nav">
@@ -494,6 +563,71 @@
 // same way, left to right, spaced into clean lanes. Pressing the control reroutes them — each
 // fish picks up its new heading from exactly where it is, so nothing snaps.
 // ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+// The strip under the control, on phones only.
+//
+// A button that small has nothing to orbit, so the fish patrols a band beneath it instead:
+// one crossing at a time, each with its own colour, size, depth, pace and pause, then a turn
+// and back the other way. Same randomising idea as the school in the middle of the page, at a
+// tenth of the machinery — this only ever has one fish in the water.
+// ---------------------------------------------------------------------------
+const ripple = (() => {
+  const band = document.querySelector(".ripple");
+  if (!band) return { stop(){}, kick(){} };
+  const swim = band.querySelector(".swimmer");
+  const COLOURS = ["s-orange", "s-blue", "s-red", "s-pink", "s-purple"];
+  const phone = matchMedia("(max-width: 640px)");
+  const still = matchMedia("(prefers-reduced-motion: reduce)");
+  const rnd = (a, b) => a + Math.random() * (b - a);
+
+  let anim = null, timer = null, dir = 1;
+
+  const stop = () => {
+    clearTimeout(timer); timer = null;
+    if (anim) { anim.onfinish = null; anim.cancel(); anim = null; }
+    swim.style.transform = "translateX(-9999px)";
+  };
+
+  const cross = () => {
+    if (!phone.matches || still.matches || document.hidden) { stop(); return; }
+    const W = band.clientWidth, H = band.clientHeight, F = swim.offsetWidth;
+    // laid out but not measured yet (a hidden tab, a font still loading) — look again shortly
+    if (!W || !F) { timer = setTimeout(cross, 400); return; }
+
+    swim.className = "swimmer " + COLOURS[Math.floor(Math.random() * COLOURS.length)];
+    // one depth number drives size, height in the band, opacity and pace together, which is
+    // most of what makes a near fish read as nearer than a far one
+    const dep = Math.random();
+    const k = 0.72 + 0.4 * dep;
+    const span = F * k, slack = Math.max(0, H - span);
+    const y = rnd(-span * 0.12, slack + span * 0.12);
+    const bend = rnd(-H * 0.22, H * 0.22);
+    const from = dir > 0 ? -span : W;
+    const to   = dir > 0 ? W : -span;
+    const place = (x, yy) =>
+      `translate(${x.toFixed(1)}px, ${yy.toFixed(1)}px) scale(${(dir * k).toFixed(3)}, ${k.toFixed(3)})`;
+
+    swim.style.opacity = (0.62 + 0.38 * dep).toFixed(2);
+    anim = swim.animate([
+      { transform: place(from, y) },
+      { transform: place((from + to) / 2, y + bend), offset: 0.5 },
+      { transform: place(to, y) }
+    ], { duration: Math.abs(to - from) / rnd(0.038, 0.082), easing: "linear", fill: "forwards" });
+
+    anim.onfinish = () => { anim = null; dir = -dir; timer = setTimeout(cross, rnd(450, 2400)); };
+  };
+
+  const kick = () => { stop(); if (phone.matches && !still.matches) timer = setTimeout(cross, 260); };
+
+  phone.addEventListener("change", kick);
+  // a hidden tab queues its timers and paints nothing; coming back to a burst of them is what
+  // stacks fish on top of each other, so the band is put back to a known state instead
+  document.addEventListener("visibilitychange", () => document.hidden ? stop() : kick());
+  addEventListener("pageshow", e => { if (e.persisted) kick(); });
+  kick();
+  return { stop, kick };
+})();
+
 const school = (() => {
   const water = document.querySelector(".lane");
   if (!water) return { reroute(){} };
