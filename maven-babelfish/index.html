@@ -264,22 +264,24 @@
   /* the lap: out along the top, back along the bottom, with the ends rounded off so it
      never stops dead at the turn */
   @keyframes egg-swim{
-    0%   { transform:translate(2%, 52%) }
-    12%  { transform:translate(30%, 22%) }
-    30%  { transform:translate(88%, 30%) }
-    44%  { transform:translate(158%, 44%) }
-    50%  { transform:translate(163%, 56%) }
-    62%  { transform:translate(120%, 74%) }
-    80%  { transform:translate(52%, 66%) }
+    0%   { transform:translate(2%, 50%) }
+    12%  { transform:translate(34%, 16%) }
+    30%  { transform:translate(92%, 22%) }
+    44%  { transform:translate(156%, 40%) }
+    50%  { transform:translate(164%, 54%) }
+    62%  { transform:translate(122%, 80%) }
+    80%  { transform:translate(50%, 72%) }
     94%  { transform:translate(6%, 60%) }
-    100% { transform:translate(2%, 52%) }
+    100% { transform:translate(2%, 50%) }
   }
+  /* scaleX(1) is the sprite's own direction and it points RIGHT, so the outbound leg is
+     the positive one. Getting this backwards is exactly as visible as it sounds. */
   @keyframes egg-turn{
-    0%, 44% { transform:scaleX(-1) }
-    48%     { transform:scaleX(-.08) }
-    52%, 94%{ transform:scaleX(1) }
-    98%     { transform:scaleX(.08) }
-    100%    { transform:scaleX(-1) }
+    0%, 44% { transform:scaleX(1) }
+    48%     { transform:scaleX(.08) }
+    52%, 94%{ transform:scaleX(-1) }
+    98%     { transform:scaleX(-.08) }
+    100%    { transform:scaleX(1) }
   }
 
   .tank-egg .egg-label{ position:absolute; right:2px; bottom:-11px; white-space:nowrap;
@@ -324,7 +326,7 @@
     .fish,.fish .tail,.fish .body,.orbiter,.facing,.turn{ animation:none }
     .tank-egg .egg-fish, .tank-egg .egg-face, .tank-egg .egg-fish .fish{ animation:none }
     .tank-egg .egg-fish{ transform:translate(80%, 50%) }
-    .tank-egg .egg-face{ transform:scaleX(-1) }
+    .tank-egg .egg-face{ transform:scaleX(1) }
     .orbiter{ offset-distance:82% }
     :root{ --turn:.22s }
     .face[aria-hidden="true"] .inner{ filter:none; transform:none }
