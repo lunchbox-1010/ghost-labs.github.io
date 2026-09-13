@@ -227,7 +227,9 @@
               row gap for a row that is not there made this bar 6px taller than learn-more's */
             padding-left:max(var(--gutter), calc((100vw - 1080px) / 2 + var(--gutter)));
             padding-right:clamp(16px, 3vw, 36px);
-            padding-block:clamp(44px, 5vmin, 56px) }
+            /* was clamp(44px,5vmin,56px), which was room for the fish to get round the
+               switch; with the fish gone that is just a deep black band */
+            padding-block:clamp(14px, 2.4vmin, 28px) }
   .ctrl-lockup{ grid-area:name }
   .switch{ grid-area:switch }
   .gl-nav{ order:0 }

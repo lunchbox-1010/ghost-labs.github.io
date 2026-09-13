@@ -92,10 +92,9 @@
            padding-left:max(clamp(18px, 5vw, 40px),
                             calc((100vw - var(--wrap)) / 2 + clamp(18px, 5vw, 40px)));
            padding-right:clamp(16px, 3vw, 36px);
-           /* the name page hangs its control clamp(44px,5vmin,56px) below the bar; the same
-              number here puts the switch at the same height, and gives the fish room to get
-              round it either side */
-           padding-block:clamp(44px, 5vmin, 56px) }
+           /* was clamp(44px,5vmin,56px), which was room for the fish to get round the switch;
+              with the fish gone that is just a deep black band. Same number as the name page. */
+           padding-block:clamp(14px, 2.4vmin, 28px) }
   .lockup{ margin:0; font-weight:600; font-size:clamp(15px, 2.5vw, 32px); letter-spacing:-.02em;
            line-height:1.14; display:flex; align-items:center; gap:.5em; min-width:0 }
   .lockup .a{ color:var(--maven) } .lockup .b{ color:var(--babel) }
