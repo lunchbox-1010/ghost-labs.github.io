@@ -246,7 +246,8 @@
   .seg{ appearance:none; border:0; background:none; cursor:pointer; font:inherit;
         display:inline-flex; align-items:center; justify-content:center; text-decoration:none;
         padding:clamp(7px, 1.2vmin, 11px) clamp(10px, 1.7vmin, 17px); border-radius:999px;
-        font-family:var(--mono); font-weight:500;
+        font-family:var(--mono); font-weight:500; line-height:1;   /* not the page's, or the
+          pill ends up a few px taller on one page than the other */
         font-size:clamp(8.5px, 1.15vmin, 11px); letter-spacing:.16em; text-transform:uppercase;
         white-space:nowrap; color:rgba(238,244,250,.62);
         transition:color .25s ease, background .3s ease }
@@ -254,9 +255,8 @@
   .seg:focus-visible{ outline:2px solid var(--babel); outline-offset:3px }
   .seg[aria-current]{ color:var(--ink); background:rgba(244,117,46,.22);
                       box-shadow:inset 0 0 0 1px rgba(244,117,46,.4) }
-  .seg.go{ color:var(--babel) }
-  .seg.go::after{ content:"\2192"; margin-left:.5em; transition:transform .3s var(--ease) }
-  .seg.go:hover::after{ transform:translateX(3px) }
+  /* No special treatment for the stop that leaves the page: three stops, one look, and the
+     lit one is the one you are on. Anything else made the bar read differently on each page. */
 
   /* ---------- the easter egg ----------
      One pink fish patrolling the bottom-right corner at 60%, settled into the circuit
@@ -438,7 +438,7 @@
   <nav class="switch" aria-label="Maven Babelfish">
     <button class="seg" type="button" data-go="a" aria-current="true">The name</button>
     <button class="seg" type="button" data-go="b" aria-controls="above below">What it does</button>
-    <a class="seg go" href="learn-more/">Learn more</a>
+    <a class="seg" href="learn-more/">Learn more</a>
   </nav>
   <div class="ripple" aria-hidden="true">
     <div class="swimmer s-blue"><div class="fish"><i class="tail"></i><i class="body"></i></div></div>
@@ -908,13 +908,13 @@ const school = (() => {
 
   const roam = () => {
     if (!orbit) return;
-    // how far left it may wander depends on how much room there is between the control and the
-    // definition column; on a 1024 laptop that is almost none, on a wide screen it is the full
-    // 170. Recomputed per leg, so a resize is picked up without a listener.
-    const room = Math.max(0, Math.min(170, (innerWidth - 900) * 0.35));
-    const to = { x: rnd(-room, Math.min(20, room * 0.12)), y: rnd(-24, 84) };
+    // A small wander, because this same module runs inside learn-more's bar where there is no
+    // room for a big one. How far it may go scales with the width there is, recomputed each leg
+    // so a resize is picked up without a listener.
+    const room = Math.max(0, Math.min(72, (innerWidth - 820) * 0.2));
+    const to = { x: rnd(-room, room * 0.3), y: rnd(-16, 30) };
     // a bend in the middle, so it arcs across rather than sliding down a diagonal
-    const mid = { x: (here.x + to.x) / 2 + rnd(-40, 40), y: (here.y + to.y) / 2 + rnd(-26, 26) };
+    const mid = { x: (here.x + to.x) / 2 + rnd(-22, 22), y: (here.y + to.y) / 2 + rnd(-14, 14) };
     const t = p => `translate(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px)`;
     roamer = orbit.animate(
       [{ transform: t(here) }, { transform: t(mid), offset: 0.5 }, { transform: t(to) }],
