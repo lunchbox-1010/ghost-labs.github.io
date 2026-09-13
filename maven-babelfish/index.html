@@ -32,7 +32,7 @@
     --t-purple:url("fish/fish-tail-purple.png"); --b-purple:url("fish/fish-body-purple.png");
     --t-pink:url("fish/fish-tail-pink.png");     --b-pink:url("fish/fish-body-pink.png");
     --t-blue:url("fish/fish-tail-blue.png");     --b-blue:url("fish/fish-body-blue.png");
-    --turn:.55s; --ease:cubic-bezier(.4,0,.2,1);
+    --turn:.66s; --ease:cubic-bezier(.4,0,.2,1);
     --gutter:clamp(18px, 4vw, 40px);
   }
   *{ box-sizing:border-box }
@@ -126,7 +126,10 @@
             gap:clamp(10px, 2.2vmin, 22px); width:100%;
             font-family:var(--display); font-style:italic; font-weight:400;
             font-size:clamp(13px, 2.1vmin, 23px); line-height:1.3; letter-spacing:.005em;
-            color:#a9c0d2; text-align:center; text-wrap:balance }
+            color:#a9c0d2; text-align:center; text-wrap:balance;
+            transition:opacity .22s var(--ease) }
+  /* its words change with the face, so it leaves before they are swapped and comes back after */
+  .eyebrow.turning{ opacity:0 }
   /* a rule drawn out to either side, fading as it goes — the page is a dictionary entry, and
      this is the line a dictionary draws under the headword */
   .eyebrow::before, .eyebrow::after{ content:""; flex:0 1 clamp(24px, 9vmin, 120px); height:1px;
@@ -139,18 +142,27 @@
      placed in the same box and the box is sized to whichever is showing, so turning the page
      over moves nothing that isn't changing. */
   .stack{ position:relative; width:100%;
-          transition:min-height var(--turn) var(--ease) }
+          /* the resize runs the length of the turn and settles, rather than arriving with the
+             text and stopping dead under it */
+          transition:min-height var(--turn) cubic-bezier(.32,.72,.24,1) }
   .stack.above{ display:flex; flex-direction:column; justify-content:flex-end }
   .face{ position:absolute; left:0; right:0 }
   .stack.above .face{ bottom:0 }
   .stack.below .face{ top:0 }
+  /* The two faces used to cross-fade on one clock: both half-visible through the middle of
+     the turn while the stack was still resizing under them, which is what made the landing
+     read as a jump. They take turns now — the outgoing one leaves in .24s, the incoming one
+     waits .2s before it starts — so at any moment you are reading one thing, and the height
+     settles while the gap is empty. */
   .inner{ display:flex; flex-direction:column; align-items:center;
           gap:clamp(10px, 2.2vmin, 24px);
-          transition:opacity var(--turn) var(--ease), transform var(--turn) var(--ease),
-                     filter var(--turn) var(--ease) }
-  .face[aria-hidden="true"] .inner{ opacity:0; filter:blur(6px); pointer-events:none }
-  .face[data-face="a"][aria-hidden="true"] .inner{ transform:translateY(-20px) }
-  .face[data-face="b"][aria-hidden="true"] .inner{ transform:translateY(20px) }
+          transition:opacity .42s var(--ease) .2s, transform .46s var(--ease) .2s,
+                     filter .42s var(--ease) .2s }
+  .face[aria-hidden="true"] .inner{ opacity:0; filter:blur(5px); pointer-events:none;
+          transition:opacity .24s var(--ease), transform .28s var(--ease),
+                     filter .24s var(--ease) }
+  .face[data-face="a"][aria-hidden="true"] .inner{ transform:translateY(-16px) }
+  .face[data-face="b"][aria-hidden="true"] .inner{ transform:translateY(16px) }
 
   /* --- face A: the name --- */
   .entry{ display:flex; flex-direction:column; align-items:center; text-align:center;
@@ -796,7 +808,7 @@ const school = (() => {
   const stacks = [document.getElementById("above"), document.getElementById("below")].filter(Boolean);
   if (!segs.length || !stacks.length) return;
   const faces = stacks.flatMap(s => [...s.querySelectorAll(".face")]);
-  let open = false, busy = false;
+  let open = false, busy = false, started = false, ebTimer = null;
 
   const EYEBROW = {
     a: "What’s in a name?",
@@ -831,14 +843,28 @@ const school = (() => {
       else s.removeAttribute("aria-current");
     });
     school.reroute(open ? "ordered" : "scattered");
-    if (eyebrow) eyebrow.textContent = EYEBROW[key];
+    // On the first call there is nothing to cross, so the words go straight in; after that
+    // the eyebrow fades out, changes while it cannot be seen, and fades back with the face.
+    if (eyebrow) {
+      if (!started) { eyebrow.textContent = EYEBROW[key]; }
+      else {
+        eyebrow.classList.add("turning");
+        clearTimeout(ebTimer);
+        ebTimer = setTimeout(() => {
+          eyebrow.textContent = EYEBROW[key];
+          eyebrow.classList.remove("turning");
+        }, 230);
+      }
+    }
+    started = true;
   };
 
   segs.forEach(s => s.addEventListener("click", () => {
     if (busy || s.dataset.go === (open ? "b" : "a")) return;
     busy = true;
     show(s.dataset.go);
-    setTimeout(() => { busy = false; }, 420);
+    // the lockout has to outlast the turn, or a second click lands mid-resize
+    setTimeout(() => { busy = false; }, 640);
   }));
 
   // arriving from the sheet's "What it does" stop lands on the right face
