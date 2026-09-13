@@ -315,7 +315,32 @@
   }
   @media (max-width:640px){
     :root{ --orbit-scale:.62; --orbit-time:9s }
-    main.sheet{ padding-top:clamp(58px, 13vmin, 92px) }  /* clearance for the corner control */
+
+    /* The control used to stay fixed in the corner while the sheet carried a guessed top
+       padding to clear it. A guess cannot hold here: the sheet centres its content, so the
+       shorter the viewport the higher the title rides — and on a phone with the browser's
+       own chrome showing it rides straight up under the button. On phones the control joins
+       the flow instead, directly beneath the bar, and the clearance becomes structural.
+       body is the flex column, so order puts it after the bar despite coming first in the
+       markup; position stays relative, not static, because the orbit is absolutely
+       positioned against it. */
+    .gl-nav{ order:0 }
+    .control{ position:relative; order:1; top:auto; right:auto;
+              margin:clamp(12px, 3vmin, 22px) auto 0 }
+    main.sheet{ order:2; padding-top:clamp(8px, 2vmin, 18px) }
+    footer{ order:3 }
+
+    /* Four links plus the mark did not fit one row, so the row broke and then broke again,
+       leaving Contact on a line of its own and a bar three rows deep. Smaller mark, smaller
+       type, tighter gaps: it fits on one row from 360px up. */
+    .gl-nav-in{ padding:3px 12px; gap:8px; min-height:0 }
+    .gl-brand img{ height:clamp(24px, 6.6vmin, 30px) }
+    .gl-links{ flex:1 1 auto; min-width:0; justify-content:space-between; flex-wrap:nowrap;
+               gap:clamp(6px, 2vw, 10px) }
+    /* 7px of padding put the tap target at 26px, well under the 44px guideline; 11px
+       brings it to 34 without costing a row */
+    .gl-links a{ font-size:clamp(10px, 2.6vw, 12px); padding:11px 1px }
+
     .corner.sources{ opacity:.24; left:-19% } .corner.network{ opacity:.32; right:-19% }
     .turn{ padding:8px 13px }
     .turn .label{ letter-spacing:.16em }

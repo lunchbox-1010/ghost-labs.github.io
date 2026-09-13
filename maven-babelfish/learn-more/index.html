@@ -220,6 +220,18 @@
   @media (max-width:820px){
     .flow{ grid-template-columns:1fr } .to{ transform:rotate(90deg); justify-self:center }
   }
+  /* Four links plus the mark did not fit one row on a phone, so the row broke and then broke
+     again, leaving Contact on a line of its own and a bar three rows deep. Smaller mark,
+     smaller type, tighter gaps: one row from 360px up. Same numbers as the name page. */
+  @media (max-width:640px){
+    .gl-nav-in{ padding-block:4px; padding-inline:12px; gap:8px; min-height:0 }
+    .gl-brand img{ height:clamp(24px, 6.6vmin, 30px) }
+    .gl-links{ flex:1 1 auto; min-width:0; justify-content:space-between; flex-wrap:nowrap;
+               gap:clamp(6px, 2vw, 10px) }
+    /* 7px of padding put the tap target at 26px, well under the 44px guideline; 11px
+       brings it to 34 without costing a row */
+    .gl-links a{ font-size:clamp(10px, 2.6vw, 12px); padding:11px 1px }
+  }
   @media (prefers-reduced-motion:reduce){
     html{ scroll-behavior:auto }
     .mark .swim, .mark .tail, .mark .body{ animation:none }
