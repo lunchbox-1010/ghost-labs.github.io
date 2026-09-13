@@ -96,12 +96,12 @@
               number here puts the switch at the same height, and gives the fish room to get
               round it either side */
            padding-block:clamp(44px, 5vmin, 56px) }
-  .lockup{ margin:0; font-weight:600; font-size:clamp(14px, 1.7vw, 19px); letter-spacing:-.02em;
-           line-height:1; display:flex; align-items:center; gap:.6em }
+  .lockup{ margin:0; font-weight:600; font-size:clamp(15px, 2.5vw, 32px); letter-spacing:-.02em;
+           line-height:1.14; display:flex; align-items:center; gap:.5em; min-width:0 }
   .lockup .a{ color:var(--maven) } .lockup .b{ color:var(--babel) }
   /* the mark, alive — the kit ships the disc with the fish lifted out, so the layers drop
      straight back on at inset:0 and rebuild the logo exactly */
-  .mark{ position:relative; display:block; width:clamp(30px, 3.4vw, 40px); aspect-ratio:1;
+  .mark{ position:relative; display:block; width:clamp(30px, 4.6vw, 62px); aspect-ratio:1;
          flex:0 0 auto; border-radius:50%;
          background:url("../scene/disc-without-fish.png") center/contain no-repeat }
   .mark .swim{ position:absolute; inset:0; animation:surge 1.9s ease-in-out infinite }
@@ -132,40 +132,6 @@
                        animation:tailbeat var(--beat) cubic-bezier(.42,0,.58,1) var(--phase) infinite alternate }
   .ripple .fish .body{ background-image:var(--b); transform-origin:66.4% 49.8%;
                        animation:yaw var(--beat) cubic-bezier(.42,0,.58,1) var(--phase) infinite alternate }
-  /* named once here, so the orbit script below is the same code the name page runs */
-  :root{
-    --t-orange:url("../fish/fish-tail-orange.png"); --b-orange:url("../fish/fish-body-orange.png");
-    --t-blue:url("../fish/fish-tail-blue.png");     --b-blue:url("../fish/fish-body-blue.png");
-    --t-red:url("../fish/fish-tail-red.png");       --b-red:url("../fish/fish-body-red.png");
-    --t-pink:url("../fish/fish-tail-pink.png");     --b-pink:url("../fish/fish-body-pink.png");
-    --t-purple:url("../fish/fish-tail-purple.png"); --b-purple:url("../fish/fish-body-purple.png");
-  }
-  .s-orange{ --t:var(--t-orange); --b:var(--b-orange); --beat:.92s; --phase:-.10s }
-  .s-blue  { --t:var(--t-blue);   --b:var(--b-blue);   --beat:.81s; --phase:-.37s }
-  .s-red   { --t:var(--t-red);    --b:var(--b-red);    --beat:.74s; --phase:-.55s }
-  .s-pink  { --t:var(--t-pink);   --b:var(--b-pink);   --beat:.70s; --phase:-.45s }
-  .s-purple{ --t:var(--t-purple); --b:var(--b-purple); --beat:.66s; --phase:-.24s }
-
-  /* ---- the fish circling the switch, the same as the name page ----
-     The bar gives it the vertical room the corner had; .orbit carries no z-index on purpose,
-     or it would open a stacking context and the fish could never rise above the button. */
-  .control{ position:relative; display:grid; place-items:center }
-  .orbit{ position:absolute; top:50%; left:50%; width:414px; height:120px;
-          margin:-60px 0 0 -207px; pointer-events:none }
-  .orbiter{ position:absolute; top:0; left:0; width:var(--of); height:var(--of);
-            --of:clamp(62px, 9vmin, 92px);
-            offset-path:path("M 16,60 A 191,44 0 0 1 398,60 A 191,44 0 0 1 16,60");
-            offset-rotate:0deg; offset-distance:0% }
-  .facing{ position:absolute; inset:0 }
-  .orbiter .fish{ position:absolute; inset:0; --t:var(--t-orange); --b:var(--b-orange);
-                  --beat:.8s; --phase:-.2s; animation:surge 1.7s ease-in-out infinite }
-  .orbiter .fish i{ position:absolute; inset:0; display:block; background-size:contain;
-                    background-repeat:no-repeat; background-position:center }
-  .orbiter .fish .tail{ background-image:var(--t); transform-origin:38.3% 50.1%;
-                        animation:tailbeat var(--beat) cubic-bezier(.42,0,.58,1) var(--phase) infinite alternate }
-  .orbiter .fish .body{ background-image:var(--b); transform-origin:66.4% 49.8%;
-                        animation:yaw var(--beat) cubic-bezier(.42,0,.58,1) var(--phase) infinite alternate }
-
   /* identical to the name page, down to the units: the bar is the bar on every stop */
   .switch{ position:relative; z-index:1;
            display:flex; align-items:stretch; padding:3px; border-radius:999px;
@@ -298,10 +264,8 @@
     .seg{ letter-spacing:.07em; padding:clamp(7px, 1.9vw, 10px) clamp(7px, 2.2vw, 12px);
           font-size:clamp(9px, 2.4vw, 10.5px) }
     .top-in{ padding-left:12px; padding-right:12px; gap:10px; padding-block:4px }
-    .orbit{ display:none }
-    .ripple{ display:block }
-    .lockup{ min-width:0; font-size:clamp(12.5px, 3.2vw, 17px); line-height:1.14; gap:.5em }
-    .mark{ width:clamp(24px, 6.4vw, 32px) }
+    .lockup{ font-size:clamp(15px, 3.9vw, 20px) }
+    .mark{ width:clamp(30px, 8vw, 42px) }
 
     .gl-nav-in{ padding-block:4px; padding-inline:12px; gap:8px; min-height:0 }
     .gl-brand img{ height:clamp(24px, 6.6vmin, 30px) }
@@ -314,8 +278,6 @@
   @media (prefers-reduced-motion:reduce){
     html{ scroll-behavior:auto }
     .mark .swim, .mark .tail, .mark .body{ animation:none }
-    .orbiter .fish, .orbiter .fish .tail, .orbiter .fish .body{ animation:none }
-    .orbiter{ offset-distance:82% }
   }
 </style>
 </head>
@@ -339,21 +301,11 @@
       <span class="mark" aria-hidden="true"><span class="swim"><i class="tail"></i><i class="body"></i></span></span>
       <span><span class="a">Maven</span> <span class="b">Babelfish</span></span>
     </p>
-    <div class="control">
-      <div class="orbit" aria-hidden="true">
-        <div class="orbiter"><div class="facing">
-          <div class="fish"><i class="tail"></i><i class="body"></i></div>
-        </div></div>
-      </div>
-      <nav class="switch" aria-label="Maven Babelfish">
-        <a class="seg" href="../">The name</a>
-        <a class="seg" href="../#what-it-does">What it does</a>
-        <span class="seg" aria-current="page">Learn more</span>
-      </nav>
-    </div>
-  </div>
-  <div class="ripple" aria-hidden="true">
-    <div class="swimmer s-blue"><div class="fish"><i class="tail"></i><i class="body"></i></div></div>
+    <nav class="switch" aria-label="Maven Babelfish">
+      <a class="seg" href="../">The name</a>
+      <a class="seg" href="../#what-it-does">What it does</a>
+      <span class="seg" aria-current="page">Learn more</span>
+    </nav>
   </div>
 </header>
 
@@ -530,176 +482,6 @@
   </footer>
 </div>
 
-<script>
-// ---------------------------------------------------------------------------
-// The strip under the bar, on phones only — the same one the name page carries.
-//
-// One crossing at a time, each with its own colour, size, depth, pace and pause, then a turn
-// and back the other way. The same randomising idea as the school on the name page, at a
-// tenth of the machinery, because only one fish is ever in the water here.
-// ---------------------------------------------------------------------------
-(() => {
-  const band = document.querySelector(".ripple");
-  if (!band) return;
-  const swim = band.querySelector(".swimmer");
-  const COLOURS = ["s-orange", "s-blue", "s-red", "s-pink", "s-purple"];
-  const phone = matchMedia("(max-width: 640px)");
-  const still = matchMedia("(prefers-reduced-motion: reduce)");
-  const rnd = (a, b) => a + Math.random() * (b - a);
-
-  let anim = null, timer = null, dir = 1;
-
-  const stop = () => {
-    clearTimeout(timer); timer = null;
-    if (anim) { anim.onfinish = null; anim.cancel(); anim = null; }
-    swim.style.transform = "translateX(-9999px)";
-  };
-
-  const cross = () => {
-    if (!phone.matches || still.matches || document.hidden) { stop(); return; }
-    const W = band.clientWidth, H = band.clientHeight, F = swim.offsetWidth;
-    // laid out but not measured yet (a hidden tab, a font still loading) — look again shortly
-    if (!W || !F) { timer = setTimeout(cross, 400); return; }
-
-    swim.className = "swimmer " + COLOURS[Math.floor(Math.random() * COLOURS.length)];
-    // one depth number drives size, height in the band, opacity and pace together, which is
-    // most of what makes a near fish read as nearer than a far one
-    const dep = Math.random();
-    const k = 0.72 + 0.4 * dep;
-    const span = F * k, slack = Math.max(0, H - span);
-    const depth = () => rnd(-span * 0.14, slack + span * 0.14);
-    // enters at one depth and leaves at another, by way of a third — a straight line across at
-    // one height is the thing that reads as a sprite on a track rather than a fish
-    const y0 = depth(), y1 = depth();
-    const yMid = Math.max(-span * 0.2, Math.min(slack + span * 0.2,
-                          (y0 + y1) / 2 + rnd(-H * 0.42, H * 0.42)));
-    const from = dir > 0 ? -span : W;
-    const to   = dir > 0 ? W : -span;
-    const place = (x, yy) =>
-      `translate(${x.toFixed(1)}px, ${yy.toFixed(1)}px) scale(${(dir * k).toFixed(3)}, ${k.toFixed(3)})`;
-
-    swim.style.opacity = (0.62 + 0.38 * dep).toFixed(2);
-    anim = swim.animate([
-      { transform: place(from, y0) },
-      { transform: place(from + (to - from) * 0.5, yMid), offset: 0.5 },
-      { transform: place(to, y1) }
-    ], { duration: Math.abs(to - from) / rnd(0.03, 0.075),
-         easing: "cubic-bezier(.42,0,.58,1)", fill: "forwards" });
-
-    anim.onfinish = () => { anim = null; dir = -dir; timer = setTimeout(cross, rnd(450, 2400)); };
-  };
-
-  const kick = () => { stop(); if (phone.matches && !still.matches) timer = setTimeout(cross, 260); };
-
-  phone.addEventListener("change", kick);
-  // a hidden tab queues its timers and paints nothing; coming back to a burst of them is what
-  // stacks fish on top of each other, so the band is put back to a known state instead
-  document.addEventListener("visibilitychange", () => document.hidden ? stop() : kick());
-  addEventListener("pageshow", e => { if (e.persisted) kick(); });
-  kick();
-})();
-
-// ---------------------------------------------------------------------------
-// The fish circling the control draws a fresh circuit every time round: a different colour
-// from the same five, a different size and pace, a different oval, and either direction. Its
-// facing follows the way it is travelling, and it changes places with the button halfway round
-// — behind it on the far side, in front of it on the near one. A fixed CSS loop read as a
-// mechanism; this reads as a fish that happens to be circling something.
-// ---------------------------------------------------------------------------
-(() => {
-  const orbiter = document.querySelector(".orbiter");
-  const facing = document.querySelector(".facing");
-  const fish = orbiter && orbiter.querySelector(".fish");
-  if (!orbiter || !facing || !fish) return;
-  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-  const COLOURS = ["orange", "blue", "red", "pink", "purple"];
-  const rnd = (a, b) => a + Math.random() * (b - a);
-  // every variant shares its two endpoints, so swapping ovals between circuits never jumps
-  const OVALS = [
-    "M 16,60 A 175,32 0 0 1 398,60 A 175,32 0 0 1 16,60",
-    "M 16,60 A 191,38 0 0 1 398,60 A 191,38 0 0 1 16,60",
-    "M 16,60 A 200,44 0 0 1 398,60 A 200,44 0 0 1 16,60"
-  ];
-  let timer = null;
-
-  const circuit = () => {
-    const c = COLOURS[Math.floor(Math.random() * COLOURS.length)];
-    const back = Math.random() < 0.5;
-    const secs = rnd(8.5, 16) * 1000;
-    const size = rnd(0.82, 1.12);
-
-    fish.style.setProperty("--t", `var(--t-${c})`);
-    fish.style.setProperty("--b", `var(--b-${c})`);
-    fish.style.setProperty("--beat", rnd(0.66, 0.94).toFixed(2) + "s");
-    orbiter.style.setProperty("--of", `calc(clamp(62px, 9vmin, 92px) * ${size.toFixed(2)})`);
-    orbiter.style.offsetPath = `path("${OVALS[Math.floor(Math.random() * OVALS.length)]}")`;
-
-    const from = back ? "100%" : "0%", to = back ? "0%" : "100%";
-    const a = orbiter.animate([{ offsetDistance: from }, { offsetDistance: to }],
-                              { duration: secs, easing: "linear", fill: "forwards" });
-
-    // the first half of a circuit runs left to right whichever way round it goes
-    facing.animate([
-      { transform: "scaleX(1)",  offset: 0 },    { transform: "scaleX(1)",  offset: 0.47 },
-      { transform: "scaleX(-1)", offset: 0.53 }, { transform: "scaleX(-1)", offset: 0.97 },
-      { transform: "scaleX(1)",  offset: 1 }
-    ], { duration: secs, easing: "linear", fill: "forwards" });
-
-    // forwards, the first half is over the top and behind the button; backwards it is under the
-    // bottom and in front of it
-    orbiter.style.zIndex = back ? "2" : "0";
-    clearTimeout(timer);
-    timer = setTimeout(() => { orbiter.style.zIndex = back ? "0" : "2"; }, secs / 2);
-
-    a.onfinish = circuit;
-  };
-
-  // --- the roam ------------------------------------------------------------
-  // Circling one spot forever is a mechanism again, however randomised each lap is. So the
-  // path itself drifts around the corner while the fish rides it: it wanders up and off to
-  // the side, hangs there a while, wanders somewhere else. Two animations on two elements,
-  // composed — the circuit never has to know the oval has moved.
-  //
-  // .orbit's own rule is transform:scale(var(--orbit-scale,1)) and animating transform
-  // replaces it, but --orbit-scale is only ever set below 640px, where the orbit is display:none
-  // and this never runs. Bounds are asymmetric on purpose: right runs it off the page edge and
-  // up runs it under the bar, so it favours left and down.
-  const orbit = document.querySelector(".orbit");
-  let here = { x: 0, y: 0 }, roamer = null;
-
-  const roam = () => {
-    if (!orbit) return;
-    // The bar is mostly empty between the name and the switch, so the wander uses it. How far
-    // left it may go is measured, not guessed: the gap between where the name actually ends and
-    // where the oval starts, less a margin. A viewport formula got this wrong on one page,
-    // because the two bars put the name in different places. Measured each leg, so a resize
-    // needs no listener.
-    const name = document.querySelector(".ctrl-lockup span:last-child, .lockup span:last-child");
-    const nameEnd = name ? name.getBoundingClientRect().right : 0;
-    const orbLeft = orbit.getBoundingClientRect().left - here.x;   // where it sits untranslated
-    const room = Math.max(0, Math.min(320, orbLeft - nameEnd - 56));
-    const to = { x: rnd(-room, room * 0.08), y: rnd(-20, 34) };
-    // a bend in the middle, so it arcs across rather than sliding down a diagonal
-    const mid = { x: (here.x + to.x) / 2 + rnd(-46, 46), y: (here.y + to.y) / 2 + rnd(-18, 18) };
-    const t = p => `translate(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px)`;
-    roamer = orbit.animate(
-      [{ transform: t(here) }, { transform: t(mid), offset: 0.5 }, { transform: t(to) }],
-      { duration: rnd(7500, 15000), easing: "ease-in-out", fill: "forwards" });
-    here = to;
-    roamer.onfinish = () => setTimeout(roam, rnd(600, 3600));
-  };
-
-  circuit();
-  roam();
-  // a backgrounded tab queues its finish callbacks; start a clean circuit on return
-  const restart = () => { if (roamer) { roamer.onfinish = null; roamer.cancel(); }
-                          orbit && (orbit.style.transform = `translate(${here.x}px, ${here.y}px)`);
-                          circuit(); roam(); };
-  addEventListener("pageshow", e => { if (e.persisted) restart(); });
-  document.addEventListener("visibilitychange", () => { if (!document.hidden) restart(); });
-})();
-</script>
 
 </body>
 </html>
