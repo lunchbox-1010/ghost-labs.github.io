@@ -45,7 +45,9 @@
   /* the bar takes what it needs; what is left is the page, centred inside it */
   main.sheet{ flex:1; display:flex; flex-direction:column; justify-content:center;
               gap:clamp(10px, 2.2vmin, 26px);
-              padding:clamp(12px, 2.6vmin, 30px) var(--gutter) 0 }
+              /* the same drop learn-more's hero takes below the bar; at clamp(12px,2.6vmin,30px)
+                 the page started 23px under it where that one starts 63px under */
+              padding:clamp(34px, 7vmin, 76px) var(--gutter) 0 }
 
   /* ---- the water: a band of its own, with the page's two halves above and below it ----
      A fixed height rather than whatever is left over: letting it absorb the slack drives the
@@ -96,7 +98,11 @@
            -webkit-backdrop-filter:saturate(160%) blur(8px);
            backdrop-filter:saturate(160%) blur(8px);
            border-bottom:1px solid rgba(255,255,255,.06) }
-  .gl-nav-in{ width:100%; max-width:1120px; margin:0 auto; padding:6px 24px;
+  /* 1080, the measure learn-more uses. At 1120 this bar's links stopped 36px further right
+     than that page's, which is what made the two headers look out of true. */
+  .gl-nav-in{ width:100%; max-width:1080px; margin:0 auto;
+              padding-block:6px; padding-inline:clamp(18px, 5vw, 40px);   /* learn-more's gutter;
+                24px here left its links 16px short of that page's */
               display:flex; align-items:center; justify-content:space-between;
               gap:12px; flex-wrap:wrap; min-height:clamp(58px, 9vmin, 96px) }
   .gl-brand{ display:flex; align-items:center; flex:0 0 auto }
@@ -228,7 +234,9 @@
             background:rgba(7,13,20,.86); border-bottom:1px solid rgba(126,148,169,.16);
             display:grid; grid-template-columns:1fr auto;
             grid-template-areas:"name switch" "ripple ripple";
-            align-items:center; justify-items:stretch; gap:6px 14px;
+            align-items:center; justify-items:stretch;
+            column-gap:14px; row-gap:0;   /* the strip's row is display:none above 640px, and a
+              row gap for a row that is not there made this bar 6px taller than learn-more's */
             padding-left:max(var(--gutter), calc((100vw - 1080px) / 2 + var(--gutter)));
             padding-right:clamp(16px, 3vw, 36px);
             padding-block:clamp(44px, 5vmin, 56px) }
@@ -380,7 +388,9 @@
        body is the flex column, so order puts it after the bar despite coming first in the
        markup; position stays relative, not static, because the orbit is absolutely
        positioned against it. */
-    .control{ gap:6px 10px; padding-left:12px; padding-right:12px;
+    /* no row gap above the strip either: learn-more's sits flush under its bar row, and 6px
+       here made this bar the taller of the two on a phone */
+    .control{ column-gap:10px; row-gap:0; padding-left:12px; padding-right:12px;
               padding-block:clamp(8px, 2.4vmin, 14px) 0 }
     .ctrl-lockup{ font-size:clamp(12.5px, 3.2vw, 17px) }
     .ctrl-mark{ width:clamp(24px, 6.4vw, 32px) }
