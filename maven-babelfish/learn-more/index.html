@@ -153,6 +153,29 @@
   @media (max-width:900px){ .tokenrow{ grid-template-columns:repeat(3, minmax(0,1fr)) } }
   @media (max-width:560px){ .tokenrow{ grid-template-columns:repeat(2, minmax(0,1fr)) } }
 
+  /* ---- the console ---- */
+  .shots{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr));
+          gap:clamp(14px, 2.4vw, 28px) }
+  .shot{ margin:0; display:flex; flex-direction:column; gap:.85em }
+  .shot.wide{ grid-column:1 / -1 }
+  .shot img{ display:block; width:100%; height:auto; border-radius:12px;
+             border:1px solid rgba(126,148,169,.22);
+             box-shadow:0 18px 44px rgba(0,0,0,.45); background:#0d1722 }
+  .shot figcaption{ font-family:var(--mono); font-size:clamp(8px, 1vw, 10.5px);
+                    letter-spacing:.13em; text-transform:uppercase; color:var(--muted);
+                    line-height:1.7 }
+  .shot figcaption b{ color:var(--body); font-weight:500 }
+  /* said once, plainly, rather than stamped across every image */
+  .shots-note{ margin:0 0 clamp(16px, 2.6vw, 28px); display:inline-flex; align-items:center;
+               gap:.7em; font-family:var(--mono);
+               font-size:clamp(8px, 1vw, 10.5px); letter-spacing:.13em; text-transform:uppercase;
+               color:var(--muted); border:1px solid rgba(126,148,169,.22);
+               border-radius:999px; padding:.5em 1em; line-height:1.6 }
+  .shots-note::before{ content:""; width:5px; height:5px; border-radius:50%;
+                       background:var(--signal); box-shadow:0 0 8px rgba(255,209,0,.6);
+                       flex:0 0 auto }
+  @media (max-width:720px){ .shots{ grid-template-columns:1fr } }
+
   /* ---- why it wins ---- */
   /* five across on one line, with equal columns so none of them is the odd one out;
      below that it drops straight to a single column rather than leaving a ragged last row */
@@ -309,6 +332,51 @@
           Copilot or Gemini and pay them directly at their price — no markup, no reselling, no
           lock-in. Or use the free AI that installs with Babelfish and pay nobody.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Inside the console</p>
+    <h2>What it looks like</h2>
+    <p class="lede" style="margin-bottom:1.4em">Every screen below is the working build, running on
+      a sample company generated to behave like a real marketing team &mdash; including its data
+      problems. No customer data is shown.</p>
+    <p class="shots-note">In development &middot; screens will change before release</p>
+
+    <div class="shots">
+      <figure class="shot wide">
+        <img src="../screens/console.webp" width="1600" height="1013" loading="lazy" decoding="async"
+             alt="The Maven Babelfish overview: media spend, sessions, new contacts, opportunities, pipeline created, deals won, revenue won and pipeline per dollar of spend, above a channel table.">
+        <figcaption><b>Overview.</b> Spend, traffic, contacts, pipeline and revenue from seven
+          systems in one view. The header reports how many figures were re-checked before the page
+          was shown.</figcaption>
+      </figure>
+
+      <figure class="shot wide">
+        <img src="../screens/insights.webp" width="1600" height="1211" loading="lazy" decoding="async"
+             alt="The Insights page: cards labelled opportunity, risk and data quality, each carrying a verified badge, a plain-language finding and the numbers behind it.">
+        <figcaption><b>Insights.</b> Opportunities, risks and data problems found on every refresh,
+          each written out in plain language with the numbers behind it. Findings that are
+          technically right but misleading carry their caveat on the card.</figcaption>
+      </figure>
+
+      <figure class="shot">
+        <img src="../screens/analytics.webp" width="1400" height="551" loading="lazy" decoding="async"
+             alt="Analytics: pipeline per dollar by campaign against the paid-media average, and spend plotted against pipeline created.">
+        <figcaption><b>Analytics.</b> Pipeline per $1 by campaign against the paid average &mdash; a
+          ranking that only exists once ad spend and CRM outcomes are in one language.</figcaption>
+      </figure>
+
+      <figure class="shot">
+        <img src="../screens/campaigns.webp" width="1400" height="886" loading="lazy" decoding="async"
+             alt="The Campaigns view: one row per marketing initiative, joined across ad platforms, email, web analytics and CRM.">
+        <figcaption><b>Campaigns.</b> One row per initiative, even when four systems each spell it
+          differently.</figcaption>
+      </figure>
     </div>
   </div>
 </section>

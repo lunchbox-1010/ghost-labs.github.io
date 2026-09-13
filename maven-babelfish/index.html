@@ -183,31 +183,40 @@
              text-transform:uppercase; color:#9fe0a8;
              border:1px solid rgba(159,224,168,.3); border-radius:999px; padding:.32em .7em }
   /* ---- the control: parked in the top-right corner, with a fish circling it ---- */
-  .control{ position:fixed; top:calc(var(--navh, 96px) + clamp(12px, 2.2vmin, 26px));
+  .control{ position:fixed; top:calc(var(--navh, 96px) + clamp(44px, 5vmin, 56px));
             right:clamp(16px, 3vw, 36px);
-            z-index:5; display:grid; place-items:center }
+            z-index:60; display:grid; place-items:center }
   /* the orbit is decoration: taken out of the flow and centred on the button, so the corner
      offsets position the button itself rather than a 252x104 box around it */
-  .orbit{ position:absolute; top:50%; left:50%; width:366px; height:108px;
-          margin:-54px 0 0 -183px; pointer-events:none;
+  /* No z-index here on purpose: .orbit must not open a stacking context, or the fish
+     could never rise above the button inside it. */
+  .orbit{ position:absolute; top:50%; left:50%; width:414px; height:120px;
+          margin:-60px 0 0 -207px; pointer-events:none;
           transform:scale(var(--orbit-scale, 1)) }
+  /* offset-anchor defaults to the element's centre, so the path already centres the fish.
+     The negative margins that used to be here centred it a second time, which drew the whole
+     orbit half a fish-box high and left of where the numbers said it was. */
   .orbiter{ position:absolute; top:0; left:0; width:var(--of); height:var(--of);
-            margin:calc(var(--of) / -2) 0 0 calc(var(--of) / -2);
-            --of:clamp(46px, 6vmin, 62px);
-            offset-path:path("M 14,54 A 169,42 0 0 1 352,54 A 169,42 0 0 1 14,54");
+            --of:clamp(62px, 9vmin, 92px);
+            offset-path:path("M 16,60 A 191,44 0 0 1 398,60 A 191,44 0 0 1 16,60");
             offset-rotate:0deg;
-            animation:orbit var(--orbit-time, 11s) linear infinite }
+            /* one loop, two jobs: travel the oval, and change places with the button halfway
+               round — behind it going one way, in front of it coming back */
+            animation:orbit var(--orbit-time, 11s) linear infinite,
+                      depth var(--orbit-time, 11s) step-end infinite }
   /* the fish turns at the two ends of the oval, where it is edge-on and the turn doesn't show */
   .facing{ position:absolute; inset:0; animation:facing var(--orbit-time, 11s) linear infinite }
   .orbiter .fish{ --t:var(--t-orange); --b:var(--b-orange); --beat:.8s; --phase:-.2s;
                   animation:surge 1.7s ease-in-out infinite }
   @keyframes orbit{ from{ offset-distance:0% } to{ offset-distance:100% } }
+  @keyframes depth{ 0%{ z-index:0 } 50%{ z-index:2 } 100%{ z-index:0 } }
   @keyframes facing{ 0%,47%{ transform:scaleX(1) } 53%,97%{ transform:scaleX(-1) }
                      100%{ transform:scaleX(1) } }
 
   /* One control with three stops, in the same corner on every Babelfish page, so there is
      never a second button elsewhere doing a related job. */
-  .switch{ grid-area:1/1; display:flex; align-items:stretch; padding:3px; border-radius:999px;
+  .switch{ grid-area:1/1; position:relative; z-index:1;
+           display:flex; align-items:stretch; padding:3px; border-radius:999px;
            background:rgba(10,20,30,.8); -webkit-backdrop-filter:blur(9px); backdrop-filter:blur(9px);
            border:1px solid rgba(244,117,46,.42);
            box-shadow:0 4px 22px rgba(0,0,0,.45) }
@@ -248,13 +257,13 @@
     .step p{ max-width:36ch }
   }
   @media (max-width:640px){
-    :root{ --orbit-scale:.8; --orbit-time:9s }
+    :root{ --orbit-scale:.62; --orbit-time:9s }
     main.sheet{ padding-top:clamp(58px, 13vmin, 92px) }  /* clearance for the corner control */
     .corner.sources{ opacity:.24; left:-19% } .corner.network{ opacity:.32; right:-19% }
     .turn{ padding:8px 13px }
     .turn .label{ letter-spacing:.16em }
   }
-  @media (max-width:400px){ :root{ --orbit-scale:.66 } }
+  @media (max-width:400px){ :root{ --orbit-scale:.52 } }
 
   @media (prefers-reduced-motion:reduce){
     .fish,.fish .tail,.fish .body,.orbiter,.facing,.turn{ animation:none }
