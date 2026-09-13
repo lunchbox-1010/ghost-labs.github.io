@@ -118,8 +118,10 @@
   /* ---- the strip the fish patrols under the bar, phones only ----
      The name page grew this when its switch got too small to orbit; this page carries the
      same bar, so it carries the same strip. Sprite classes and colours are the school's. */
+  /* deep enough for the fish to have somewhere to go: a strip its own height leaves it
+     shooting straight across, which is not what the school on the name page does */
   .ripple{ display:none; position:relative; overflow:hidden;
-           height:clamp(30px, 8.6vw, 44px) }
+           height:clamp(52px, 14vw, 76px) }
   .ripple .swimmer{ --fish:clamp(22px, 6.6vw, 34px); position:absolute; top:0; left:0;
                     width:var(--fish); height:var(--fish); transform:translateX(-9999px);
                     will-change:transform, opacity }
@@ -565,8 +567,12 @@
     const dep = Math.random();
     const k = 0.72 + 0.4 * dep;
     const span = F * k, slack = Math.max(0, H - span);
-    const y = rnd(-span * 0.12, slack + span * 0.12);
-    const bend = rnd(-H * 0.22, H * 0.22);
+    const depth = () => rnd(-span * 0.14, slack + span * 0.14);
+    // enters at one depth and leaves at another, by way of a third — a straight line across at
+    // one height is the thing that reads as a sprite on a track rather than a fish
+    const y0 = depth(), y1 = depth();
+    const yMid = Math.max(-span * 0.2, Math.min(slack + span * 0.2,
+                          (y0 + y1) / 2 + rnd(-H * 0.42, H * 0.42)));
     const from = dir > 0 ? -span : W;
     const to   = dir > 0 ? W : -span;
     const place = (x, yy) =>
@@ -574,10 +580,11 @@
 
     swim.style.opacity = (0.62 + 0.38 * dep).toFixed(2);
     anim = swim.animate([
-      { transform: place(from, y) },
-      { transform: place((from + to) / 2, y + bend), offset: 0.5 },
-      { transform: place(to, y) }
-    ], { duration: Math.abs(to - from) / rnd(0.038, 0.082), easing: "linear", fill: "forwards" });
+      { transform: place(from, y0) },
+      { transform: place(from + (to - from) * 0.5, yMid), offset: 0.5 },
+      { transform: place(to, y1) }
+    ], { duration: Math.abs(to - from) / rnd(0.03, 0.075),
+         easing: "cubic-bezier(.42,0,.58,1)", fill: "forwards" });
 
     anim.onfinish = () => { anim = null; dir = -dir; timer = setTimeout(cross, rnd(450, 2400)); };
   };
@@ -663,17 +670,22 @@
 
   const roam = () => {
     if (!orbit) return;
-    // A small wander, because this same module runs inside learn-more's bar where there is no
-    // room for a big one. How far it may go scales with the width there is, recomputed each leg
-    // so a resize is picked up without a listener.
-    const room = Math.max(0, Math.min(72, (innerWidth - 820) * 0.2));
-    const to = { x: rnd(-room, room * 0.3), y: rnd(-16, 30) };
+    // The bar is mostly empty between the name and the switch, so the wander uses it. How far
+    // left it may go is measured, not guessed: the gap between where the name actually ends and
+    // where the oval starts, less a margin. A viewport formula got this wrong on one page,
+    // because the two bars put the name in different places. Measured each leg, so a resize
+    // needs no listener.
+    const name = document.querySelector(".ctrl-lockup span:last-child, .lockup span:last-child");
+    const nameEnd = name ? name.getBoundingClientRect().right : 0;
+    const orbLeft = orbit.getBoundingClientRect().left - here.x;   // where it sits untranslated
+    const room = Math.max(0, Math.min(320, orbLeft - nameEnd - 56));
+    const to = { x: rnd(-room, room * 0.08), y: rnd(-20, 34) };
     // a bend in the middle, so it arcs across rather than sliding down a diagonal
-    const mid = { x: (here.x + to.x) / 2 + rnd(-22, 22), y: (here.y + to.y) / 2 + rnd(-14, 14) };
+    const mid = { x: (here.x + to.x) / 2 + rnd(-46, 46), y: (here.y + to.y) / 2 + rnd(-18, 18) };
     const t = p => `translate(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px)`;
     roamer = orbit.animate(
       [{ transform: t(here) }, { transform: t(mid), offset: 0.5 }, { transform: t(to) }],
-      { duration: rnd(11000, 21000), easing: "ease-in-out", fill: "forwards" });
+      { duration: rnd(7500, 15000), easing: "ease-in-out", fill: "forwards" });
     here = to;
     roamer.onfinish = () => setTimeout(roam, rnd(600, 3600));
   };
