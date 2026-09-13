@@ -271,9 +271,27 @@
     .gl-links{ flex:1 1 auto; min-width:0; justify-content:space-between; flex-wrap:nowrap;
                gap:clamp(6px, 2vw, 10px) }
     /* 7px of padding put the tap target at 26px, well under the 44px guideline; 11px
-       brings it to 34 without costing a row */
-    .gl-links a{ font-size:clamp(10px, 2.6vw, 12px); padding:11px 1px }
+       brings it to 34 without costing a row. line-height is set rather than inherited: the two
+       pages set different body line-heights, which made one bar 3px taller than the other. */
+    .gl-links a{ font-size:clamp(10px, 2.6vw, 12px); padding:11px 1px; line-height:1.2 }
   }
+
+  /* Below 360 the name and the switch stop fitting side by side at the sizes above, so both
+     give up a little rather than one being painted over by the other. Same numbers on both
+     pages. */
+  @media (max-width:360px){
+    .seg{ font-size:9px; letter-spacing:.04em; padding-inline:6px }
+    .lockup{ font-size:13.5px }
+    .mark{ width:26px }
+  }
+
+  /* At 320 — the oldest phones still in use — even the smaller sizes above do not leave the
+     name room beside the switch, so the two stack. Both pages stack at the same width and to
+     the same arrangement. */
+  @media (max-width:340px){
+    .top-in{ flex-direction:column; align-items:center; gap:8px }
+  }
+
   @media (prefers-reduced-motion:reduce){
     html{ scroll-behavior:auto }
     .mark .swim, .mark .tail, .mark .body{ animation:none }

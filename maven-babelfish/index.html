@@ -344,7 +344,12 @@
   /* ---- narrow screens ---- */
   @media (max-width:860px){
     .flow{ grid-template-columns:1fr; gap:clamp(12px, 3vmin, 22px) }
-    .arrow{ transform:rotate(90deg); opacity:.35 }
+    /* In one column the arrow's box is the full column width, and rotating a 400px-wide box
+       by 90deg lays a 400px-tall strip across the water above it — which is the stray mark in
+       the fish lane. Boxed to its own glyph first, it turns into the small arrow it looks
+       like. learn-more's .to has justify-self:center for the same reason. */
+    .arrow{ justify-self:center; width:1.4em; text-align:center; line-height:1;
+            transform:rotate(90deg); opacity:.35 }
     .step p{ max-width:36ch }
   }
   @media (max-width:640px){
@@ -375,25 +380,40 @@
     /* Four links plus the mark did not fit one row, so the row broke and then broke again,
        leaving Contact on a line of its own and a bar three rows deep. Smaller mark, smaller
        type, tighter gaps: it fits on one row from 360px up. */
-    .gl-nav-in{ padding:3px 12px; gap:8px; min-height:0 }
+    .gl-nav-in{ padding-block:4px; padding-inline:12px; gap:8px; min-height:0 }
     .gl-brand img{ height:clamp(24px, 6.6vmin, 30px) }
     .gl-links{ flex:1 1 auto; min-width:0; justify-content:space-between; flex-wrap:nowrap;
                gap:clamp(6px, 2vw, 10px) }
     /* 7px of padding put the tap target at 26px, well under the 44px guideline; 11px
-       brings it to 34 without costing a row */
-    .gl-links a{ font-size:clamp(10px, 2.6vw, 12px); padding:11px 1px }
+       brings it to 34 without costing a row. line-height is set rather than inherited: the two
+       pages set different body line-heights, which made one bar 3px taller than the other. */
+    .gl-links a{ font-size:clamp(10px, 2.6vw, 12px); padding:11px 1px; line-height:1.2 }
 
     .corner.sources{ opacity:.24; left:-19% } .corner.network{ opacity:.32; right:-19% }
     .turn{ padding:8px 13px }
     .turn .label{ letter-spacing:.16em }
   }
 
-  /* Narrower than this the name cannot even wrap into the space the switch leaves, so the
-     two stack rather than one being painted over by the other. */
-  @media (max-width:380px){
-    :root{ --orbit-scale:.52 }
-    .control{ grid-template-columns:1fr; grid-template-areas:"name" "switch" "ripple";
-              justify-items:center; gap:8px 0 }
+  /* learn-more keeps the name beside the switch all the way down and the name wraps to fit;
+     this page stacked below 380 instead, which made the two bars behave differently on a small
+     phone. Both wrap now. */
+
+
+  /* Below 360 the name and the switch stop fitting side by side at the sizes above, so both
+     give up a little rather than one being painted over by the other. Same numbers on both
+     pages. */
+  @media (max-width:360px){
+    .seg{ font-size:9px; letter-spacing:.04em; padding-inline:6px }
+    .ctrl-lockup{ font-size:13.5px }
+    .ctrl-mark{ width:26px }
+  }
+
+  /* At 320 — the oldest phones still in use — even the smaller sizes above do not leave the
+     name room beside the switch, so the two stack. Both pages stack at the same width and to
+     the same arrangement. */
+  @media (max-width:340px){
+    .control{ grid-template-columns:1fr; grid-template-areas:"name" "switch";
+              justify-items:center; row-gap:8px }
   }
 
   @media (prefers-reduced-motion:reduce){
@@ -644,9 +664,13 @@ const school = (() => {
 
     // In ordered mode the school runs at one shared pace, so it reads as a current rather than
     // five unrelated fish that happen to point the same way.
-    const speed = mode === "ordered"
+    // Pace is px per ms, so a narrow screen crosses in a fraction of the time a wide one takes
+    // and the school reads as darting rather than drifting. Scaling it by the width holds the
+    // crossing to roughly the same number of seconds on a phone as on a desktop.
+    const pace = Math.min(1, Math.max(0.42, innerWidth / 1200));
+    const speed = (mode === "ordered"
       ? 0.072 * (0.7 + 0.4 * dep)
-      : rnd(0.055, 0.075) * (0.62 + 0.55 * dep);
+      : rnd(0.055, 0.075) * (0.62 + 0.55 * dep)) * pace;
 
     let frames, span_px;
     if (from0) {
