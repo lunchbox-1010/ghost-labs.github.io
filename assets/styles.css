@@ -731,8 +731,9 @@ span.badge { cursor: default; }
    the ghost lifted out (logo-icon-bg.png) and the ghost alone (logo-icon-ghost.png),
    positioned back over its own footprint in percentages so the pair scales as one
    image. Only the ghost moves, so the badge itself stays still the way a logo
-   should. A soft shadow rides underneath and tightens as the ghost rises — that
-   counter-motion is what sells the lift; a bob on its own just reads as a jitter.
+   should. It rises and settles straight up and down — no sideways drift, no roll.
+   A soft shadow rides underneath and tightens as it rises; that counter-motion is
+   what reads as height rather than a shape jittering in place.
    --------------------------------------------------------------------------- */
 .ghost-lift{
   position:relative; display:inline-block;
@@ -765,11 +766,10 @@ span.badge { cursor: default; }
   will-change: transform, opacity;
 }
 
+/* straight up and down — no drift, no roll */
 @keyframes ghost-hover{
-  0%,100% { transform: translate(0, 0)           rotate(0deg); }
-  25%     { transform: translate(-1.6%, -4.4%)   rotate(-1.8deg); }
-  50%     { transform: translate(0, -7.2%)       rotate(0deg); }
-  75%     { transform: translate(1.6%, -4.4%)    rotate(1.8deg); }
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-7.5%); }
 }
 
 @keyframes ghost-shade{
