@@ -491,3 +491,53 @@ img { max-width: 100%; display: block; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
 }
+
+/* ---------- Maven Babelfish animated mark ---------------------------------- */
+/* The product logo, alive. The brand kit ships the disc with the fish lifted out of it, so the
+   two fish layers drop back on top at inset:0 and reconstruct the mark exactly. Tail and body
+   counter-rotate about their measured pivots (38.3%/50.1% and 66.4%/49.8%) — that opposition is
+   what reads as swimming; a fish that only bobs looks like one being waved about on a stick. */
+.fish-icon {
+  --beat: .84s;
+  position: relative; display: block;
+  width: 96px; height: 96px; flex: 0 0 auto;
+  margin-bottom: 18px; border-radius: 50%;
+  background: url("../maven-babelfish/scene/disc-without-fish.png") center / contain no-repeat;
+  box-shadow: 0 6px 20px rgba(0,0,0,.18);
+}
+.fish-icon .swim { position: absolute; inset: 0; animation: mb-surge 1.9s ease-in-out infinite; }
+.fish-icon i {
+  position: absolute; inset: 0;
+  background-size: contain; background-repeat: no-repeat; background-position: center;
+}
+.fish-icon .tail {
+  background-image: url("../maven-babelfish/fish/fish-tail-orange.png");
+  transform-origin: 38.3% 50.1%;
+  animation: mb-tailbeat var(--beat) cubic-bezier(.42,0,.58,1) infinite alternate;
+}
+.fish-icon .body {
+  background-image: url("../maven-babelfish/fish/fish-body-orange.png");
+  transform-origin: 66.4% 49.8%;
+  animation: mb-yaw var(--beat) cubic-bezier(.42,0,.58,1) infinite alternate;
+}
+/* the fish picks up the pace when you go near the card it sits on */
+.card:hover .fish-icon { --beat: .54s; }
+@keyframes mb-tailbeat { from { transform: rotate(-12deg) } to { transform: rotate(12deg) } }
+@keyframes mb-yaw      { from { transform: rotate(2.2deg) } to { transform: rotate(-2.2deg) } }
+@keyframes mb-surge {
+  0%, 100% { transform: translate(0, 0) }
+  25%      { transform: translate(1.4%, -1.6%) }
+  50%      { transform: translate(0, 0) }
+  75%      { transform: translate(1.4%, 1.6%) }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fish-icon .swim, .fish-icon .tail, .fish-icon .body { animation: none; }
+}
+
+/* a quiet status flag, for something real but not yet buyable */
+.chip-dev {
+  display: inline-block; vertical-align: middle; margin-left: 9px;
+  font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: #8A6408; background: #FFF4CC; border: 1px solid #F0DC94;
+  border-radius: 999px; padding: 3px 9px; white-space: nowrap;
+}
