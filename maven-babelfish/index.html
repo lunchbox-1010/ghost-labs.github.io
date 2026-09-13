@@ -446,9 +446,33 @@
   @view-transition{ navigation:auto }
   .gl-nav{ view-transition-name:gl-bar }
   .control{ view-transition-name:bf-bar }
-  ::view-transition-old(root), ::view-transition-new(root){ animation-duration:.42s;
-    animation-timing-function:var(--ease) }
-  @media (prefers-reduced-motion:reduce){ @view-transition{ navigation:none } }
+  /* The default is a straight crossfade, both pages half-visible at once — the same mush the
+     two faces used to do. They take turns here too: the old page leaves, then the new one
+     arrives with a small lift. The bars are named above, so they sit out of this and hold
+     still while it happens. */
+  @keyframes vt-out{ from{ opacity:1 } to{ opacity:0 } }
+  @keyframes vt-in { from{ opacity:0; transform:translateY(10px) } to{ opacity:1; transform:none } }
+  ::view-transition-old(root){ animation:vt-out .2s cubic-bezier(.4,0,.2,1) both }
+  ::view-transition-new(root){ animation:vt-in .44s cubic-bezier(.4,0,.2,1) .1s both }
+
+  /* Safari before 18.2 and Chrome before 126 have no cross-document transition, and a page
+     swap there is the hard cut this exists to fix. They get a plain fade instead: the page
+     fades out under the click and the next one fades in on arrival.
+
+     The switch is .no-xvt, set in the head before first paint. @supports (view-transition-name)
+     would have been wrong here — Chrome 111 to 125 and Safari 18.0/18.1 support the property
+     for same-document transitions but not @view-transition for navigations, so they would have
+     passed the query, skipped the fallback, and still cut hard. CSSViewTransitionRule exists
+     only where the at-rule does, which is the thing actually being relied on. */
+  @keyframes pg-in { from{ opacity:0 } to{ opacity:1 } }
+  @keyframes pg-out{ from{ opacity:1 } to{ opacity:0 } }
+  .no-xvt body{ animation:pg-in .34s cubic-bezier(.4,0,.2,1) both }
+  .no-xvt body.leaving{ animation:pg-out .19s cubic-bezier(.4,0,.2,1) both }
+
+  @media (prefers-reduced-motion:reduce){
+    @view-transition{ navigation:none }
+    body, body.leaving{ animation:none }
+  }
 
   @media (prefers-reduced-motion:reduce){
     .fish,.fish .tail,.fish .body,.turn{ animation:none }
@@ -460,6 +484,8 @@
     .face[aria-hidden="true"] .inner{ filter:none; transform:none }
   }
 </style>
+<script>/* before first paint, so the fallback fade never flashes */
+if (!("CSSViewTransitionRule" in window)) document.documentElement.classList.add("no-xvt");</script>
 </head>
 <body>
 
@@ -896,6 +922,32 @@ const school = (() => {
   addEventListener("resize", fit);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
   faces.forEach(f => new ResizeObserver(fit).observe(f));
+})();
+
+// ---------------------------------------------------------------------------
+// Leaving for another stop.
+//
+// Where the browser runs a cross-document view transition the CSS above does all of it and this
+// does nothing. Where it does not — Safari before 18.2, Chrome before 126 — a page swap is the
+// hard cut the transition exists to avoid, so the page fades out under the click and the next
+// one fades in on arrival. The test is CSSViewTransitionRule rather than the property, because
+// several versions support the property for in-page transitions but not the at-rule for
+// navigations. Modified clicks and new tabs are left alone.
+// ---------------------------------------------------------------------------
+(() => {
+  if ("CSSViewTransitionRule" in window) return;   // the at-rule is handling it
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  document.querySelectorAll("a.seg[href]").forEach(a => {
+    a.addEventListener("click", e => {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      if (a.target && a.target !== "_self") return;
+      e.preventDefault();
+      document.body.classList.add("leaving");
+      setTimeout(() => { location.href = a.href; }, 190);
+    });
+  });
+  // coming back with the back button serves the cached page mid-fade
+  addEventListener("pageshow", e => { if (e.persisted) document.body.classList.remove("leaving"); });
 })();
 </script>
 </body>
