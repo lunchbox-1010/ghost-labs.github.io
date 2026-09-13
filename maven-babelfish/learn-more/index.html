@@ -101,6 +101,27 @@
   @keyframes yaw{ from{ transform:rotate(2.2deg) } to{ transform:rotate(-2.2deg) } }
   @keyframes surge{ 0%,100%{ transform:translate(0,0) } 25%{ transform:translate(1.4%,-1.6%) }
                     50%{ transform:translate(0,0) } 75%{ transform:translate(1.4%,1.6%) } }
+  /* ---- the strip the fish patrols under the bar, phones only ----
+     The name page grew this when its switch got too small to orbit; this page carries the
+     same bar, so it carries the same strip. Sprite classes and colours are the school's. */
+  .ripple{ display:none; position:relative; overflow:hidden;
+           height:clamp(30px, 8.6vw, 44px) }
+  .ripple .swimmer{ --fish:clamp(22px, 6.6vw, 34px); position:absolute; top:0; left:0;
+                    width:var(--fish); height:var(--fish); transform:translateX(-9999px);
+                    will-change:transform, opacity }
+  .ripple .fish{ position:absolute; inset:0; animation:surge 1.84s ease-in-out infinite }
+  .ripple .fish i{ position:absolute; inset:0; display:block; background-size:contain;
+                   background-repeat:no-repeat; background-position:center }
+  .ripple .fish .tail{ background-image:var(--t); transform-origin:38.3% 50.1%;
+                       animation:tailbeat var(--beat) cubic-bezier(.42,0,.58,1) var(--phase) infinite alternate }
+  .ripple .fish .body{ background-image:var(--b); transform-origin:66.4% 49.8%;
+                       animation:yaw var(--beat) cubic-bezier(.42,0,.58,1) var(--phase) infinite alternate }
+  .s-orange{ --t:url("../fish/fish-tail-orange.png"); --b:url("../fish/fish-body-orange.png"); --beat:.92s; --phase:-.10s }
+  .s-blue  { --t:url("../fish/fish-tail-blue.png");   --b:url("../fish/fish-body-blue.png");   --beat:.81s; --phase:-.37s }
+  .s-red   { --t:url("../fish/fish-tail-red.png");    --b:url("../fish/fish-body-red.png");    --beat:.74s; --phase:-.55s }
+  .s-pink  { --t:url("../fish/fish-tail-pink.png");   --b:url("../fish/fish-body-pink.png");   --beat:.70s; --phase:-.45s }
+  .s-purple{ --t:url("../fish/fish-tail-purple.png"); --b:url("../fish/fish-body-purple.png"); --beat:.66s; --phase:-.24s }
+
   .switch{ display:flex; align-items:stretch; padding:3px; border-radius:999px;
            background:rgba(10,20,30,.8); border:1px solid rgba(244,117,46,.42) }
   .seg{ appearance:none; border:0; background:none; cursor:pointer; text-decoration:none;
@@ -224,6 +245,14 @@
      again, leaving Contact on a line of its own and a bar three rows deep. Smaller mark,
      smaller type, tighter gaps: one row from 360px up. Same numbers as the name page. */
   @media (max-width:640px){
+    /* the same switch type as the name page, so the bar is the bar on every stop */
+    .seg{ letter-spacing:.07em; padding:clamp(7px, 1.9vw, 10px) clamp(7px, 2.2vw, 12px);
+          font-size:clamp(9px, 2.4vw, 10.5px) }
+    .top-in{ padding-inline:12px; gap:10px }
+    .ripple{ display:block }
+    .lockup{ min-width:0; font-size:clamp(12.5px, 3.2vw, 17px); line-height:1.14; gap:.5em }
+    .mark{ width:clamp(24px, 6.4vw, 32px) }
+
     .gl-nav-in{ padding-block:4px; padding-inline:12px; gap:8px; min-height:0 }
     .gl-brand img{ height:clamp(24px, 6.6vmin, 30px) }
     .gl-links{ flex:1 1 auto; min-width:0; justify-content:space-between; flex-wrap:nowrap;
@@ -263,6 +292,9 @@
       <a class="seg" href="../#what-it-does">What it does</a>
       <span class="seg" aria-current="page">Learn more</span>
     </nav>
+  </div>
+  <div class="ripple" aria-hidden="true">
+    <div class="swimmer s-blue"><div class="fish"><i class="tail"></i><i class="body"></i></div></div>
   </div>
 </header>
 
@@ -438,6 +470,71 @@
     <span><a href="../">The name</a> · <a href="../../enterprise/">Enterprise Foundry</a> · Ghost Labs, LLC</span>
   </footer>
 </div>
+
+<script>
+// ---------------------------------------------------------------------------
+// The strip under the bar, on phones only — the same one the name page carries.
+//
+// One crossing at a time, each with its own colour, size, depth, pace and pause, then a turn
+// and back the other way. The same randomising idea as the school on the name page, at a
+// tenth of the machinery, because only one fish is ever in the water here.
+// ---------------------------------------------------------------------------
+(() => {
+  const band = document.querySelector(".ripple");
+  if (!band) return;
+  const swim = band.querySelector(".swimmer");
+  const COLOURS = ["s-orange", "s-blue", "s-red", "s-pink", "s-purple"];
+  const phone = matchMedia("(max-width: 640px)");
+  const still = matchMedia("(prefers-reduced-motion: reduce)");
+  const rnd = (a, b) => a + Math.random() * (b - a);
+
+  let anim = null, timer = null, dir = 1;
+
+  const stop = () => {
+    clearTimeout(timer); timer = null;
+    if (anim) { anim.onfinish = null; anim.cancel(); anim = null; }
+    swim.style.transform = "translateX(-9999px)";
+  };
+
+  const cross = () => {
+    if (!phone.matches || still.matches || document.hidden) { stop(); return; }
+    const W = band.clientWidth, H = band.clientHeight, F = swim.offsetWidth;
+    // laid out but not measured yet (a hidden tab, a font still loading) — look again shortly
+    if (!W || !F) { timer = setTimeout(cross, 400); return; }
+
+    swim.className = "swimmer " + COLOURS[Math.floor(Math.random() * COLOURS.length)];
+    // one depth number drives size, height in the band, opacity and pace together, which is
+    // most of what makes a near fish read as nearer than a far one
+    const dep = Math.random();
+    const k = 0.72 + 0.4 * dep;
+    const span = F * k, slack = Math.max(0, H - span);
+    const y = rnd(-span * 0.12, slack + span * 0.12);
+    const bend = rnd(-H * 0.22, H * 0.22);
+    const from = dir > 0 ? -span : W;
+    const to   = dir > 0 ? W : -span;
+    const place = (x, yy) =>
+      `translate(${x.toFixed(1)}px, ${yy.toFixed(1)}px) scale(${(dir * k).toFixed(3)}, ${k.toFixed(3)})`;
+
+    swim.style.opacity = (0.62 + 0.38 * dep).toFixed(2);
+    anim = swim.animate([
+      { transform: place(from, y) },
+      { transform: place((from + to) / 2, y + bend), offset: 0.5 },
+      { transform: place(to, y) }
+    ], { duration: Math.abs(to - from) / rnd(0.038, 0.082), easing: "linear", fill: "forwards" });
+
+    anim.onfinish = () => { anim = null; dir = -dir; timer = setTimeout(cross, rnd(450, 2400)); };
+  };
+
+  const kick = () => { stop(); if (phone.matches && !still.matches) timer = setTimeout(cross, 260); };
+
+  phone.addEventListener("change", kick);
+  // a hidden tab queues its timers and paints nothing; coming back to a burst of them is what
+  // stacks fish on top of each other, so the band is put back to a known state instead
+  document.addEventListener("visibilitychange", () => document.hidden ? stop() : kick());
+  addEventListener("pageshow", e => { if (e.persisted) kick(); });
+  kick();
+})();
+</script>
 
 </body>
 </html>
