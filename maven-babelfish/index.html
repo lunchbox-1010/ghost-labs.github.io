@@ -229,6 +229,36 @@
   .seg.go::after{ content:"\2192"; margin-left:.5em; transition:transform .3s var(--ease) }
   .seg.go:hover::after{ transform:translateX(3px) }
 
+  /* ---------- the easter egg ----------
+     One small fish idling in the bottom-right corner, dim enough to pass for part of the
+     backdrop until the cursor finds it. Then it brightens, noses forward and names itself,
+     and it goes to the tank where the rest of the school lives.
+     Face B is a different subject, so the egg belongs to "The name" alone — body.is-open
+     marks face B, and visibility (not opacity alone) takes it out of the tab order. */
+  .tank-egg{ position:fixed; z-index:70; display:block; text-decoration:none;
+             right:clamp(12px, 2.2vw, 30px); bottom:clamp(30px, 5vh, 52px);
+             width:clamp(46px, 5vw, 66px); aspect-ratio:1; -webkit-tap-highlight-color:transparent;
+             opacity:1; visibility:visible;
+             transition:opacity .35s var(--ease), visibility 0s }
+  body.is-open .tank-egg{ opacity:0; visibility:hidden; pointer-events:none;
+             transition:opacity .35s var(--ease), visibility 0s .35s }
+  .tank-egg .egg-fish{ position:absolute; inset:0; display:block;
+             opacity:.26; transform:scaleX(-1);
+             filter:saturate(.7);
+             transition:opacity .35s var(--ease), transform .35s var(--ease), filter .35s var(--ease) }
+  .tank-egg .egg-fish .fish{ --t:var(--t-blue); --b:var(--b-blue); --beat:1.5s; --phase:-.3s;
+             animation:surge 3.1s ease-in-out infinite }
+  .tank-egg:hover .egg-fish,
+  .tank-egg:focus-visible .egg-fish{ opacity:1; filter:saturate(1);
+             transform:scaleX(-1) translateX(5px) }
+  .tank-egg .egg-label{ position:absolute; right:2px; bottom:-13px; white-space:nowrap;
+             font-family:var(--mono); font-size:9px; letter-spacing:.2em; text-transform:uppercase;
+             color:var(--maven); opacity:0; transform:translateY(4px); pointer-events:none;
+             transition:opacity .3s var(--ease), transform .3s var(--ease) }
+  .tank-egg:hover .egg-label,
+  .tank-egg:focus-visible .egg-label{ opacity:.95; transform:translateY(0) }
+  .tank-egg:focus-visible{ outline:2px solid var(--maven); outline-offset:5px; border-radius:12px }
+
   footer{ position:relative; z-index:2; flex:0 0 auto;
           padding:clamp(12px, 2vmin, 20px) 20px;
           font-family:var(--mono); font-size:clamp(7.5px, 1vmin, 10px);
@@ -261,6 +291,7 @@
 
   @media (prefers-reduced-motion:reduce){
     .fish,.fish .tail,.fish .body,.orbiter,.facing,.turn{ animation:none }
+    .tank-egg .egg-fish .fish{ animation:none }
     .orbiter{ offset-distance:82% }
     :root{ --turn:.22s }
     .face[aria-hidden="true"] .inner{ filter:none; transform:none }
@@ -373,6 +404,11 @@
 </div>
 
 </main>
+
+<a class="tank-egg" href="tank/" aria-label="Open the Maven Babelfish tank">
+  <span class="egg-fish" aria-hidden="true"><span class="fish"><i class="tail"></i><i class="body"></i></span></span>
+  <span class="egg-label">The tank</span>
+</a>
 
 <footer>
   <span class="chip">In development</span>
