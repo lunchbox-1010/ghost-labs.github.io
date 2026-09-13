@@ -292,6 +292,21 @@
     .top-in{ flex-direction:column; align-items:center; gap:8px }
   }
 
+
+  /* ---- moving between the stops ----
+     The name and What it does are two faces of one page and turn in place. Learn more is a
+     real page load, so it was a hard cut however smooth the other two were. A cross-document
+     view transition fades the content across the navigation and carries the two bars over
+     unchanged — they are the same size and in the same place on both pages, so they morph into
+     themselves and only what is under them changes. The names have to match on both sides.
+     A browser without this navigates exactly as it did before. */
+  @view-transition{ navigation:auto }
+  .gl-nav{ view-transition-name:gl-bar }
+  header.top{ view-transition-name:bf-bar }
+  ::view-transition-old(root), ::view-transition-new(root){ animation-duration:.42s;
+    animation-timing-function:var(--ease) }
+  @media (prefers-reduced-motion:reduce){ @view-transition{ navigation:none } }
+
   @media (prefers-reduced-motion:reduce){
     html{ scroll-behavior:auto }
     .mark .swim, .mark .tail, .mark .body{ animation:none }

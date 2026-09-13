@@ -379,6 +379,13 @@
        here made this bar the taller of the two on a phone */
     .control{ column-gap:10px; row-gap:0; padding-left:12px; padding-right:12px;
               padding-block:4px }   /* learn-more's phone padding, so the bars match here too */
+
+    /* The sheet centres its content, which is fine on a desktop where the two faces differ by
+       about 20px. On a phone the second face is far taller, so centring dragged the eyebrow,
+       the water and both halves up by ~100px every time you turned the page — the jarring
+       part, not the fade. Anchored to the top, the turn only grows downward and everything
+       above the change stays where it was. */
+    main.sheet{ justify-content:flex-start }
     .ctrl-lockup{ font-size:clamp(15px, 3.9vw, 20px) }
     .ctrl-mark{ width:clamp(30px, 8vw, 42px) }
     main.sheet{ padding-top:0 }
@@ -427,6 +434,21 @@
     .control{ grid-template-columns:1fr; grid-template-areas:"name" "switch";
               justify-items:center; row-gap:8px }
   }
+
+
+  /* ---- moving between the stops ----
+     The name and What it does are two faces of one page and turn in place. Learn more is a
+     real page load, so it was a hard cut however smooth the other two were. A cross-document
+     view transition fades the content across the navigation and carries the two bars over
+     unchanged — they are the same size and in the same place on both pages, so they morph into
+     themselves and only what is under them changes. The names have to match on both sides.
+     A browser without this navigates exactly as it did before. */
+  @view-transition{ navigation:auto }
+  .gl-nav{ view-transition-name:gl-bar }
+  .control{ view-transition-name:bf-bar }
+  ::view-transition-old(root), ::view-transition-new(root){ animation-duration:.42s;
+    animation-timing-function:var(--ease) }
+  @media (prefers-reduced-motion:reduce){ @view-transition{ navigation:none } }
 
   @media (prefers-reduced-motion:reduce){
     .fish,.fish .tail,.fish .body,.turn{ animation:none }
