@@ -893,10 +893,44 @@ const school = (() => {
     a.onfinish = circuit;
   };
 
+  // --- the roam ------------------------------------------------------------
+  // Circling one spot forever is a mechanism again, however randomised each lap is. So the
+  // path itself drifts around the corner while the fish rides it: it wanders up and off to
+  // the side, hangs there a while, wanders somewhere else. Two animations on two elements,
+  // composed — the circuit never has to know the oval has moved.
+  //
+  // .orbit's own rule is transform:scale(var(--orbit-scale,1)) and animating transform
+  // replaces it, but --orbit-scale is only ever set below 640px, where the orbit is display:none
+  // and this never runs. Bounds are asymmetric on purpose: right runs it off the page edge and
+  // up runs it under the bar, so it favours left and down.
+  const orbit = document.querySelector(".orbit");
+  let here = { x: 0, y: 0 }, roamer = null;
+
+  const roam = () => {
+    if (!orbit) return;
+    // how far left it may wander depends on how much room there is between the control and the
+    // definition column; on a 1024 laptop that is almost none, on a wide screen it is the full
+    // 170. Recomputed per leg, so a resize is picked up without a listener.
+    const room = Math.max(0, Math.min(170, (innerWidth - 900) * 0.35));
+    const to = { x: rnd(-room, Math.min(20, room * 0.12)), y: rnd(-24, 84) };
+    // a bend in the middle, so it arcs across rather than sliding down a diagonal
+    const mid = { x: (here.x + to.x) / 2 + rnd(-40, 40), y: (here.y + to.y) / 2 + rnd(-26, 26) };
+    const t = p => `translate(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px)`;
+    roamer = orbit.animate(
+      [{ transform: t(here) }, { transform: t(mid), offset: 0.5 }, { transform: t(to) }],
+      { duration: rnd(11000, 21000), easing: "ease-in-out", fill: "forwards" });
+    here = to;
+    roamer.onfinish = () => setTimeout(roam, rnd(600, 3600));
+  };
+
   circuit();
+  roam();
   // a backgrounded tab queues its finish callbacks; start a clean circuit on return
-  addEventListener("pageshow", e => { if (e.persisted) circuit(); });
-  document.addEventListener("visibilitychange", () => { if (!document.hidden) circuit(); });
+  const restart = () => { if (roamer) { roamer.onfinish = null; roamer.cancel(); }
+                          orbit && (orbit.style.transform = `translate(${here.x}px, ${here.y}px)`);
+                          circuit(); roam(); };
+  addEventListener("pageshow", e => { if (e.persisted) restart(); });
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) restart(); });
 })();
 
 // The bar wraps to two rows on a narrow screen, so the corner control is placed against its
