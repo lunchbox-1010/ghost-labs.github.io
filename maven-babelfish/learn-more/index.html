@@ -134,8 +134,14 @@
   /* identical to the name page, down to the units: the bar is the bar on every stop */
   .switch{ position:relative; z-index:1;
            display:flex; align-items:stretch; padding:3px; border-radius:999px;
-           background:rgba(10,20,30,.8); -webkit-backdrop-filter:blur(9px); backdrop-filter:blur(9px);
-           border:1px solid rgba(244,117,46,.42);
+           -webkit-backdrop-filter:blur(9px); backdrop-filter:blur(9px);
+           /* the lockup's two colours, in the lockup's order: the edge runs Maven's blue on
+              the left into Babelfish's orange on the right. A pill cannot take a gradient
+              border directly, so the fill is painted to the padding box and the gradient to
+              the border box, and the border itself is transparent. */
+           border:1px solid transparent;
+           background:linear-gradient(rgba(10,20,30,.82), rgba(10,20,30,.82)) padding-box,
+                      linear-gradient(90deg, rgba(92,194,255,.62), rgba(244,117,46,.62)) border-box;
            box-shadow:0 4px 22px rgba(0,0,0,.45) }
   .seg{ appearance:none; border:0; background:none; cursor:pointer; font:inherit;
         display:inline-flex; align-items:center; justify-content:center; text-decoration:none;
@@ -143,12 +149,16 @@
         font-family:var(--mono); font-weight:500; line-height:1;   /* not the page's, or the
           pill ends up a few px taller on one page than the other */
         font-size:clamp(8.5px, 1.15vmin, 11px); letter-spacing:.16em; text-transform:uppercase;
-        white-space:nowrap; color:rgba(238,244,250,.62);
-        transition:color .25s ease, background .3s ease }
-  .seg:hover{ color:var(--ink) }
-  .seg:focus-visible{ outline:2px solid var(--babel); outline-offset:3px }
-  .seg[aria-current]{ color:var(--ink); background:rgba(244,117,46,.22);
-                      box-shadow:inset 0 0 0 1px rgba(244,117,46,.4) }
+        /* resting in the muted blue-grey the rest of the page uses, so the stops sit in the
+           same family as the name rather than reading as plain white */
+        white-space:nowrap; color:var(--muted);
+        transition:color .25s ease, background .3s ease, box-shadow .3s ease }
+  .seg:hover{ color:var(--maven) }                    /* Maven's blue on the way to a stop */
+  .seg:focus-visible{ outline:2px solid var(--maven); outline-offset:3px }
+  .seg[aria-current]{ color:var(--ink);               /* and Babelfish's orange on the one you are at */
+                      background:rgba(244,117,46,.22);
+                      box-shadow:inset 0 0 0 1px rgba(244,117,46,.45) }
+  .seg[aria-current]:hover{ color:var(--ink) }
 
   /* ---- hero ---- */
   .hero{ padding-top:clamp(34px, 7vmin, 76px); padding-bottom:clamp(8px, 1.4vmin, 20px) }
