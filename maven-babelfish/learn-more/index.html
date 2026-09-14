@@ -155,9 +155,14 @@
         transition:color .25s ease, background .3s ease, box-shadow .3s ease }
   .seg:hover{ color:var(--maven) }                    /* Maven's blue on the way to a stop */
   .seg:focus-visible{ outline:2px solid var(--maven); outline-offset:3px }
-  .seg[aria-current]{ color:var(--ink);               /* and Babelfish's orange on the one you are at */
-                      background:rgba(244,117,46,.22);
-                      box-shadow:inset 0 0 0 1px rgba(244,117,46,.45) }
+  /* The fill used to be the orange itself at 22%. Orange that thin over a near-black navy
+     mixes to brown every time — there is no alpha at which it reads as orange without being
+     loud. Maven's blue does not have that problem: thinned over the same ground it stays
+     blue, so the stop you are on lifts in the cool half of the name's palette while the pill's
+     edge carries the warm half. */
+  .seg[aria-current]{ color:var(--ink);
+                      background:rgba(92,194,255,.16);
+                      box-shadow:inset 0 0 0 1px rgba(92,194,255,.5) }
   .seg[aria-current]:hover{ color:var(--ink) }
 
   /* ---- hero ---- */
