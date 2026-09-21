@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  The update feed for Maven Babelfish, with nothing in it yet.
+  The update feed for Maven BabelFish, with nothing in it yet.
 
   Publish this file at https://ghost-labs.com/babelfish/appcast.xml BEFORE the first release, not
   after. Three reasons, and the first is the one that matters:
@@ -20,9 +20,9 @@
 -->
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
     <channel>
-        <title>Maven Babelfish</title>
+        <title>Maven BabelFish</title>
         <link>https://ghost-labs.com/babelfish/appcast.xml</link>
-        <description>Updates to Maven Babelfish.</description>
+        <description>Updates to Maven BabelFish.</description>
         <language>en</language>
     </channel>
 </rss>

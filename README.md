@@ -7,7 +7,7 @@ Live site: https://ghost-labs.com
 | Foundry | Directory | What it is |
 |---|---|---|
 | **App Foundry** | `apps/` | Consumer apps. Currently **Tidy Task & Loot**. |
-| **Enterprise Foundry** | `enterprise/` | Business software and the Azure platforms it runs on — architecture, security, AI — plus our own products. First product: **Maven Babelfish**. |
+| **Enterprise Foundry** | `enterprise/` | Business software and the Azure platforms it runs on — architecture, security, AI — plus our own products. First product: **Maven BabelFish**. |
 | **Brand Foundry** | `foundry/` | Web and brand design. |
 
 `cloud/` is a redirect stub: the cloud practice became Enterprise Foundry, and old links still land there.
@@ -31,7 +31,7 @@ Live site: https://ghost-labs.com
 │   ├── learn-more/index.html     The full sheet: the flow, why it wins, the four ways to use AI
 │   ├── fish/                     The swimmer, cut into tail and body layers, five colours
 │   ├── scene/                    The mark pulled apart — corner art, and the disc minus the fish
-│   └── brand/                    Maven Babelfish logo at every size
+│   └── brand/                    Maven BabelFish logo at every size
 └── tidy-task-and-loot/
     ├── index.html                App overview & feature pages
     ├── privacy.html              Privacy Policy (App Store / Google Play ready)
@@ -39,7 +39,7 @@ Live site: https://ghost-labs.com
     └── support.html              FAQ + support contact
 ```
 
-### The Maven Babelfish mark, animated
+### The Maven BabelFish mark, animated
 
 `assets/styles.css` ends with a `.fish-icon` component. The brand kit ships the disc with the
 fish lifted out of it, so the two fish layers drop back on top at `inset:0` and reconstruct the
@@ -82,7 +82,7 @@ This repo is hosted on **GitHub Pages**.
 
 Edit any HTML file directly in the GitHub web editor (pencil icon → edit → commit) and the site rebuilds in about a minute.
 
-To swap the logo, replace `assets/logo.png` with a new file of the same name. Every page references it from there except the Maven Babelfish pages, which carry their own mark in `maven-babelfish/brand/`.
+To swap the logo, replace `assets/logo.png` with a new file of the same name. Every page references it from there except the Maven BabelFish pages, which carry their own mark in `maven-babelfish/brand/`.
 
 ## Adding a new app
 

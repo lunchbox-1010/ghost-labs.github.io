@@ -535,7 +535,7 @@ section[id] { scroll-margin-top: 112px; }
   .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
 }
 
-/* ---------- Maven Babelfish animated mark ---------------------------------- */
+/* ---------- Maven BabelFish animated mark ---------------------------------- */
 /* The product logo, alive. The brand kit ships the disc with the fish lifted out of it, so the
    two fish layers drop back on top at inset:0 and reconstruct the mark exactly. Tail and body
    counter-rotate about their measured pivots (38.3%/50.1% and 66.4%/49.8%) — that opposition is

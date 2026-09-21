@@ -1,7 +1,7 @@
-# `/babelfish/` — the files Maven Babelfish fetches about its own builds
+# `/babelfish/` — the files Maven BabelFish fetches about its own builds
 
 Nobody browses this folder. Two files live here and both are read by software, on a schedule, from
-addresses that are compiled into every copy of Maven Babelfish that has ever been installed.
+addresses that are compiled into every copy of Maven BabelFish that has ever been installed.
 
 | File | Who reads it | What it is |
 |---|---|---|
@@ -31,7 +31,7 @@ The addresses, written out once, are:
     https://ghost-labs.com/babelfish/appcast.xml
     https://ghost-labs.com/babelfish/releases.json
 
-In the Babelfish repository every one of them is built from a single named constant in
+In the BabelFish repository every one of them is built from a single named constant in
 `engine/src/babelfish/addresses.py`, and a check fails if the same address is ever typed out a
 second time anywhere else.
 
@@ -51,7 +51,7 @@ second time anywhere else.
 
 ## How each file gets here
 
-`appcast.xml` is written by `apps/macos/release/publish.sh` in the Babelfish repository, which merges
+`appcast.xml` is written by `apps/macos/release/publish.sh` in the BabelFish repository, which merges
 each new release into whatever is already published. **Old entries are kept**, so an install two
 versions behind still finds a path forward. Do not hand-edit it once it is live: copy the file
 `publish.sh` produces over this one and push.
@@ -71,5 +71,5 @@ There is a `.nojekyll` file at the root of this repository and it matters to thi
 GitHub Pages runs a Jekyll build over everything here before serving it, which would rewrite the
 `README.md` in this folder into a page and does not guarantee that what is committed is what is
 served. Both files in here are checked byte for byte against a signature. A file altered on its way
-to the web is a file every customer's copy of Babelfish refuses, on the same afternoon, with a
+to the web is a file every customer's copy of BabelFish refuses, on the same afternoon, with a
 message that sounds like the customer's fault.

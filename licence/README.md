@@ -1,4 +1,4 @@
-# `/licence/` — one signed file per paying Maven Babelfish account
+# `/licence/` — one signed file per paying Maven BabelFish account
 
 Read this before you touch anything in this folder.
 
@@ -27,8 +27,8 @@ history. That is why the names mean nothing.
 
 ## What removing a file does
 
-A customer's copy of Maven Babelfish fetches its own file from this folder every couple of weeks. If
-the file is not there, the fetch fails, and Babelfish carries on with the licence it last collected
+A customer's copy of Maven BabelFish fetches its own file from this folder every couple of weeks. If
+the file is not there, the fetch fails, and BabelFish carries on with the licence it last collected
 until that licence genuinely runs out. Then, after the grace period written inside the licence, two
 things stop on that customer's machine:
 
@@ -51,7 +51,7 @@ afterwards — not by us, not by them, not by a redirect. It is:
     https://ghost-labs.com/licence/<key>.json
 
 Rename this folder, move it under `/maven-babelfish/`, or fold it into a redesign, and every paying
-customer's Babelfish starts asking for a page that is not there. Rename one file and that one
+customer's BabelFish starts asking for a page that is not there. Rename one file and that one
 customer does. **A renewal is a new file written over the old one at the same address**, never a new
 name: a new name leaves that customer on a file nobody will ever update again, and the only way back
 is an engineer editing a configuration file on their computer.
@@ -71,7 +71,7 @@ is an engineer editing a configuration file on their computer.
 
 ## How a file gets here, and how it leaves
 
-Every one of these files is written by `tools/support/ghost_labs_licences.py` in the Babelfish
+Every one of these files is written by `tools/support/ghost_labs_licences.py` in the BabelFish
 repository, on the machine where the Ghost Labs signing key lives. It mints a licence for a new
 account, renews one over the same file at the same address, says what is published here and whether
 it has actually been pushed, and — rarely, and only after making the person running it read what it
@@ -82,7 +82,7 @@ create a second file for an account that already has one, which is the mistake t
 customer, and it checks this whole folder before it will tell anybody to publish anything.
 
 If you have found this folder and something in it looks wrong, the safest thing you can do is
-nothing. Ask Ghost Labs first. There is a support address on the Maven Babelfish product page.
+nothing. Ask Ghost Labs first. There is a support address on the Maven BabelFish product page.
 
 ## `.nojekyll`
 
