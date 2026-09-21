@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The update feed for Maven Babelfish, with nothing in it yet.
+
+  Publish this file at https://ghost-labs.com/babelfish/appcast.xml BEFORE the first release, not
+  after. Three reasons, and the first is the one that matters:
+
+  1. That address is compiled into every copy of the application and can never change, because an
+     install only knows the address it was built with. Proving it is live and served over https
+     while nothing depends on it is free; finding out it is wrong after a package is in somebody
+     else's hands is not.
+  2. An empty feed is a complete answer. Sparkle reads it, finds nothing newer than what is running,
+     and says nothing — which is correct. A 404 is an error on every daily check of every install.
+  3. publish.sh merges each release into whatever is already published, and falls back to writing a
+     fresh feed only when there is none. Publishing this first means the first real release takes
+     the merge path, which is the one every release after it will take too.
+
+  Do not hand-edit this once it is live. publish.sh appends each new entry after the language line
+  and keeps the old ones, so an install two versions behind still finds a path forward.
+-->
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
+    <channel>
+        <title>Maven Babelfish</title>
+        <link>https://ghost-labs.com/babelfish/appcast.xml</link>
+        <description>Updates to Maven Babelfish.</description>
+        <language>en</language>
+    </channel>
+</rss>
