@@ -1,0 +1,9 @@
+{
+ "account": "e45def01f97a52237de7ab2e69a4a5a4",
+ "expires_at": "2026-10-21T02:13:20Z",
+ "grace_days": 30.0,
+ "issued_at": "2026-09-21T02:13:20Z",
+ "licence": 1,
+ "refresh_every_days": 14.0,
+ "signature": "ZgiQyDz7m2JUZquMK4KemiNG7+duxtT9Jve4hGDUWv9gMhDvZ6ktJgYS2oR9SeOa78+F5P++mpwetCRRmUwuAQ=="
+}
