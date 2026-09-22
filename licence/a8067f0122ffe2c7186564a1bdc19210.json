@@ -2,8 +2,12 @@
  "account": "a8067f0122ffe2c7186564a1bdc19210",
  "expires_at": "2026-10-21T02:35:46Z",
  "grace_days": 30.0,
- "issued_at": "2026-09-21T02:35:46Z",
+ "issued_at": "2026-09-22T11:24:30Z",
  "licence": 1,
+ "machines": [
+  "A1BCF805FE48022B"
+ ],
  "refresh_every_days": 14.0,
- "signature": "qKqDAr6apgamEnqZlMQCCNMfhGmt+Lk6buu36mbYqTK20QHdosQQWDhArdAKyxCdhGdJMGIZPxtoGx7ZCzhBCA=="
+ "seats": 1,
+ "signature": "uKHugTBOVh5EDo0+VpZdRB0H5OWVyiY3KuOVbho9aIMeTE58CpvBwCj6+eboxlHokN9lvT9lnEo8vC4TpKOJAg=="
 }
