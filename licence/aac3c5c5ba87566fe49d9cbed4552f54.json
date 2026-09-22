@@ -1,0 +1,10 @@
+{
+ "account": "aac3c5c5ba87566fe49d9cbed4552f54",
+ "expires_at": "2026-10-22T12:10:32Z",
+ "grace_days": 30.0,
+ "issued_at": "2026-09-22T12:10:32Z",
+ "licence": 1,
+ "refresh_every_days": 14.0,
+ "seats": 1,
+ "signature": "G3cAF2z+jH51HLSzx+kjBGpCLBD9U0m+RJfmkoEJsfSwp4Agmk6WQGhhfadtJpY3knPhVNijXAMtcyz/IhiuDw=="
+}
