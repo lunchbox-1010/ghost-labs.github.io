@@ -24,7 +24,7 @@ Live site: https://ghost-labs.com
 ├── eula.html                     Ghost Labs' one EULA for every product (made from Ravenwood's legal.ts by
 │                                 worker/scripts/eula-for-website.mjs; don't edit between its EULA markers)
 ├── privacy.html                  Ghost Labs' one Privacy Policy for every product (product sections at the end)
-├── refunds.html                  Refund and cancellation policy
+├── refunds.html                  Ghost Labs' one Refund and cancellation policy (Ravenwood section at the end)
 ├── terms.html                    Redirect stub -> eula.html
 ├── README.md                     This file
 ├── assets/
