@@ -335,7 +335,7 @@ section[id] { scroll-margin-top: 112px; }
 .prose {
   max-width: 760px;
   margin: 0 auto;
-  padding: 64px 0;
+  padding: 64px 24px; /* keeps .container's side gutter on phones */
 }
 .prose h2 {
   font-size: 22px;

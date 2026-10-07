@@ -21,6 +21,11 @@ Live site: https://ghost-labs.com
 ├── enterprise/index.html         Enterprise Foundry (services + products)
 ├── foundry/index.html            Brand Foundry
 ├── cloud/index.html              Redirect stub -> enterprise/
+├── eula.html                     Ghost Labs' one EULA for every product (made from Ravenwood's legal.ts by
+│                                 worker/scripts/eula-for-website.mjs; don't edit between its EULA markers)
+├── privacy.html                  Ghost Labs' one Privacy Policy for every product (product sections at the end)
+├── refunds.html                  Refund and cancellation policy
+├── terms.html                    Redirect stub -> eula.html
 ├── README.md                     This file
 ├── assets/
 │   ├── logo.png                  Brand logo (color)
@@ -34,8 +39,8 @@ Live site: https://ghost-labs.com
 │   └── brand/                    Maven BabelFish logo at every size
 └── tidy-task-and-loot/
     ├── index.html                App overview & feature pages
-    ├── privacy.html              Privacy Policy (App Store / Google Play ready)
-    ├── terms.html                Terms of Service / EULA
+    ├── privacy.html              Redirect stub -> /privacy.html#tidy-task-and-loot (the App Store URL keeps working)
+    ├── terms.html                Redirect stub -> /eula.html#tidy-task-and-loot
     └── support.html              FAQ + support contact
 ```
 
